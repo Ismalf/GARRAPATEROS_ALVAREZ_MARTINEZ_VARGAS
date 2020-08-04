@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateXeestEstadoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateXeestEstadoLabel_xeestCodigo}" for="xeestCodigo" />
+                    <h:inputText id="xeestCodigo" value="#{xeestEstadoController.selected.xeestCodigo}" title="#{bundle.CreateXeestEstadoTitle_xeestCodigo}" required="true" requiredMessage="#{bundle.CreateXeestEstadoRequiredMessage_xeestCodigo}"/>
+                    <h:outputLabel value="#{bundle.CreateXeestEstadoLabel_xeestDescri}" for="xeestDescri" />
+                    <h:inputText id="xeestDescri" value="#{xeestEstadoController.selected.xeestDescri}" title="#{bundle.CreateXeestEstadoTitle_xeestDescri}" required="true" requiredMessage="#{bundle.CreateXeestEstadoRequiredMessage_xeestDescri}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{xeestEstadoController.create}" value="#{bundle.CreateXeestEstadoSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{xeestEstadoController.prepareList}" value="#{bundle.CreateXeestEstadoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateXeestEstadoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

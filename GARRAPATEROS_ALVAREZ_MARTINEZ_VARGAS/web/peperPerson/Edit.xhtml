@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditPeperPersonTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditPeperPersonLabel_peperId}" for="peperId" />
+                    <h:inputText id="peperId" value="#{peperPersonController.selected.peperId}" title="#{bundle.EditPeperPersonTitle_peperId}" required="true" requiredMessage="#{bundle.EditPeperPersonRequiredMessage_peperId}"/>
+                    <h:outputLabel value="#{bundle.EditPeperPersonLabel_peperNombre}" for="peperNombre" />
+                    <h:inputText id="peperNombre" value="#{peperPersonController.selected.peperNombre}" title="#{bundle.EditPeperPersonTitle_peperNombre}" required="true" requiredMessage="#{bundle.EditPeperPersonRequiredMessage_peperNombre}"/>
+                    <h:outputLabel value="#{bundle.EditPeperPersonLabel_peperApelli}" for="peperApelli" />
+                    <h:inputText id="peperApelli" value="#{peperPersonController.selected.peperApelli}" title="#{bundle.EditPeperPersonTitle_peperApelli}" required="true" requiredMessage="#{bundle.EditPeperPersonRequiredMessage_peperApelli}"/>
+                    <h:outputLabel value="#{bundle.EditPeperPersonLabel_peperCedula}" for="peperCedula" />
+                    <h:inputText id="peperCedula" value="#{peperPersonController.selected.peperCedula}" title="#{bundle.EditPeperPersonTitle_peperCedula}" required="true" requiredMessage="#{bundle.EditPeperPersonRequiredMessage_peperCedula}"/>
+                    <h:outputLabel value="#{bundle.EditPeperPersonLabel_peperNacimi}" for="peperNacimi" />
+                    <h:inputText id="peperNacimi" value="#{peperPersonController.selected.peperNacimi}" title="#{bundle.EditPeperPersonTitle_peperNacimi}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditPeperPersonLabel_peperTelf}" for="peperTelf" />
+                    <h:inputText id="peperTelf" value="#{peperPersonController.selected.peperTelf}" title="#{bundle.EditPeperPersonTitle_peperTelf}" />
+                    <h:outputLabel value="#{bundle.EditPeperPersonLabel_peperDir}" for="peperDir" />
+                    <h:inputText id="peperDir" value="#{peperPersonController.selected.peperDir}" title="#{bundle.EditPeperPersonTitle_peperDir}" />
+                    <h:outputLabel value="#{bundle.EditPeperPersonLabel_pesexCodigo}" for="pesexCodigo" />
+                    <h:selectOneMenu id="pesexCodigo" value="#{peperPersonController.selected.pesexCodigo}" title="#{bundle.EditPeperPersonTitle_pesexCodigo}" required="true" requiredMessage="#{bundle.EditPeperPersonRequiredMessage_pesexCodigo}">
+                        <f:selectItems value="#{pesexSexoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditPeperPersonLabel_paracaidistas}" for="paracaidistas" />
+                    <h:selectOneMenu id="paracaidistas" value="#{peperPersonController.selected.paracaidistas}" title="#{bundle.EditPeperPersonTitle_paracaidistas}" >
+                        <f:selectItems value="#{paracaidistasController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditPeperPersonLabel_piloto}" for="piloto" />
+                    <h:selectOneMenu id="piloto" value="#{peperPersonController.selected.piloto}" title="#{bundle.EditPeperPersonTitle_piloto}" >
+                        <f:selectItems value="#{pilotoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{peperPersonController.update}" value="#{bundle.EditPeperPersonSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditPeperPersonViewLink}"/>
+                <br />
+                <h:commandLink action="#{peperPersonController.prepareList}" value="#{bundle.EditPeperPersonShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditPeperPersonIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

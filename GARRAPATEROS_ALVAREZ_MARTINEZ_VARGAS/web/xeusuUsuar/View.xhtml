@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewXeusuUsuarTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewXeusuUsuarLabel_xeusuPasswo}"/>
+                    <h:outputText value="#{xeusuUsuarController.selected.xeusuPasswo}" title="#{bundle.ViewXeusuUsuarTitle_xeusuPasswo}"/>
+                    <h:outputText value="#{bundle.ViewXeusuUsuarLabel_xeusuUltpas}"/>
+                    <h:outputText value="#{xeusuUsuarController.selected.xeusuUltpas}" title="#{bundle.ViewXeusuUsuarTitle_xeusuUltpas}"/>
+                    <h:outputText value="#{bundle.ViewXeusuUsuarLabel_xeusuFeccre}"/>
+                    <h:outputText value="#{xeusuUsuarController.selected.xeusuFeccre}" title="#{bundle.ViewXeusuUsuarTitle_xeusuFeccre}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewXeusuUsuarLabel_xeusuFecmod}"/>
+                    <h:outputText value="#{xeusuUsuarController.selected.xeusuFecmod}" title="#{bundle.ViewXeusuUsuarTitle_xeusuFecmod}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewXeusuUsuarLabel_xeusuFeccad}"/>
+                    <h:outputText value="#{xeusuUsuarController.selected.xeusuFeccad}" title="#{bundle.ViewXeusuUsuarTitle_xeusuFeccad}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewXeusuUsuarLabel_xeusuPiefir}"/>
+                    <h:outputText value="#{xeusuUsuarController.selected.xeusuPiefir}" title="#{bundle.ViewXeusuUsuarTitle_xeusuPiefir}"/>
+                    <h:outputText value="#{bundle.ViewXeusuUsuarLabel_xeusuObserv}"/>
+                    <h:outputText value="#{xeusuUsuarController.selected.xeusuObserv}" title="#{bundle.ViewXeusuUsuarTitle_xeusuObserv}"/>
+                    <h:outputText value="#{bundle.ViewXeusuUsuarLabel_xeusuEmail}"/>
+                    <h:outputText value="#{xeusuUsuarController.selected.xeusuEmail}" title="#{bundle.ViewXeusuUsuarTitle_xeusuEmail}"/>
+                    <h:outputText value="#{bundle.ViewXeusuUsuarLabel_xeusuTipo}"/>
+                    <h:outputText value="#{xeusuUsuarController.selected.xeusuTipo}" title="#{bundle.ViewXeusuUsuarTitle_xeusuTipo}"/>
+                    <h:outputText value="#{bundle.ViewXeusuUsuarLabel_xeperCodper}"/>
+                    <h:outputText value="#{xeusuUsuarController.selected.xeperCodper}" title="#{bundle.ViewXeusuUsuarTitle_xeperCodper}"/>
+                    <h:outputText value="#{bundle.ViewXeusuUsuarLabel_peperId}"/>
+                    <h:outputText value="#{xeusuUsuarController.selected.peperId}" title="#{bundle.ViewXeusuUsuarTitle_peperId}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{xeusuUsuarController.destroyAndView}" value="#{bundle.ViewXeusuUsuarDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewXeusuUsuarEditLink}"/>
+                <br />
+                <h:commandLink action="#{xeusuUsuarController.prepareCreate}" value="#{bundle.ViewXeusuUsuarCreateLink}" />
+                <br />
+                <h:commandLink action="#{xeusuUsuarController.prepareList}" value="#{bundle.ViewXeusuUsuarShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewXeusuUsuarIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

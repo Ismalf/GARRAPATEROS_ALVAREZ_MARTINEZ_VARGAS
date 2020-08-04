@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewParacaidistasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewParacaidistasLabel_peperId}"/>
+                    <h:outputText value="#{paracaidistasController.selected.peperId}" title="#{bundle.ViewParacaidistasTitle_peperId}"/>
+                    <h:outputText value="#{bundle.ViewParacaidistasLabel_tipoParacaidista}"/>
+                    <h:outputText value="#{paracaidistasController.selected.tipoParacaidista}" title="#{bundle.ViewParacaidistasTitle_tipoParacaidista}"/>
+                    <h:outputText value="#{bundle.ViewParacaidistasLabel_escuelaParacaidista}"/>
+                    <h:outputText value="#{paracaidistasController.selected.escuelaParacaidista}" title="#{bundle.ViewParacaidistasTitle_escuelaParacaidista}"/>
+                    <h:outputText value="#{bundle.ViewParacaidistasLabel_saltosParacaidista}"/>
+                    <h:outputText value="#{paracaidistasController.selected.saltosParacaidista}" title="#{bundle.ViewParacaidistasTitle_saltosParacaidista}"/>
+                    <h:outputText value="#{bundle.ViewParacaidistasLabel_fechaParacaidista}"/>
+                    <h:outputText value="#{paracaidistasController.selected.fechaParacaidista}" title="#{bundle.ViewParacaidistasTitle_fechaParacaidista}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewParacaidistasLabel_licenciaParacaidista}"/>
+                    <h:outputText value="#{paracaidistasController.selected.licenciaParacaidista}" title="#{bundle.ViewParacaidistasTitle_licenciaParacaidista}"/>
+                    <h:outputText value="#{bundle.ViewParacaidistasLabel_cupulaParacaidista}"/>
+                    <h:outputText value="#{paracaidistasController.selected.cupulaParacaidista}" title="#{bundle.ViewParacaidistasTitle_cupulaParacaidista}"/>
+                    <h:outputText value="#{bundle.ViewParacaidistasLabel_cupdirParacaidista}"/>
+                    <h:outputText value="#{paracaidistasController.selected.cupdirParacaidista}" title="#{bundle.ViewParacaidistasTitle_cupdirParacaidista}"/>
+                    <h:outputText value="#{bundle.ViewParacaidistasLabel_aguaParacaidista}"/>
+                    <h:outputText value="#{paracaidistasController.selected.aguaParacaidista}" title="#{bundle.ViewParacaidistasTitle_aguaParacaidista}"/>
+                    <h:outputText value="#{bundle.ViewParacaidistasLabel_aguadirParacaidista}"/>
+                    <h:outputText value="#{paracaidistasController.selected.aguadirParacaidista}" title="#{bundle.ViewParacaidistasTitle_aguadirParacaidista}"/>
+                    <h:outputText value="#{bundle.ViewParacaidistasLabel_disciplinasParacaidista}"/>
+                    <h:outputText value="#{paracaidistasController.selected.disciplinasParacaidista}" title="#{bundle.ViewParacaidistasTitle_disciplinasParacaidista}"/>
+                    <h:outputText value="#{bundle.ViewParacaidistasLabel_peperPerson}"/>
+                    <h:outputText value="#{paracaidistasController.selected.peperPerson}" title="#{bundle.ViewParacaidistasTitle_peperPerson}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{paracaidistasController.destroyAndView}" value="#{bundle.ViewParacaidistasDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewParacaidistasEditLink}"/>
+                <br />
+                <h:commandLink action="#{paracaidistasController.prepareCreate}" value="#{bundle.ViewParacaidistasCreateLink}" />
+                <br />
+                <h:commandLink action="#{paracaidistasController.prepareList}" value="#{bundle.ViewParacaidistasShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewParacaidistasIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

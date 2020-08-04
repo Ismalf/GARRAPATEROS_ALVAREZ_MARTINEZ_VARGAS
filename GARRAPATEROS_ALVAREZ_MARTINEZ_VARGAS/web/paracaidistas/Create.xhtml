@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateParacaidistasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateParacaidistasLabel_peperId}" for="peperId" />
+                    <h:inputText id="peperId" value="#{paracaidistasController.selected.peperId}" title="#{bundle.CreateParacaidistasTitle_peperId}" required="true" requiredMessage="#{bundle.CreateParacaidistasRequiredMessage_peperId}"/>
+                    <h:outputLabel value="#{bundle.CreateParacaidistasLabel_tipoParacaidista}" for="tipoParacaidista" />
+                    <h:inputText id="tipoParacaidista" value="#{paracaidistasController.selected.tipoParacaidista}" title="#{bundle.CreateParacaidistasTitle_tipoParacaidista}" />
+                    <h:outputLabel value="#{bundle.CreateParacaidistasLabel_escuelaParacaidista}" for="escuelaParacaidista" />
+                    <h:inputText id="escuelaParacaidista" value="#{paracaidistasController.selected.escuelaParacaidista}" title="#{bundle.CreateParacaidistasTitle_escuelaParacaidista}" />
+                    <h:outputLabel value="#{bundle.CreateParacaidistasLabel_saltosParacaidista}" for="saltosParacaidista" />
+                    <h:inputText id="saltosParacaidista" value="#{paracaidistasController.selected.saltosParacaidista}" title="#{bundle.CreateParacaidistasTitle_saltosParacaidista}" required="true" requiredMessage="#{bundle.CreateParacaidistasRequiredMessage_saltosParacaidista}"/>
+                    <h:outputLabel value="#{bundle.CreateParacaidistasLabel_fechaParacaidista}" for="fechaParacaidista" />
+                    <h:inputText id="fechaParacaidista" value="#{paracaidistasController.selected.fechaParacaidista}" title="#{bundle.CreateParacaidistasTitle_fechaParacaidista}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateParacaidistasLabel_licenciaParacaidista}" for="licenciaParacaidista" />
+                    <h:inputText id="licenciaParacaidista" value="#{paracaidistasController.selected.licenciaParacaidista}" title="#{bundle.CreateParacaidistasTitle_licenciaParacaidista}" />
+                    <h:outputLabel value="#{bundle.CreateParacaidistasLabel_cupulaParacaidista}" for="cupulaParacaidista" />
+                    <h:inputText id="cupulaParacaidista" value="#{paracaidistasController.selected.cupulaParacaidista}" title="#{bundle.CreateParacaidistasTitle_cupulaParacaidista}" />
+                    <h:outputLabel value="#{bundle.CreateParacaidistasLabel_cupdirParacaidista}" for="cupdirParacaidista" />
+                    <h:inputText id="cupdirParacaidista" value="#{paracaidistasController.selected.cupdirParacaidista}" title="#{bundle.CreateParacaidistasTitle_cupdirParacaidista}" />
+                    <h:outputLabel value="#{bundle.CreateParacaidistasLabel_aguaParacaidista}" for="aguaParacaidista" />
+                    <h:inputText id="aguaParacaidista" value="#{paracaidistasController.selected.aguaParacaidista}" title="#{bundle.CreateParacaidistasTitle_aguaParacaidista}" />
+                    <h:outputLabel value="#{bundle.CreateParacaidistasLabel_aguadirParacaidista}" for="aguadirParacaidista" />
+                    <h:inputText id="aguadirParacaidista" value="#{paracaidistasController.selected.aguadirParacaidista}" title="#{bundle.CreateParacaidistasTitle_aguadirParacaidista}" />
+                    <h:outputLabel value="#{bundle.CreateParacaidistasLabel_disciplinasParacaidista}" for="disciplinasParacaidista" />
+                    <h:inputText id="disciplinasParacaidista" value="#{paracaidistasController.selected.disciplinasParacaidista}" title="#{bundle.CreateParacaidistasTitle_disciplinasParacaidista}" />
+                    <h:outputLabel value="#{bundle.CreateParacaidistasLabel_peperPerson}" for="peperPerson" />
+                    <h:selectOneMenu id="peperPerson" value="#{paracaidistasController.selected.peperPerson}" title="#{bundle.CreateParacaidistasTitle_peperPerson}" required="true" requiredMessage="#{bundle.CreateParacaidistasRequiredMessage_peperPerson}">
+                        <f:selectItems value="#{peperPersonController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{paracaidistasController.create}" value="#{bundle.CreateParacaidistasSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{paracaidistasController.prepareList}" value="#{bundle.CreateParacaidistasShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateParacaidistasIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListParacaidistasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListParacaidistasEmpty}" rendered="#{paracaidistasController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{paracaidistasController.items.rowCount > 0}">
+                    <h:outputText value="#{paracaidistasController.pagination.pageFirstItem + 1}..#{paracaidistasController.pagination.pageLastItem + 1}/#{paracaidistasController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{paracaidistasController.previous}" value="#{bundle.Previous} #{paracaidistasController.pagination.pageSize}" rendered="#{paracaidistasController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{paracaidistasController.next}" value="#{bundle.Next} #{paracaidistasController.pagination.pageSize}" rendered="#{paracaidistasController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{paracaidistasController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParacaidistasTitle_peperId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.peperId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParacaidistasTitle_tipoParacaidista}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipoParacaidista}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParacaidistasTitle_escuelaParacaidista}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.escuelaParacaidista}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParacaidistasTitle_saltosParacaidista}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.saltosParacaidista}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParacaidistasTitle_fechaParacaidista}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaParacaidista}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParacaidistasTitle_licenciaParacaidista}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.licenciaParacaidista}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParacaidistasTitle_cupulaParacaidista}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cupulaParacaidista}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParacaidistasTitle_cupdirParacaidista}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cupdirParacaidista}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParacaidistasTitle_aguaParacaidista}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.aguaParacaidista}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParacaidistasTitle_aguadirParacaidista}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.aguadirParacaidista}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParacaidistasTitle_disciplinasParacaidista}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.disciplinasParacaidista}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParacaidistasTitle_peperPerson}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.peperPerson}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{paracaidistasController.prepareView}" value="#{bundle.ListParacaidistasViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{paracaidistasController.prepareEdit}" value="#{bundle.ListParacaidistasEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{paracaidistasController.destroy}" value="#{bundle.ListParacaidistasDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{paracaidistasController.prepareCreate}" value="#{bundle.ListParacaidistasCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListParacaidistasIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

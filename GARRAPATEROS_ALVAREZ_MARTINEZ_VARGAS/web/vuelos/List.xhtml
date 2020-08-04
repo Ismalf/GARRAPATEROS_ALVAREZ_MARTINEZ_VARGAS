@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListVuelosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListVuelosEmpty}" rendered="#{vuelosController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{vuelosController.items.rowCount > 0}">
+                    <h:outputText value="#{vuelosController.pagination.pageFirstItem + 1}..#{vuelosController.pagination.pageLastItem + 1}/#{vuelosController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{vuelosController.previous}" value="#{bundle.Previous} #{vuelosController.pagination.pageSize}" rendered="#{vuelosController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{vuelosController.next}" value="#{bundle.Next} #{vuelosController.pagination.pageSize}" rendered="#{vuelosController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{vuelosController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListVuelosTitle_idVuelo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idVuelo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListVuelosTitle_horaSalida}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.horaSalida}">
+                                <f:convertDateTime pattern="HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListVuelosTitle_horaLlegada}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.horaLlegada}">
+                                <f:convertDateTime pattern="HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListVuelosTitle_fechaVuelo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaVuelo}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListVuelosTitle_idAvioneta}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idAvioneta}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListVuelosTitle_peperId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.peperId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{vuelosController.prepareView}" value="#{bundle.ListVuelosViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{vuelosController.prepareEdit}" value="#{bundle.ListVuelosEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{vuelosController.destroy}" value="#{bundle.ListVuelosDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{vuelosController.prepareCreate}" value="#{bundle.ListVuelosCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListVuelosIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

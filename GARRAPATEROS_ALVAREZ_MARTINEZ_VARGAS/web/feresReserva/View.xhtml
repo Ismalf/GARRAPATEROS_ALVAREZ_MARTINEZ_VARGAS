@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewFeresReservaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewFeresReservaLabel_feresCodigo}"/>
+                    <h:outputText value="#{feresReservaController.selected.feresCodigo}" title="#{bundle.ViewFeresReservaTitle_feresCodigo}"/>
+                    <h:outputText value="#{bundle.ViewFeresReservaLabel_feresFecha}"/>
+                    <h:outputText value="#{feresReservaController.selected.feresFecha}" title="#{bundle.ViewFeresReservaTitle_feresFecha}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewFeresReservaLabel_feresDescri}"/>
+                    <h:outputText value="#{feresReservaController.selected.feresDescri}" title="#{bundle.ViewFeresReservaTitle_feresDescri}"/>
+                    <h:outputText value="#{bundle.ViewFeresReservaLabel_feresEstado}"/>
+                    <h:outputText value="#{feresReservaController.selected.feresEstado}" title="#{bundle.ViewFeresReservaTitle_feresEstado}"/>
+                    <h:outputText value="#{bundle.ViewFeresReservaLabel_pecomCodigo}"/>
+                    <h:outputText value="#{feresReservaController.selected.pecomCodigo}" title="#{bundle.ViewFeresReservaTitle_pecomCodigo}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{feresReservaController.destroyAndView}" value="#{bundle.ViewFeresReservaDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewFeresReservaEditLink}"/>
+                <br />
+                <h:commandLink action="#{feresReservaController.prepareCreate}" value="#{bundle.ViewFeresReservaCreateLink}" />
+                <br />
+                <h:commandLink action="#{feresReservaController.prepareList}" value="#{bundle.ViewFeresReservaShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewFeresReservaIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

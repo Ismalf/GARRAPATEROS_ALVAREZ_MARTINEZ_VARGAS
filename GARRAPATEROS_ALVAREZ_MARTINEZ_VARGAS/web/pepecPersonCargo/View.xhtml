@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewPepecPersonCargoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewPepecPersonCargoLabel_pepecPersonCargoPK_idContrato}"/>
+                    <h:outputText value="#{pepecPersonCargoController.selected.pepecPersonCargoPK.idContrato}" title="#{bundle.ViewPepecPersonCargoTitle_pepecPersonCargoPK_idContrato}"/>
+                    <h:outputText value="#{bundle.ViewPepecPersonCargoLabel_pepecFecini}"/>
+                    <h:outputText value="#{pepecPersonCargoController.selected.pepecFecini}" title="#{bundle.ViewPepecPersonCargoTitle_pepecFecini}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewPepecPersonCargoLabel_pepecFecfin}"/>
+                    <h:outputText value="#{pepecPersonCargoController.selected.pepecFecfin}" title="#{bundle.ViewPepecPersonCargoTitle_pepecFecfin}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewPepecPersonCargoLabel_pecarCodigo}"/>
+                    <h:outputText value="#{pepecPersonCargoController.selected.pecarCodigo}" title="#{bundle.ViewPepecPersonCargoTitle_pecarCodigo}"/>
+                    <h:outputText value="#{bundle.ViewPepecPersonCargoLabel_peperPerson}"/>
+                    <h:outputText value="#{pepecPersonCargoController.selected.peperPerson}" title="#{bundle.ViewPepecPersonCargoTitle_peperPerson}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{pepecPersonCargoController.destroyAndView}" value="#{bundle.ViewPepecPersonCargoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewPepecPersonCargoEditLink}"/>
+                <br />
+                <h:commandLink action="#{pepecPersonCargoController.prepareCreate}" value="#{bundle.ViewPepecPersonCargoCreateLink}" />
+                <br />
+                <h:commandLink action="#{pepecPersonCargoController.prepareList}" value="#{bundle.ViewPepecPersonCargoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewPepecPersonCargoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

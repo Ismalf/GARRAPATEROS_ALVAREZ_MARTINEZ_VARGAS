@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateSaltoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateSaltoLabel_idSalto}" for="idSalto" />
+                    <h:inputText id="idSalto" value="#{saltoController.selected.idSalto}" title="#{bundle.CreateSaltoTitle_idSalto}" required="true" requiredMessage="#{bundle.CreateSaltoRequiredMessage_idSalto}"/>
+                    <h:outputLabel value="#{bundle.CreateSaltoLabel_tipoSalto}" for="tipoSalto" />
+                    <h:inputText id="tipoSalto" value="#{saltoController.selected.tipoSalto}" title="#{bundle.CreateSaltoTitle_tipoSalto}" />
+                    <h:outputLabel value="#{bundle.CreateSaltoLabel_montoSalto}" for="montoSalto" />
+                    <h:inputText id="montoSalto" value="#{saltoController.selected.montoSalto}" title="#{bundle.CreateSaltoTitle_montoSalto}" />
+                    <h:outputLabel value="#{bundle.CreateSaltoLabel_descuentoSalto}" for="descuentoSalto" />
+                    <h:inputText id="descuentoSalto" value="#{saltoController.selected.descuentoSalto}" title="#{bundle.CreateSaltoTitle_descuentoSalto}" />
+                    <h:outputLabel value="#{bundle.CreateSaltoLabel_peperId}" for="peperId" />
+                    <h:selectOneMenu id="peperId" value="#{saltoController.selected.peperId}" title="#{bundle.CreateSaltoTitle_peperId}" required="true" requiredMessage="#{bundle.CreateSaltoRequiredMessage_peperId}">
+                        <f:selectItems value="#{paracaidistasController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateSaltoLabel_feresCodigo}" for="feresCodigo" />
+                    <h:selectOneMenu id="feresCodigo" value="#{saltoController.selected.feresCodigo}" title="#{bundle.CreateSaltoTitle_feresCodigo}" required="true" requiredMessage="#{bundle.CreateSaltoRequiredMessage_feresCodigo}">
+                        <f:selectItems value="#{feresReservaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateSaltoLabel_idVuelo}" for="idVuelo" />
+                    <h:selectOneMenu id="idVuelo" value="#{saltoController.selected.idVuelo}" title="#{bundle.CreateSaltoTitle_idVuelo}" required="true" requiredMessage="#{bundle.CreateSaltoRequiredMessage_idVuelo}">
+                        <f:selectItems value="#{vuelosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{saltoController.create}" value="#{bundle.CreateSaltoSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{saltoController.prepareList}" value="#{bundle.CreateSaltoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateSaltoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditVuelosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditVuelosLabel_idVuelo}" for="idVuelo" />
+                    <h:inputText id="idVuelo" value="#{vuelosController.selected.idVuelo}" title="#{bundle.EditVuelosTitle_idVuelo}" required="true" requiredMessage="#{bundle.EditVuelosRequiredMessage_idVuelo}"/>
+                    <h:outputLabel value="#{bundle.EditVuelosLabel_horaSalida}" for="horaSalida" />
+                    <h:inputText id="horaSalida" value="#{vuelosController.selected.horaSalida}" title="#{bundle.EditVuelosTitle_horaSalida}" >
+                        <f:convertDateTime pattern="HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditVuelosLabel_horaLlegada}" for="horaLlegada" />
+                    <h:inputText id="horaLlegada" value="#{vuelosController.selected.horaLlegada}" title="#{bundle.EditVuelosTitle_horaLlegada}" >
+                        <f:convertDateTime pattern="HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditVuelosLabel_fechaVuelo}" for="fechaVuelo" />
+                    <h:inputText id="fechaVuelo" value="#{vuelosController.selected.fechaVuelo}" title="#{bundle.EditVuelosTitle_fechaVuelo}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditVuelosLabel_idAvioneta}" for="idAvioneta" />
+                    <h:selectOneMenu id="idAvioneta" value="#{vuelosController.selected.idAvioneta}" title="#{bundle.EditVuelosTitle_idAvioneta}" required="true" requiredMessage="#{bundle.EditVuelosRequiredMessage_idAvioneta}">
+                        <f:selectItems value="#{avionetaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditVuelosLabel_peperId}" for="peperId" />
+                    <h:selectOneMenu id="peperId" value="#{vuelosController.selected.peperId}" title="#{bundle.EditVuelosTitle_peperId}" required="true" requiredMessage="#{bundle.EditVuelosRequiredMessage_peperId}">
+                        <f:selectItems value="#{pilotoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{vuelosController.update}" value="#{bundle.EditVuelosSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditVuelosViewLink}"/>
+                <br />
+                <h:commandLink action="#{vuelosController.prepareList}" value="#{bundle.EditVuelosShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditVuelosIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

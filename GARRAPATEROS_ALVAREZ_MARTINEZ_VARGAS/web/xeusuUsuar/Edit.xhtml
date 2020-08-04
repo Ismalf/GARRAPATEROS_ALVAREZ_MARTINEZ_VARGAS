@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditXeusuUsuarTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditXeusuUsuarLabel_xeusuPasswo}" for="xeusuPasswo" />
+                    <h:inputText id="xeusuPasswo" value="#{xeusuUsuarController.selected.xeusuPasswo}" title="#{bundle.EditXeusuUsuarTitle_xeusuPasswo}" required="true" requiredMessage="#{bundle.EditXeusuUsuarRequiredMessage_xeusuPasswo}"/>
+                    <h:outputLabel value="#{bundle.EditXeusuUsuarLabel_xeusuUltpas}" for="xeusuUltpas" />
+                    <h:inputText id="xeusuUltpas" value="#{xeusuUsuarController.selected.xeusuUltpas}" title="#{bundle.EditXeusuUsuarTitle_xeusuUltpas}" />
+                    <h:outputLabel value="#{bundle.EditXeusuUsuarLabel_xeusuFeccre}" for="xeusuFeccre" />
+                    <h:inputText id="xeusuFeccre" value="#{xeusuUsuarController.selected.xeusuFeccre}" title="#{bundle.EditXeusuUsuarTitle_xeusuFeccre}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditXeusuUsuarLabel_xeusuFecmod}" for="xeusuFecmod" />
+                    <h:inputText id="xeusuFecmod" value="#{xeusuUsuarController.selected.xeusuFecmod}" title="#{bundle.EditXeusuUsuarTitle_xeusuFecmod}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditXeusuUsuarLabel_xeusuFeccad}" for="xeusuFeccad" />
+                    <h:inputText id="xeusuFeccad" value="#{xeusuUsuarController.selected.xeusuFeccad}" title="#{bundle.EditXeusuUsuarTitle_xeusuFeccad}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditXeusuUsuarLabel_xeusuPiefir}" for="xeusuPiefir" />
+                    <h:inputText id="xeusuPiefir" value="#{xeusuUsuarController.selected.xeusuPiefir}" title="#{bundle.EditXeusuUsuarTitle_xeusuPiefir}" />
+                    <h:outputLabel value="#{bundle.EditXeusuUsuarLabel_xeusuObserv}" for="xeusuObserv" />
+                    <h:inputText id="xeusuObserv" value="#{xeusuUsuarController.selected.xeusuObserv}" title="#{bundle.EditXeusuUsuarTitle_xeusuObserv}" />
+                    <h:outputLabel value="#{bundle.EditXeusuUsuarLabel_xeusuEmail}" for="xeusuEmail" />
+                    <h:inputText id="xeusuEmail" value="#{xeusuUsuarController.selected.xeusuEmail}" title="#{bundle.EditXeusuUsuarTitle_xeusuEmail}" required="true" requiredMessage="#{bundle.EditXeusuUsuarRequiredMessage_xeusuEmail}"/>
+                    <h:outputLabel value="#{bundle.EditXeusuUsuarLabel_xeusuTipo}" for="xeusuTipo" />
+                    <h:inputText id="xeusuTipo" value="#{xeusuUsuarController.selected.xeusuTipo}" title="#{bundle.EditXeusuUsuarTitle_xeusuTipo}" />
+                    <h:outputLabel value="#{bundle.EditXeusuUsuarLabel_xeperCodper}" for="xeperCodper" />
+                    <h:selectOneMenu id="xeperCodper" value="#{xeusuUsuarController.selected.xeperCodper}" title="#{bundle.EditXeusuUsuarTitle_xeperCodper}" required="true" requiredMessage="#{bundle.EditXeusuUsuarRequiredMessage_xeperCodper}">
+                        <f:selectItems value="#{xeperPerfilController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditXeusuUsuarLabel_peperId}" for="peperId" />
+                    <h:selectOneMenu id="peperId" value="#{xeusuUsuarController.selected.peperId}" title="#{bundle.EditXeusuUsuarTitle_peperId}" required="true" requiredMessage="#{bundle.EditXeusuUsuarRequiredMessage_peperId}">
+                        <f:selectItems value="#{peperPersonController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{xeusuUsuarController.update}" value="#{bundle.EditXeusuUsuarSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditXeusuUsuarViewLink}"/>
+                <br />
+                <h:commandLink action="#{xeusuUsuarController.prepareList}" value="#{bundle.EditXeusuUsuarShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditXeusuUsuarIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

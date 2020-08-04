@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewXevenVentanTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewXevenVentanLabel_xevenCodven}"/>
+                    <h:outputText value="#{xevenVentanController.selected.xevenCodven}" title="#{bundle.ViewXevenVentanTitle_xevenCodven}"/>
+                    <h:outputText value="#{bundle.ViewXevenVentanLabel_xevenDescri}"/>
+                    <h:outputText value="#{xevenVentanController.selected.xevenDescri}" title="#{bundle.ViewXevenVentanTitle_xevenDescri}"/>
+                    <h:outputText value="#{bundle.ViewXevenVentanLabel_xevenMensaj}"/>
+                    <h:outputText value="#{xevenVentanController.selected.xevenMensaj}" title="#{bundle.ViewXevenVentanTitle_xevenMensaj}"/>
+                    <h:outputText value="#{bundle.ViewXevenVentanLabel_xeopcCodopc}"/>
+                    <h:outputText value="#{xevenVentanController.selected.xeopcCodopc}" title="#{bundle.ViewXevenVentanTitle_xeopcCodopc}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{xevenVentanController.destroyAndView}" value="#{bundle.ViewXevenVentanDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewXevenVentanEditLink}"/>
+                <br />
+                <h:commandLink action="#{xevenVentanController.prepareCreate}" value="#{bundle.ViewXevenVentanCreateLink}" />
+                <br />
+                <h:commandLink action="#{xevenVentanController.prepareList}" value="#{bundle.ViewXevenVentanShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewXevenVentanIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

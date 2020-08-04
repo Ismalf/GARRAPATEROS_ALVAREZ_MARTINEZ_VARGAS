@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewXesisSistemTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewXesisSistemLabel_xesisCodsis}"/>
+                    <h:outputText value="#{xesisSistemController.selected.xesisCodsis}" title="#{bundle.ViewXesisSistemTitle_xesisCodsis}"/>
+                    <h:outputText value="#{bundle.ViewXesisSistemLabel_xesisDescri}"/>
+                    <h:outputText value="#{xesisSistemController.selected.xesisDescri}" title="#{bundle.ViewXesisSistemTitle_xesisDescri}"/>
+                    <h:outputText value="#{bundle.ViewXesisSistemLabel_xeestCodigo}"/>
+                    <h:outputText value="#{xesisSistemController.selected.xeestCodigo}" title="#{bundle.ViewXesisSistemTitle_xeestCodigo}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{xesisSistemController.destroyAndView}" value="#{bundle.ViewXesisSistemDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewXesisSistemEditLink}"/>
+                <br />
+                <h:commandLink action="#{xesisSistemController.prepareCreate}" value="#{bundle.ViewXesisSistemCreateLink}" />
+                <br />
+                <h:commandLink action="#{xesisSistemController.prepareList}" value="#{bundle.ViewXesisSistemShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewXesisSistemIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewXerolRolTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewXerolRolLabel_xeopcCodopc}"/>
+                    <h:outputText value="#{xerolRolController.selected.xeopcCodopc}" title="#{bundle.ViewXerolRolTitle_xeopcCodopc}"/>
+                    <h:outputText value="#{bundle.ViewXerolRolLabel_xerolInserc}"/>
+                    <h:outputText value="#{xerolRolController.selected.xerolInserc}" title="#{bundle.ViewXerolRolTitle_xerolInserc}"/>
+                    <h:outputText value="#{bundle.ViewXerolRolLabel_xerolActual}"/>
+                    <h:outputText value="#{xerolRolController.selected.xerolActual}" title="#{bundle.ViewXerolRolTitle_xerolActual}"/>
+                    <h:outputText value="#{bundle.ViewXerolRolLabel_xerolElimin}"/>
+                    <h:outputText value="#{xerolRolController.selected.xerolElimin}" title="#{bundle.ViewXerolRolTitle_xerolElimin}"/>
+                    <h:outputText value="#{bundle.ViewXerolRolLabel_xerolConsul}"/>
+                    <h:outputText value="#{xerolRolController.selected.xerolConsul}" title="#{bundle.ViewXerolRolTitle_xerolConsul}"/>
+                    <h:outputText value="#{bundle.ViewXerolRolLabel_xeopcOpcion}"/>
+                    <h:outputText value="#{xerolRolController.selected.xeopcOpcion}" title="#{bundle.ViewXerolRolTitle_xeopcOpcion}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{xerolRolController.destroyAndView}" value="#{bundle.ViewXerolRolDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewXerolRolEditLink}"/>
+                <br />
+                <h:commandLink action="#{xerolRolController.prepareCreate}" value="#{bundle.ViewXerolRolCreateLink}" />
+                <br />
+                <h:commandLink action="#{xerolRolController.prepareList}" value="#{bundle.ViewXerolRolShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewXerolRolIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

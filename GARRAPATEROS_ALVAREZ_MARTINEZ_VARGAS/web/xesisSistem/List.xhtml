@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListXesisSistemTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListXesisSistemEmpty}" rendered="#{xesisSistemController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{xesisSistemController.items.rowCount > 0}">
+                    <h:outputText value="#{xesisSistemController.pagination.pageFirstItem + 1}..#{xesisSistemController.pagination.pageLastItem + 1}/#{xesisSistemController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{xesisSistemController.previous}" value="#{bundle.Previous} #{xesisSistemController.pagination.pageSize}" rendered="#{xesisSistemController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{xesisSistemController.next}" value="#{bundle.Next} #{xesisSistemController.pagination.pageSize}" rendered="#{xesisSistemController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{xesisSistemController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListXesisSistemTitle_xesisCodsis}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.xesisCodsis}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListXesisSistemTitle_xesisDescri}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.xesisDescri}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListXesisSistemTitle_xeestCodigo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.xeestCodigo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{xesisSistemController.prepareView}" value="#{bundle.ListXesisSistemViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{xesisSistemController.prepareEdit}" value="#{bundle.ListXesisSistemEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{xesisSistemController.destroy}" value="#{bundle.ListXesisSistemDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{xesisSistemController.prepareCreate}" value="#{bundle.ListXesisSistemCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListXesisSistemIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

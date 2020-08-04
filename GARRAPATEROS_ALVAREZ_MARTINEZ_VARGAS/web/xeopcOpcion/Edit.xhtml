@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditXeopcOpcionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditXeopcOpcionLabel_xeopcCodopc}" for="xeopcCodopc" />
+                    <h:inputText id="xeopcCodopc" value="#{xeopcOpcionController.selected.xeopcCodopc}" title="#{bundle.EditXeopcOpcionTitle_xeopcCodopc}" required="true" requiredMessage="#{bundle.EditXeopcOpcionRequiredMessage_xeopcCodopc}"/>
+                    <h:outputLabel value="#{bundle.EditXeopcOpcionLabel_xeopcDescri}" for="xeopcDescri" />
+                    <h:inputText id="xeopcDescri" value="#{xeopcOpcionController.selected.xeopcDescri}" title="#{bundle.EditXeopcOpcionTitle_xeopcDescri}" required="true" requiredMessage="#{bundle.EditXeopcOpcionRequiredMessage_xeopcDescri}"/>
+                    <h:outputLabel value="#{bundle.EditXeopcOpcionLabel_xerolRol}" for="xerolRol" />
+                    <h:selectOneMenu id="xerolRol" value="#{xeopcOpcionController.selected.xerolRol}" title="#{bundle.EditXeopcOpcionTitle_xerolRol}" >
+                        <f:selectItems value="#{xerolRolController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditXeopcOpcionLabel_xesisCodsis}" for="xesisCodsis" />
+                    <h:selectOneMenu id="xesisCodsis" value="#{xeopcOpcionController.selected.xesisCodsis}" title="#{bundle.EditXeopcOpcionTitle_xesisCodsis}" required="true" requiredMessage="#{bundle.EditXeopcOpcionRequiredMessage_xesisCodsis}">
+                        <f:selectItems value="#{xesisSistemController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{xeopcOpcionController.update}" value="#{bundle.EditXeopcOpcionSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditXeopcOpcionViewLink}"/>
+                <br />
+                <h:commandLink action="#{xeopcOpcionController.prepareList}" value="#{bundle.EditXeopcOpcionShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditXeopcOpcionIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

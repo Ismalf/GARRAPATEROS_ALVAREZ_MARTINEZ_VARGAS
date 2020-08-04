@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateXeautAutentTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateXeautAutentLabel_xeautCodigo}" for="xeautCodigo" />
+                    <h:inputText id="xeautCodigo" value="#{xeautAutentController.selected.xeautCodigo}" title="#{bundle.CreateXeautAutentTitle_xeautCodigo}" required="true" requiredMessage="#{bundle.CreateXeautAutentRequiredMessage_xeautCodigo}"/>
+                    <h:outputLabel value="#{bundle.CreateXeautAutentLabel_xeautFechai}" for="xeautFechai" />
+                    <h:inputText id="xeautFechai" value="#{xeautAutentController.selected.xeautFechai}" title="#{bundle.CreateXeautAutentTitle_xeautFechai}" required="true" requiredMessage="#{bundle.CreateXeautAutentRequiredMessage_xeautFechai}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateXeautAutentLabel_xeautDescri}" for="xeautDescri" />
+                    <h:inputText id="xeautDescri" value="#{xeautAutentController.selected.xeautDescri}" title="#{bundle.CreateXeautAutentTitle_xeautDescri}" required="true" requiredMessage="#{bundle.CreateXeautAutentRequiredMessage_xeautDescri}"/>
+                    <h:outputLabel value="#{bundle.CreateXeautAutentLabel_xeusuEmail}" for="xeusuEmail" />
+                    <h:selectOneMenu id="xeusuEmail" value="#{xeautAutentController.selected.xeusuEmail}" title="#{bundle.CreateXeautAutentTitle_xeusuEmail}" required="true" requiredMessage="#{bundle.CreateXeautAutentRequiredMessage_xeusuEmail}">
+                        <f:selectItems value="#{xeusuUsuarController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{xeautAutentController.create}" value="#{bundle.CreateXeautAutentSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{xeautAutentController.prepareList}" value="#{bundle.CreateXeautAutentShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateXeautAutentIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

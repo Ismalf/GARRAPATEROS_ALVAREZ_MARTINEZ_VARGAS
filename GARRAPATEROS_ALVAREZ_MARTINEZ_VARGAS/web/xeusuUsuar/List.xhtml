@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListXeusuUsuarTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListXeusuUsuarEmpty}" rendered="#{xeusuUsuarController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{xeusuUsuarController.items.rowCount > 0}">
+                    <h:outputText value="#{xeusuUsuarController.pagination.pageFirstItem + 1}..#{xeusuUsuarController.pagination.pageLastItem + 1}/#{xeusuUsuarController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{xeusuUsuarController.previous}" value="#{bundle.Previous} #{xeusuUsuarController.pagination.pageSize}" rendered="#{xeusuUsuarController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{xeusuUsuarController.next}" value="#{bundle.Next} #{xeusuUsuarController.pagination.pageSize}" rendered="#{xeusuUsuarController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{xeusuUsuarController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListXeusuUsuarTitle_xeusuPasswo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.xeusuPasswo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListXeusuUsuarTitle_xeusuUltpas}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.xeusuUltpas}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListXeusuUsuarTitle_xeusuFeccre}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.xeusuFeccre}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListXeusuUsuarTitle_xeusuFecmod}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.xeusuFecmod}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListXeusuUsuarTitle_xeusuFeccad}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.xeusuFeccad}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListXeusuUsuarTitle_xeusuPiefir}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.xeusuPiefir}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListXeusuUsuarTitle_xeusuObserv}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.xeusuObserv}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListXeusuUsuarTitle_xeusuEmail}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.xeusuEmail}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListXeusuUsuarTitle_xeusuTipo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.xeusuTipo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListXeusuUsuarTitle_xeperCodper}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.xeperCodper}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListXeusuUsuarTitle_peperId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.peperId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{xeusuUsuarController.prepareView}" value="#{bundle.ListXeusuUsuarViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{xeusuUsuarController.prepareEdit}" value="#{bundle.ListXeusuUsuarEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{xeusuUsuarController.destroy}" value="#{bundle.ListXeusuUsuarDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{xeusuUsuarController.prepareCreate}" value="#{bundle.ListXeusuUsuarCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListXeusuUsuarIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

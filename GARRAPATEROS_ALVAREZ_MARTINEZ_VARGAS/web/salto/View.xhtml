@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewSaltoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewSaltoLabel_idSalto}"/>
+                    <h:outputText value="#{saltoController.selected.idSalto}" title="#{bundle.ViewSaltoTitle_idSalto}"/>
+                    <h:outputText value="#{bundle.ViewSaltoLabel_tipoSalto}"/>
+                    <h:outputText value="#{saltoController.selected.tipoSalto}" title="#{bundle.ViewSaltoTitle_tipoSalto}"/>
+                    <h:outputText value="#{bundle.ViewSaltoLabel_montoSalto}"/>
+                    <h:outputText value="#{saltoController.selected.montoSalto}" title="#{bundle.ViewSaltoTitle_montoSalto}"/>
+                    <h:outputText value="#{bundle.ViewSaltoLabel_descuentoSalto}"/>
+                    <h:outputText value="#{saltoController.selected.descuentoSalto}" title="#{bundle.ViewSaltoTitle_descuentoSalto}"/>
+                    <h:outputText value="#{bundle.ViewSaltoLabel_peperId}"/>
+                    <h:outputText value="#{saltoController.selected.peperId}" title="#{bundle.ViewSaltoTitle_peperId}"/>
+                    <h:outputText value="#{bundle.ViewSaltoLabel_feresCodigo}"/>
+                    <h:outputText value="#{saltoController.selected.feresCodigo}" title="#{bundle.ViewSaltoTitle_feresCodigo}"/>
+                    <h:outputText value="#{bundle.ViewSaltoLabel_idVuelo}"/>
+                    <h:outputText value="#{saltoController.selected.idVuelo}" title="#{bundle.ViewSaltoTitle_idVuelo}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{saltoController.destroyAndView}" value="#{bundle.ViewSaltoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewSaltoEditLink}"/>
+                <br />
+                <h:commandLink action="#{saltoController.prepareCreate}" value="#{bundle.ViewSaltoCreateLink}" />
+                <br />
+                <h:commandLink action="#{saltoController.prepareList}" value="#{bundle.ViewSaltoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewSaltoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

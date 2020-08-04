@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditXerolRolTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditXerolRolLabel_xeopcCodopc}" for="xeopcCodopc" />
+                    <h:inputText id="xeopcCodopc" value="#{xerolRolController.selected.xeopcCodopc}" title="#{bundle.EditXerolRolTitle_xeopcCodopc}" required="true" requiredMessage="#{bundle.EditXerolRolRequiredMessage_xeopcCodopc}"/>
+                    <h:outputLabel value="#{bundle.EditXerolRolLabel_xerolInserc}" for="xerolInserc" />
+                    <h:inputText id="xerolInserc" value="#{xerolRolController.selected.xerolInserc}" title="#{bundle.EditXerolRolTitle_xerolInserc}" required="true" requiredMessage="#{bundle.EditXerolRolRequiredMessage_xerolInserc}"/>
+                    <h:outputLabel value="#{bundle.EditXerolRolLabel_xerolActual}" for="xerolActual" />
+                    <h:inputText id="xerolActual" value="#{xerolRolController.selected.xerolActual}" title="#{bundle.EditXerolRolTitle_xerolActual}" required="true" requiredMessage="#{bundle.EditXerolRolRequiredMessage_xerolActual}"/>
+                    <h:outputLabel value="#{bundle.EditXerolRolLabel_xerolElimin}" for="xerolElimin" />
+                    <h:inputText id="xerolElimin" value="#{xerolRolController.selected.xerolElimin}" title="#{bundle.EditXerolRolTitle_xerolElimin}" required="true" requiredMessage="#{bundle.EditXerolRolRequiredMessage_xerolElimin}"/>
+                    <h:outputLabel value="#{bundle.EditXerolRolLabel_xerolConsul}" for="xerolConsul" />
+                    <h:inputText id="xerolConsul" value="#{xerolRolController.selected.xerolConsul}" title="#{bundle.EditXerolRolTitle_xerolConsul}" required="true" requiredMessage="#{bundle.EditXerolRolRequiredMessage_xerolConsul}"/>
+                    <h:outputLabel value="#{bundle.EditXerolRolLabel_xeopcOpcion}" for="xeopcOpcion" />
+                    <h:selectOneMenu id="xeopcOpcion" value="#{xerolRolController.selected.xeopcOpcion}" title="#{bundle.EditXerolRolTitle_xeopcOpcion}" required="true" requiredMessage="#{bundle.EditXerolRolRequiredMessage_xeopcOpcion}">
+                        <f:selectItems value="#{xeopcOpcionController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{xerolRolController.update}" value="#{bundle.EditXerolRolSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditXerolRolViewLink}"/>
+                <br />
+                <h:commandLink action="#{xerolRolController.prepareList}" value="#{bundle.EditXerolRolShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditXerolRolIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

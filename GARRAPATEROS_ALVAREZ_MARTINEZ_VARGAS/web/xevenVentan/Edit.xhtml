@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditXevenVentanTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditXevenVentanLabel_xevenCodven}" for="xevenCodven" />
+                    <h:inputText id="xevenCodven" value="#{xevenVentanController.selected.xevenCodven}" title="#{bundle.EditXevenVentanTitle_xevenCodven}" required="true" requiredMessage="#{bundle.EditXevenVentanRequiredMessage_xevenCodven}"/>
+                    <h:outputLabel value="#{bundle.EditXevenVentanLabel_xevenDescri}" for="xevenDescri" />
+                    <h:inputText id="xevenDescri" value="#{xevenVentanController.selected.xevenDescri}" title="#{bundle.EditXevenVentanTitle_xevenDescri}" required="true" requiredMessage="#{bundle.EditXevenVentanRequiredMessage_xevenDescri}"/>
+                    <h:outputLabel value="#{bundle.EditXevenVentanLabel_xevenMensaj}" for="xevenMensaj" />
+                    <h:inputText id="xevenMensaj" value="#{xevenVentanController.selected.xevenMensaj}" title="#{bundle.EditXevenVentanTitle_xevenMensaj}" required="true" requiredMessage="#{bundle.EditXevenVentanRequiredMessage_xevenMensaj}"/>
+                    <h:outputLabel value="#{bundle.EditXevenVentanLabel_xeopcCodopc}" for="xeopcCodopc" />
+                    <h:selectOneMenu id="xeopcCodopc" value="#{xevenVentanController.selected.xeopcCodopc}" title="#{bundle.EditXevenVentanTitle_xeopcCodopc}" required="true" requiredMessage="#{bundle.EditXevenVentanRequiredMessage_xeopcCodopc}">
+                        <f:selectItems value="#{xeopcOpcionController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{xevenVentanController.update}" value="#{bundle.EditXevenVentanSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditXevenVentanViewLink}"/>
+                <br />
+                <h:commandLink action="#{xevenVentanController.prepareList}" value="#{bundle.EditXevenVentanShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditXevenVentanIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateXesisSistemTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateXesisSistemLabel_xesisCodsis}" for="xesisCodsis" />
+                    <h:inputText id="xesisCodsis" value="#{xesisSistemController.selected.xesisCodsis}" title="#{bundle.CreateXesisSistemTitle_xesisCodsis}" required="true" requiredMessage="#{bundle.CreateXesisSistemRequiredMessage_xesisCodsis}"/>
+                    <h:outputLabel value="#{bundle.CreateXesisSistemLabel_xesisDescri}" for="xesisDescri" />
+                    <h:inputText id="xesisDescri" value="#{xesisSistemController.selected.xesisDescri}" title="#{bundle.CreateXesisSistemTitle_xesisDescri}" required="true" requiredMessage="#{bundle.CreateXesisSistemRequiredMessage_xesisDescri}"/>
+                    <h:outputLabel value="#{bundle.CreateXesisSistemLabel_xeestCodigo}" for="xeestCodigo" />
+                    <h:selectOneMenu id="xeestCodigo" value="#{xesisSistemController.selected.xeestCodigo}" title="#{bundle.CreateXesisSistemTitle_xeestCodigo}" required="true" requiredMessage="#{bundle.CreateXesisSistemRequiredMessage_xeestCodigo}">
+                        <f:selectItems value="#{xeestEstadoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{xesisSistemController.create}" value="#{bundle.CreateXesisSistemSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{xesisSistemController.prepareList}" value="#{bundle.CreateXesisSistemShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateXesisSistemIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditFecomComproTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditFecomComproLabel_pecomCodigo}" for="pecomCodigo" />
+                    <h:inputText id="pecomCodigo" value="#{fecomComproController.selected.pecomCodigo}" title="#{bundle.EditFecomComproTitle_pecomCodigo}" required="true" requiredMessage="#{bundle.EditFecomComproRequiredMessage_pecomCodigo}"/>
+                    <h:outputLabel value="#{bundle.EditFecomComproLabel_pecomDescri}" for="pecomDescri" />
+                    <h:inputText id="pecomDescri" value="#{fecomComproController.selected.pecomDescri}" title="#{bundle.EditFecomComproTitle_pecomDescri}" required="true" requiredMessage="#{bundle.EditFecomComproRequiredMessage_pecomDescri}"/>
+                    <h:outputLabel value="#{bundle.EditFecomComproLabel_pecomFecha}" for="pecomFecha" />
+                    <h:inputText id="pecomFecha" value="#{fecomComproController.selected.pecomFecha}" title="#{bundle.EditFecomComproTitle_pecomFecha}" required="true" requiredMessage="#{bundle.EditFecomComproRequiredMessage_pecomFecha}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditFecomComproLabel_peperId}" for="peperId" />
+                    <h:selectOneMenu id="peperId" value="#{fecomComproController.selected.peperId}" title="#{bundle.EditFecomComproTitle_peperId}" required="true" requiredMessage="#{bundle.EditFecomComproRequiredMessage_peperId}">
+                        <f:selectItems value="#{peperPersonController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{fecomComproController.update}" value="#{bundle.EditFecomComproSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditFecomComproViewLink}"/>
+                <br />
+                <h:commandLink action="#{fecomComproController.prepareList}" value="#{bundle.EditFecomComproShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditFecomComproIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
