@@ -1,58 +1,58 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <ui:composition template="/template.xhtml">
-        <ui:define name="title">
-            <h:outputText value="#{bundle.ViewPeperPersonTitle}"></h:outputText>
-        </ui:define>
-        <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewPeperPersonLabel_peperId}"/>
-                    <h:outputText value="#{peperPersonController.selected.peperId}" title="#{bundle.ViewPeperPersonTitle_peperId}"/>
-                    <h:outputText value="#{bundle.ViewPeperPersonLabel_peperNombre}"/>
-                    <h:outputText value="#{peperPersonController.selected.peperNombre}" title="#{bundle.ViewPeperPersonTitle_peperNombre}"/>
-                    <h:outputText value="#{bundle.ViewPeperPersonLabel_peperApelli}"/>
-                    <h:outputText value="#{peperPersonController.selected.peperApelli}" title="#{bundle.ViewPeperPersonTitle_peperApelli}"/>
-                    <h:outputText value="#{bundle.ViewPeperPersonLabel_peperCedula}"/>
-                    <h:outputText value="#{peperPersonController.selected.peperCedula}" title="#{bundle.ViewPeperPersonTitle_peperCedula}"/>
-                    <h:outputText value="#{bundle.ViewPeperPersonLabel_peperNacimi}"/>
-                    <h:outputText value="#{peperPersonController.selected.peperNacimi}" title="#{bundle.ViewPeperPersonTitle_peperNacimi}">
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:outputText>
-                    <h:outputText value="#{bundle.ViewPeperPersonLabel_peperTelf}"/>
-                    <h:outputText value="#{peperPersonController.selected.peperTelf}" title="#{bundle.ViewPeperPersonTitle_peperTelf}"/>
-                    <h:outputText value="#{bundle.ViewPeperPersonLabel_peperDir}"/>
-                    <h:outputText value="#{peperPersonController.selected.peperDir}" title="#{bundle.ViewPeperPersonTitle_peperDir}"/>
-                    <h:outputText value="#{bundle.ViewPeperPersonLabel_pesexCodigo}"/>
-                    <h:outputText value="#{peperPersonController.selected.pesexCodigo}" title="#{bundle.ViewPeperPersonTitle_pesexCodigo}"/>
-                    <h:outputText value="#{bundle.ViewPeperPersonLabel_paracaidistas}"/>
-                    <h:outputText value="#{peperPersonController.selected.paracaidistas}" title="#{bundle.ViewPeperPersonTitle_paracaidistas}"/>
-                    <h:outputText value="#{bundle.ViewPeperPersonLabel_piloto}"/>
-                    <h:outputText value="#{peperPersonController.selected.piloto}" title="#{bundle.ViewPeperPersonTitle_piloto}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{peperPersonController.destroyAndView}" value="#{bundle.ViewPeperPersonDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewPeperPersonEditLink}"/>
-                <br />
-                <h:commandLink action="#{peperPersonController.prepareCreate}" value="#{bundle.ViewPeperPersonCreateLink}" />
-                <br />
-                <h:commandLink action="#{peperPersonController.prepareList}" value="#{bundle.ViewPeperPersonShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewPeperPersonIndexLink}"/>
 
-            </h:form>
-        </ui:define>
-    </ui:composition>
+<ui:composition template="/template.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="title">
+        <h:outputText value="#{bundle.ViewPeperPersonTitle}"></h:outputText>
+    </ui:define>
+    <ui:define name="body">
+        <h:panelGroup id="messagePanel" layout="block">
+            <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+        </h:panelGroup>
+        <h:form>
+            <h:panelGrid columns="2">
+                <h:outputText value="#{bundle.ViewPeperPersonLabel_peperId}"/>
+                <h:outputText value="#{peperPersonController.selected.peperId}" title="#{bundle.ViewPeperPersonTitle_peperId}"/>
+                <h:outputText value="#{bundle.ViewPeperPersonLabel_peperNombre}"/>
+                <h:outputText value="#{peperPersonController.selected.peperNombre}" title="#{bundle.ViewPeperPersonTitle_peperNombre}"/>
+                <h:outputText value="#{bundle.ViewPeperPersonLabel_peperApelli}"/>
+                <h:outputText value="#{peperPersonController.selected.peperApelli}" title="#{bundle.ViewPeperPersonTitle_peperApelli}"/>
+                <h:outputText value="#{bundle.ViewPeperPersonLabel_peperCedula}"/>
+                <h:outputText value="#{peperPersonController.selected.peperCedula}" title="#{bundle.ViewPeperPersonTitle_peperCedula}"/>
+                <h:outputText value="#{bundle.ViewPeperPersonLabel_peperNacimi}"/>
+                <h:outputText value="#{peperPersonController.selected.peperNacimi}" title="#{bundle.ViewPeperPersonTitle_peperNacimi}">
+                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                </h:outputText>
+                <h:outputText value="#{bundle.ViewPeperPersonLabel_peperTelf}"/>
+                <h:outputText value="#{peperPersonController.selected.peperTelf}" title="#{bundle.ViewPeperPersonTitle_peperTelf}"/>
+                <h:outputText value="#{bundle.ViewPeperPersonLabel_peperDir}"/>
+                <h:outputText value="#{peperPersonController.selected.peperDir}" title="#{bundle.ViewPeperPersonTitle_peperDir}"/>
+                <h:outputText value="#{bundle.ViewPeperPersonLabel_pesexCodigo}"/>
+                <h:outputText value="#{peperPersonController.selected.pesexCodigo}" title="#{bundle.ViewPeperPersonTitle_pesexCodigo}"/>
+                <h:outputText value="#{bundle.ViewPeperPersonLabel_paracaidistas}"/>
+                <h:outputText value="#{peperPersonController.selected.paracaidistas}" title="#{bundle.ViewPeperPersonTitle_paracaidistas}"/>
+                <h:outputText value="#{bundle.ViewPeperPersonLabel_piloto}"/>
+                <h:outputText value="#{peperPersonController.selected.piloto}" title="#{bundle.ViewPeperPersonTitle_piloto}"/>
+            </h:panelGrid>
+            <br />
+            <h:commandLink action="#{peperPersonController.destroyAndView}" value="#{bundle.ViewPeperPersonDestroyLink}"/>
+            <br />
+            <br />
+            <h:link outcome="Edit" value="#{bundle.ViewPeperPersonEditLink}"/>
+            <br />
+            <h:commandLink action="#{peperPersonController.prepareCreate}" value="#{bundle.ViewPeperPersonCreateLink}" />
+            <br />
+            <h:commandLink action="#{peperPersonController.prepareList}" value="#{bundle.ViewPeperPersonShowAllLink}"/>
+            <br />
+            <br />
+            <h:link outcome="/index" value="#{bundle.ViewPeperPersonIndexLink}"/>
 
-</html>
+        </h:form>
+    </ui:define>
+</ui:composition>
+
+

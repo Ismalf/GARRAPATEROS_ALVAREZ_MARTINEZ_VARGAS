@@ -8,8 +8,10 @@ import ec.edu.monster.facades.PeperPersonFacade;
 import java.io.Serializable;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -17,19 +19,23 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import javax.faces.view.ViewScoped;
 
 @Named("peperPersonController")
 @SessionScoped
 public class PeperPersonController implements Serializable {
 
+    private String route = "/peperPerson/List.xhtml";
     private PeperPerson current;
     private DataModel items = null;
+    private int createRequest = 0;
     @EJB
     private ec.edu.monster.facades.PeperPersonFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
     public PeperPersonController() {
+
     }
 
     public PeperPerson getSelected() {
@@ -73,20 +79,28 @@ public class PeperPersonController implements Serializable {
         return "View";
     }
 
-    public String prepareCreate() {
+    public void prepareCreate() {
         current = new PeperPerson();
         selectedItemIndex = -1;
-        return "Create";
+        createRequest = 0;
     }
 
-    public String create() {
+    public void create() {
         try {
+            System.out.println("Create request "+createRequest);
+            if (createRequest != 0) {
+                System.out.println("No reate");
+                return;
+            }
+            
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("PeperPersonCreated"));
-            return prepareCreate();
+            current = null;
+            createRequest++;
+            getItems();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
-            return null;
+            //return null;
         }
     }
 
@@ -230,6 +244,14 @@ public class PeperPersonController implements Serializable {
             }
         }
 
+    }
+
+    public String getRoute() {
+        return route;
+    }
+
+    public void setRoute(String route) {
+        this.route = route;
     }
 
 }
