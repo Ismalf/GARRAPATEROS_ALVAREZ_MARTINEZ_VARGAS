@@ -97,6 +97,7 @@ public class PeperPersonController implements Serializable {
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("PeperPersonCreated"));
             current = null;
             createRequest++;
+            recreateModel();
             getItems();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
