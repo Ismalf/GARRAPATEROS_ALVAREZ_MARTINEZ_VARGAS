@@ -10,9 +10,6 @@
             <h:outputText value="#{bundle.ViewPesexSexoTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
                     <h:outputText value="#{bundle.ViewPesexSexoLabel_pesexCodigo}"/>
@@ -22,19 +19,7 @@
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{pesexSexoController.destroyAndView}" value="#{bundle.ViewPesexSexoDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewPesexSexoEditLink}"/>
-                <br />
-                <h:commandLink action="#{pesexSexoController.prepareCreate}" value="#{bundle.ViewPesexSexoCreateLink}" />
-                <br />
-                <h:commandLink action="#{pesexSexoController.prepareList}" value="#{bundle.ViewPesexSexoShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewPesexSexoIndexLink}"/>
-
             </h:form>
         </ui:define>
     </ui:composition>
-
 </html>

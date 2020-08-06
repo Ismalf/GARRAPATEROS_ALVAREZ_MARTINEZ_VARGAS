@@ -38,17 +38,6 @@
             </h:panelGrid>
             <br />
             <h:commandLink action="#{peperPersonController.destroyAndView}" value="#{bundle.ViewPeperPersonDestroyLink}"/>
-            <br />
-            <br />
-            <h:link outcome="Edit" value="#{bundle.ViewPeperPersonEditLink}"/>
-            <br />
-            <h:commandLink action="#{peperPersonController.prepareCreate}" value="#{bundle.ViewPeperPersonCreateLink}" />
-            <br />
-            <h:commandLink action="#{peperPersonController.prepareList}" value="#{bundle.ViewPeperPersonShowAllLink}"/>
-            <br />
-            <br />
-            <h:link outcome="/index" value="#{bundle.ViewPeperPersonIndexLink}"/>
-
         </h:form>
     </ui:define>
 </ui:composition>

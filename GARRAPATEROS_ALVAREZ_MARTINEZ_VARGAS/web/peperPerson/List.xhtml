@@ -79,9 +79,9 @@
                         </f:facet>
                         <!--View-->
                         <!--UTILIZAR COMMAND LINK CON LA SIGUIENTE SINTAXIS-->
-                        <p:commandLink value="Ver persona" type="button" action="#{peperPersonController.setViewIndex(rowId)}" oncomplete="PF('ViewDialog').show(); " />
+                        <p:commandLink value="Ver persona" type="button" action="#{peperPersonController.setViewIndex(rowId)}" oncomplete="PF('ViewPersonaDialog').show(); " />
                         <!--Edit-->
-                        <p:commandLink value="Editar persona" type="button" action="#{peperPersonController.setEditIndex(rowId)}" oncomplete="PF('EditDialog').show();" />
+                        <p:commandLink value="Editar persona" type="button" action="#{peperPersonController.setEditIndex(rowId)}" oncomplete="PF('EditPersonaDialog').show();" />
                         <!--Delete
                         <p:commandButton value="Crear persona" type="button" onclick="PF('dlg1').show();" />-->
 
@@ -91,10 +91,10 @@
             <br />
         </h:form>
         <!--INCLUIR LOS DIALOGOS PARA EDITAR Y VISUALIZAR FUERA DE LA FORMA-->
-        <p:dialog header="Ver persona" widgetVar="ViewDialog" minHeight="40">
+        <p:dialog header="Ver persona" widgetVar="ViewPersonaDialog" minHeight="40">
             <ui:include src="View.xhtml"></ui:include>
         </p:dialog>
-        <p:dialog header="Editar persona" widgetVar="EditDialog" minHeight="40">
+        <p:dialog header="Editar persona" widgetVar="EditPersonaDialog" minHeight="40">
             <ui:include src="Edit.xhtml"></ui:include>
         </p:dialog>
     </ui:define>

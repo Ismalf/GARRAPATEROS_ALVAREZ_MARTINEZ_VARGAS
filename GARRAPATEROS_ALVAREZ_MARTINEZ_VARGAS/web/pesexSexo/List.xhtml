@@ -5,7 +5,8 @@
 <ui:composition template="/template.xhtml" xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:f="http://xmlns.jcp.org/jsf/core">
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
     <ui:define name="title">
         <h:outputText value="#{bundle.ListPesexSexoTitle}"></h:outputText>
     </ui:define>
@@ -19,35 +20,38 @@
                 <h:outputText value="#{pesexSexoController.pagination.pageFirstItem + 1}..#{pesexSexoController.pagination.pageLastItem + 1}/#{pesexSexoController.pagination.itemsCount}"/>&nbsp;
                 <h:commandLink action="#{pesexSexoController.previous}" value="#{bundle.Previous} #{pesexSexoController.pagination.pageSize}" rendered="#{pesexSexoController.pagination.hasPreviousPage}"/>&nbsp;
                 <h:commandLink action="#{pesexSexoController.next}" value="#{bundle.Next} #{pesexSexoController.pagination.pageSize}" rendered="#{pesexSexoController.pagination.hasNextPage}"/>&nbsp;
-                <h:dataTable value="#{pesexSexoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                    <h:column>
+                <p:dataTable value="#{pesexSexoController.items}" var="item" rowIndexVar="rowId">
+                    <p:column>
                         <f:facet name="header">
                             <h:outputText value="#{bundle.ListPesexSexoTitle_pesexCodigo}"/>
                         </f:facet>
                         <h:outputText value="#{item.pesexCodigo}"/>
-                    </h:column>
-                    <h:column>
+                    </p:column>
+                    <p:column>
                         <f:facet name="header">
                             <h:outputText value="#{bundle.ListPesexSexoTitle_pesexDescri}"/>
                         </f:facet>
                         <h:outputText value="#{item.pesexDescri}"/>
-                    </h:column>
-                    <h:column>
+                    </p:column>
+                    <p:column>
                         <f:facet name="header">
                             <h:outputText value="&nbsp;"/>
                         </f:facet>
-                        <h:commandLink action="#{pesexSexoController.prepareView}" value="#{bundle.ListPesexSexoViewLink}"/>
-                        <h:outputText value=" "/>
-                        <h:commandLink action="#{pesexSexoController.prepareEdit}" value="#{bundle.ListPesexSexoEditLink}"/>
-                        <h:outputText value=" "/>
-                        <h:commandLink action="#{pesexSexoController.destroy}" value="#{bundle.ListPesexSexoDestroyLink}"/>
-                    </h:column>
-                </h:dataTable>
+
+                        <p:commandLink value="Ver persona" type="button" action="#{pesexSexoController.setViewIndex(rowId)}" oncomplete="PF('ViewGeneroDialog').show(); " />
+
+                        <p:commandLink value="Editar persona" type="button" action="#{pesexSexoController.setEditIndex(rowId)}" oncomplete="PF('EditGeneroDialog').show();" />
+                    </p:column>
+                </p:dataTable>
             </h:panelGroup>
             <br />
-            <h:commandLink action="#{pesexSexoController.prepareCreate}" value="#{bundle.ListPesexSexoCreateLink}"/>
-
         </h:form>
+        <p:dialog header="Ver Género" widgetVar="ViewGeneroDialog" minHeight="40">
+            <ui:include src="View.xhtml"></ui:include>
+        </p:dialog>
+        <p:dialog header="Editar Género" widgetVar="EditGeneroDialog" minHeight="40">
+            <ui:include src="Edit.xhtml"></ui:include>
+        </p:dialog>
     </ui:define>
 </ui:composition>
 
