@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-
-    <ui:composition template="/template.xhtml">
-        <ui:define name="title">
+<ui:composition template="/template.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                >
+    <ui:define name="title">
             <h:outputText value="#{bundle.ViewAvionetaTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
@@ -23,14 +23,14 @@
                     <h:outputText value="#{avionetaController.selected.anio}" title="#{bundle.ViewAvionetaTitle_anio}"/>
                 </h:panelGrid>
                 <br />
-                <h:commandLink action="#{avionetaController.destroyAndView}" value="#{bundle.ViewAvionetaDestroyLink}"/>
+                <p:commandButton action="#{avionetaController.destroyAndView}" value="#{bundle.ViewAvionetaDestroyLink}"/>
                 <br />
                 <br />
                 <h:link outcome="Edit" value="#{bundle.ViewAvionetaEditLink}"/>
                 <br />
-                <h:commandLink action="#{avionetaController.prepareCreate}" value="#{bundle.ViewAvionetaCreateLink}" />
+                <p:commandButton action="#{avionetaController.prepareCreate}" value="#{bundle.ViewAvionetaCreateLink}" />
                 <br />
-                <h:commandLink action="#{avionetaController.prepareList}" value="#{bundle.ViewAvionetaShowAllLink}"/>
+                <p:commandButton action="#{avionetaController.prepareList}" value="#{bundle.ViewAvionetaShowAllLink}"/>
                 <br />
                 <br />
                 <h:link outcome="/index" value="#{bundle.ViewAvionetaIndexLink}"/>
@@ -39,4 +39,3 @@
         </ui:define>
     </ui:composition>
 
-</html>

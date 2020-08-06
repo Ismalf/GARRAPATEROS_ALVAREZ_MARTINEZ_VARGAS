@@ -19,7 +19,7 @@
                         <p:ajax event="tabChange" listener="#{adminpanelController.onTabChange}"/>
                         <!--Con una tabla de la base-->
                         <p:tab title="Gestionar Persona" >
-                            
+
                             <h:panelGrid columns="2" cellpadding="10">
                                 <!--INSERTAR ESTO CON UN ID REPRESENTATIVO-->
                                 <p:outputPanel id="personcontent">
@@ -30,7 +30,7 @@
                                 <h:form>
                                     <p:commandButton value="Crear persona" type="button" onclick="PF('dlg1').show();" />
                                 </h:form>
-                                
+
                                 <p:dialog header="Creación de persona" widgetVar="dlg1" minHeight="40">
                                     <f:ajax event="open" listener="#{peperPersonController.prepareCreate}"></f:ajax>
                                     <f:ajax event="close" render="personcontent"></f:ajax>
@@ -67,7 +67,7 @@
                         <p:tab title="Gestionar Aeronaves">
                             <h:panelGrid columns="2" cellpadding="10">
 
-                            <!--INSERTAR ESTO CON UN ID REPRESENTATIVO-->
+                                <!--INSERTAR ESTO CON UN ID REPRESENTATIVO-->
                                 <p:outputPanel id="avioncontent">
                                     <p:autoUpdate/><!--IMPORTANTE-->
                                     <ui:include src="avioneta/List.xhtml"></ui:include>
@@ -76,7 +76,7 @@
                                 <h:form>
                                     <p:commandButton value="Crear avioneta" type="button" onclick="PF('dlgavioneta').show();" />
                                 </h:form>
-                                
+
                                 <p:dialog header="Creación de avioneta" widgetVar="dlgavioneta" minHeight="40">
                                     <f:ajax event="open" listener="#{avionetaController.prepareCreate}"></f:ajax>
                                     <f:ajax event="close" render="avioncontent"></f:ajax>
@@ -95,7 +95,7 @@
                                 <h:form>
                                     <p:commandButton value="Crear vuelo" type="button" onclick="PF('dlgvuelos').show();" />
                                 </h:form>
-                                
+
                                 <p:dialog header="Creación de vuelo" widgetVar="dlgvuelos" minHeight="40">
                                     <f:ajax event="open" listener="#{vuelosController.prepareCreate}"></f:ajax>
                                     <f:ajax event="close" render="vuelocontent"></f:ajax>
@@ -106,37 +106,62 @@
                         <p:tab title="Gestionar Saltos">
                             <h:panelGrid columns="2" cellpadding="10">
 
-                                 <h:panelGrid columns="2" cellpadding="10">
+                                <h:panelGrid columns="2" cellpadding="10">
 
-                                <p:outputPanel id="saltoscontent">
-                                    <p:autoUpdate/><!--IMPORTANTE-->
-                                    <ui:include src="salto/List.xhtml"></ui:include>
-                                </p:outputPanel>
-                                <br/>
-                                <h:form>
-                                    <p:commandButton value="Crear salto" type="button" onclick="PF('dlgsaltos').show();" />
-                                </h:form>
-                                
-                                <p:dialog header="Creación de saltos" widgetVar="dlgsaltos" minHeight="40">
-                                    <f:ajax event="open" listener="#{saltoController.prepareCreate}"></f:ajax>
-                                    <f:ajax event="close" render="saltoscontent"></f:ajax>
-                                    <ui:include src="salto/Create.xhtml"></ui:include>
-                                </p:dialog>
-                            </h:panelGrid>
+                                    <p:outputPanel id="saltoscontent">
+                                        <p:autoUpdate/><!--IMPORTANTE-->
+                                        <ui:include src="salto/List.xhtml"></ui:include>
+                                    </p:outputPanel>
+                                    <br/>
+                                    <h:form>
+                                        <p:commandButton value="Crear salto" type="button" onclick="PF('dlgsaltos').show();" />
+                                    </h:form>
+
+                                    <p:dialog header="Creación de saltos" widgetVar="dlgsaltos" minHeight="40">
+                                        <f:ajax event="open" listener="#{saltoController.prepareCreate}"></f:ajax>
+                                        <f:ajax event="close" render="saltoscontent"></f:ajax>
+                                        <ui:include src="salto/Create.xhtml"></ui:include>
+                                    </p:dialog>
+                                </h:panelGrid>
                             </h:panelGrid>
                         </p:tab>
                         <p:tab title="Gestionar Paracaidistas">
                             <h:panelGrid columns="2" cellpadding="10">
 
-                                <h:outputText
-                                    value="Aqui va crud de contratos" />
+                                
+                                    <p:outputPanel id="paracaidistascontent">
+                                        <p:autoUpdate/><!--IMPORTANTE-->
+                                        <ui:include src="paracaidistas/List.xhtml"></ui:include>
+                                    </p:outputPanel>
+                                    <br/>
+                                    <h:form>
+                                        <p:commandButton value="Crear paracaidista" type="button" onclick="PF('dlgparacaidistas').show();" />
+                                    </h:form>
+
+                                    <p:dialog header="Creación de paracaidistas" widgetVar="dlgparacaidistas" minHeight="40">
+                                        <f:ajax event="open" listener="#{paracaidistasController.prepareCreate}"></f:ajax>
+                                        <f:ajax event="close" render="paracaidistascontent"></f:ajax>
+                                        <ui:include src="paracaidistas/Create.xhtml"></ui:include>
+                                    </p:dialog>
                             </h:panelGrid>
                         </p:tab>
                         <p:tab title="Gestionar Pilotos">
                             <h:panelGrid columns="2" cellpadding="10">
 
-                                <h:outputText
-                                    value="Aqui va crud de contratos" />
+                                   <p:outputPanel id="pilotoscontent">
+                                        <p:autoUpdate/><!--IMPORTANTE-->
+                                        <ui:include src="piloto/List.xhtml"></ui:include>
+                                    </p:outputPanel>
+                                    <br/>
+                                    <h:form>
+                                        <p:commandButton value="Crear pilotos" type="button" onclick="PF('dlgpilotos').show();" />
+                                    </h:form>
+
+                                    <p:dialog header="Creación de pilotos" widgetVar="dlgpilotos" minHeight="40">
+                                        <f:ajax event="open" listener="#{pilotoController.prepareCreate}"></f:ajax>
+                                        <f:ajax event="close" render="pilotoscontent"></f:ajax>
+                                        <ui:include src="piloto/Create.xhtml"></ui:include>
+                                    </p:dialog>
                             </h:panelGrid>
                         </p:tab>
                     </p:tabView>
@@ -192,7 +217,7 @@
                                 <h:form>
                                     <p:commandButton value="Crear usuario" type="button" onclick="PF('dlgusuarios').show();" />
                                 </h:form>
-                                
+
                                 <p:dialog header="Creación de usuario" widgetVar="dlgusuarios" minHeight="40">
                                     <f:ajax event="open" listener="#{xeusuUsuarController.prepareCreate}"></f:ajax>
                                     <f:ajax event="close" render="usuarioscontent"></f:ajax>
@@ -202,23 +227,55 @@
                         </p:tab>
                         <p:tab title="Gestionar Perfiles">
                             <h:panelGrid columns="2" cellpadding="10">
-
-                                <h:outputText
-                                    value="Aqui va crud de genero" />
+                                <p:outputPanel id="perfilescontent">
+                                    <p:autoUpdate/><!--IMPORTANTE-->
+                                    <ui:include src="xeperPerfil/List.xhtml"></ui:include>
+                                </p:outputPanel>
+                                <br/>
+                                <h:form>
+                                    <p:commandButton value="Crear perfiles" type="button" onclick="PF('dlgperfiles').show();" />
+                                </h:form>
+                                <p:dialog header="Creación de perfiles" widgetVar="dlgperfiles" minHeight="40">
+                                    <f:ajax event="open" listener="#{xeperPerfilController.prepareCreate}"></f:ajax>
+                                    <f:ajax event="close" render="perfilescontent"></f:ajax>
+                                    <ui:include src="xeperPerfil/Create.xhtml"></ui:include>
+                                </p:dialog>
                             </h:panelGrid>
                         </p:tab>
                         <p:tab title="Gestionar Roles">
                             <h:panelGrid columns="2" cellpadding="10">
+                                <p:outputPanel id="rolescontent">
+                                    <p:autoUpdate/><!--IMPORTANTE-->
+                                    <ui:include src="xerolRol/List.xhtml"></ui:include>
+                                </p:outputPanel>
+                                <br/>
+                                <h:form>
+                                    <p:commandButton value="Crear rol" type="button" onclick="PF('dlgroles').show();" />
+                                </h:form>
 
-                                <h:outputText
-                                    value="Aqui va crud de cargos" />
+                                <p:dialog header="Creación de roles" widgetVar="dlgroles" minHeight="40">
+                                    <f:ajax event="open" listener="#{xerolRolController.prepareCreate}"></f:ajax>
+                                    <f:ajax event="close" render="rolescontent"></f:ajax>
+                                    <ui:include src="xerolRol/Create.xhtml"></ui:include>
+                                </p:dialog>
+
                             </h:panelGrid>
                         </p:tab>
                         <p:tab title="Gestionar Opciones">
                             <h:panelGrid columns="2" cellpadding="10">
-
-                                <h:outputText
-                                    value="Aqui va crud de contratos" />
+                                <p:outputPanel id="opcionescontent">
+                                    <p:autoUpdate/><!--IMPORTANTE-->
+                                    <ui:include src="xeopcOpcion/List.xhtml"></ui:include>
+                                </p:outputPanel>
+                                <br/>
+                                <h:form>
+                                    <p:commandButton value="Crear opción" type="button" onclick="PF('dlgopciones').show();" />
+                                </h:form>
+                                <p:dialog header="Creación de opciones" widgetVar="dlgopciones" minHeight="40">
+                                    <f:ajax event="open" listener="#{xeopcOpcionController.prepareCreate}"></f:ajax>
+                                    <f:ajax event="close" render="opcionescontent"></f:ajax>
+                                    <ui:include src="xeopcOpcion/Create.xhtml"></ui:include>
+                                </p:dialog>
                             </h:panelGrid>
                         </p:tab>
                         <p:tab title="Gestionar Sistemas">

@@ -7,6 +7,7 @@ import ec.edu.monster.facades.XeautAutentFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -24,12 +25,18 @@ public class XeautAutentController implements Serializable {
 
     private XeautAutent current;
     private DataModel items = null;
+    private int createRequest = 0;
     @EJB
     private ec.edu.monster.facades.XeautAutentFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
     public XeautAutentController() {
+    }
+      @PostConstruct
+    public void init() {
+        prepareList();
+        getItems();
     }
 
     public XeautAutent getSelected() {
@@ -67,28 +74,52 @@ public class XeautAutentController implements Serializable {
         return "List";
     }
 
-    public String prepareView() {
+    public Boolean prepareView() {
         current = (XeautAutent) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "View";
+        return true;
+    }
+    public String setViewIndex(Object t) {
+        
+        getItems().setRowIndex((int) t);
+        prepareView();
+        return "";
+    }
+    //Este método reemplaza al prepareEdit
+    public String setEditIndex(Object t) {
+        
+        getItems().setRowIndex((int) t);
+        prepareEdit();
+        return "";
     }
 
-    public String prepareCreate() {
+    public void prepareCreate() {
         current = new XeautAutent();
         selectedItemIndex = -1;
-        return "Create";
+        createRequest = 0;
     }
-
-    public String create() {
+    
+    public void create() {
         try {
+            System.out.println("Create request " + createRequest);
+            if (createRequest != 0) {
+                System.out.println("No reate");
+                return;
+            }
+
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("XeautAutentCreated"));
-            return prepareCreate();
+            current = null;
+            createRequest++;
+            recreateModel();
+            getItems();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
-            return null;
+            //return null;
         }
     }
+
+    
 
     public String prepareEdit() {
         current = (XeautAutent) getItems().getRowData();

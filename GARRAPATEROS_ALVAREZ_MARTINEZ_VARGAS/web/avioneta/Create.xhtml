@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -23,10 +24,10 @@
                     <h:inputText id="anio" value="#{avionetaController.selected.anio}" title="#{bundle.CreateAvionetaTitle_anio}" />
                 </h:panelGrid>
                 <br />
-                <h:commandLink action="#{avionetaController.create}" value="#{bundle.CreateAvionetaSaveLink}" />
+                <p:commandButton action="#{avionetaController.create}" value="#{bundle.CreateAvionetaSaveLink}" />
                 <br />
                 <br />
-                <h:commandLink action="#{avionetaController.prepareList}" value="#{bundle.CreateAvionetaShowAllLink}" immediate="true"/>
+                <p:commandButton action="#{avionetaController.prepareList}" value="#{bundle.CreateAvionetaShowAllLink}" immediate="true"/>
                 <br />
                 <br />
                 <h:link outcome="/index" value="#{bundle.CreateAvionetaIndexLink}"/>

@@ -7,6 +7,7 @@ import ec.edu.monster.facades.ParacaidistasFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -23,6 +24,7 @@ import javax.faces.model.SelectItem;
 public class ParacaidistasController implements Serializable {
 
     private Paracaidistas current;
+    private int createRequest = 0;
     private DataModel items = null;
     @EJB
     private ec.edu.monster.facades.ParacaidistasFacade ejbFacade;
@@ -30,6 +32,11 @@ public class ParacaidistasController implements Serializable {
     private int selectedItemIndex;
 
     public ParacaidistasController() {
+    }
+    @PostConstruct
+    public void init() {
+        prepareList();
+        getItems();
     }
 
     public Paracaidistas getSelected() {
@@ -66,29 +73,54 @@ public class ParacaidistasController implements Serializable {
         recreateModel();
         return "List";
     }
-
-    public String prepareView() {
-        current = (Paracaidistas) getItems().getRowData();
-        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "View";
+    public String setViewIndex(Object t) {
+        
+        getItems().setRowIndex((int) t);
+        prepareView();
+        return "";
     }
-
-    public String prepareCreate() {
+    //Este método reemplaza al prepareEdit
+    public String setEditIndex(Object t) {
+        
+        getItems().setRowIndex((int) t);
+        prepareEdit();
+        return "";
+    }
+    public void prepareCreate() {
         current = new Paracaidistas();
         selectedItemIndex = -1;
-        return "Create";
+         createRequest = 0;
     }
 
-    public String create() {
+
+    public Boolean prepareView() {
+        current = (Paracaidistas) getItems().getRowData();
+        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+        return true;
+    }
+
+    
+   
+     public void create() {
         try {
+            System.out.println("Create request " + createRequest);
+            if (createRequest != 0) {
+                System.out.println("No reate");
+                return;
+            }
+
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ParacaidistasCreated"));
-            return prepareCreate();
+            current = null;
+            createRequest++;
+            recreateModel();
+            getItems();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
-            return null;
+            //return null;
         }
     }
+
 
     public String prepareEdit() {
         current = (Paracaidistas) getItems().getRowData();

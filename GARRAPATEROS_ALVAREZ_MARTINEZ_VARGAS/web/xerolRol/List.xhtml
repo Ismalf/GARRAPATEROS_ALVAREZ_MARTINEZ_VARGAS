@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-
-    <ui:composition template="/template.xhtml">
-        <ui:define name="title">
+<ui:composition template="/template.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                >
+    <ui:define name="title">
             <h:outputText value="#{bundle.ListXerolRolTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
@@ -19,54 +19,56 @@
                     <h:outputText value="#{xerolRolController.pagination.pageFirstItem + 1}..#{xerolRolController.pagination.pageLastItem + 1}/#{xerolRolController.pagination.itemsCount}"/>&nbsp;
                     <h:commandLink action="#{xerolRolController.previous}" value="#{bundle.Previous} #{xerolRolController.pagination.pageSize}" rendered="#{xerolRolController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{xerolRolController.next}" value="#{bundle.Next} #{xerolRolController.pagination.pageSize}" rendered="#{xerolRolController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{xerolRolController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
+                    <p:dataTable value="#{xerolRolController.items}" var="item" rowIndexVar="rowId">
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListXerolRolTitle_xeopcCodopc}"/>
                             </f:facet>
                             <h:outputText value="#{item.xeopcCodopc}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListXerolRolTitle_xerolInserc}"/>
                             </f:facet>
                             <h:outputText value="#{item.xerolInserc}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListXerolRolTitle_xerolActual}"/>
                             </f:facet>
                             <h:outputText value="#{item.xerolActual}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListXerolRolTitle_xerolElimin}"/>
                             </f:facet>
                             <h:outputText value="#{item.xerolElimin}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListXerolRolTitle_xerolConsul}"/>
                             </f:facet>
                             <h:outputText value="#{item.xerolConsul}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListXerolRolTitle_xeopcOpcion}"/>
                             </f:facet>
                             <h:outputText value="#{item.xeopcOpcion}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
-                            <h:commandLink action="#{xerolRolController.prepareView}" value="#{bundle.ListXerolRolViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{xerolRolController.prepareEdit}" value="#{bundle.ListXerolRolEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{xerolRolController.destroy}" value="#{bundle.ListXerolRolDestroyLink}"/>
-                        </h:column>
-                    </h:dataTable>
+                           
+                            
+                                     
+                             <p:commandLink value="Ver Opciones" type="button" action="#{xerolRolController.setViewIndex(rowId)}" oncomplete="PF('ViewDialog').show(); " />
+                        <!--Edit-->
+                        <p:commandLink value="Editar Opciones" type="button" action="#{xerolRolController.setEditIndex(rowId)}" oncomplete="PF('EditDialog').show();" />
+             
+                        </p:column>
+                    </p:dataTable>
                 </h:panelGroup>
                 <br />
                 <h:commandLink action="#{xerolRolController.prepareCreate}" value="#{bundle.ListXerolRolCreateLink}"/>
@@ -74,7 +76,12 @@
                 <br />
                 <h:link outcome="/index" value="#{bundle.ListXerolRolIndexLink}"/>
             </h:form>
+               <ui:include src="View.xhtml"></ui:include>
+        </p:dialog>
+        <p:dialog header="Editar Roles" widgetVar="EditDialog" minHeight="40">
+            <ui:include src="Edit.xhtml"></ui:include>
+        </p:dialog>
         </ui:define>
     </ui:composition>
 
-</html>
+

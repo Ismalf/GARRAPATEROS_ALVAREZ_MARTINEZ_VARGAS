@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-
-    <ui:composition template="/template.xhtml">
-        <ui:define name="title">
+<ui:composition template="/template.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                >
+    <ui:define name="title">
             <h:outputText value="#{bundle.CreateXeperPerfilTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
+           
             <h:form>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.CreateXeperPerfilLabel_xeperCodper}" for="xeperCodper" />
@@ -23,10 +21,10 @@
                     <h:inputText id="xeperObserv" value="#{xeperPerfilController.selected.xeperObserv}" title="#{bundle.CreateXeperPerfilTitle_xeperObserv}" required="true" requiredMessage="#{bundle.CreateXeperPerfilRequiredMessage_xeperObserv}"/>
                 </h:panelGrid>
                 <br />
-                <h:commandLink action="#{xeperPerfilController.create}" value="#{bundle.CreateXeperPerfilSaveLink}" />
+                <p:commandButton action="#{xeperPerfilController.create}" value="#{bundle.CreateXeperPerfilSaveLink}" />
                 <br />
                 <br />
-                <h:commandLink action="#{xeperPerfilController.prepareList}" value="#{bundle.CreateXeperPerfilShowAllLink}" immediate="true"/>
+                <p:commandButton action="#{xeperPerfilController.prepareList}" value="#{bundle.CreateXeperPerfilShowAllLink}" immediate="true"/>
                 <br />
                 <br />
                 <h:link outcome="/index" value="#{bundle.CreateXeperPerfilIndexLink}"/>
@@ -34,4 +32,4 @@
         </ui:define>
     </ui:composition>
 
-</html>
+

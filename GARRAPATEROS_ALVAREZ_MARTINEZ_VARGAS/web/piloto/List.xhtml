@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-
-    <ui:composition template="/template.xhtml">
-        <ui:define name="title">
+<ui:composition template="/template.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                >
+    <ui:define name="title">
             <h:outputText value="#{bundle.ListPilotoTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
@@ -19,50 +19,54 @@
                     <h:outputText value="#{pilotoController.pagination.pageFirstItem + 1}..#{pilotoController.pagination.pageLastItem + 1}/#{pilotoController.pagination.itemsCount}"/>&nbsp;
                     <h:commandLink action="#{pilotoController.previous}" value="#{bundle.Previous} #{pilotoController.pagination.pageSize}" rendered="#{pilotoController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{pilotoController.next}" value="#{bundle.Next} #{pilotoController.pagination.pageSize}" rendered="#{pilotoController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{pilotoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
+                    <p:dataTable value="#{pilotoController.items}" var="item" rowIndexVar="rowId">
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPilotoTitle_peperId}"/>
                             </f:facet>
                             <h:outputText value="#{item.peperId}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPilotoTitle_licenciaPiloto}"/>
                             </f:facet>
                             <h:outputText value="#{item.licenciaPiloto}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPilotoTitle_horasVuelo}"/>
                             </f:facet>
                             <h:outputText value="#{item.horasVuelo}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPilotoTitle_peperPerson}"/>
                             </f:facet>
                             <h:outputText value="#{item.peperPerson}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
-                            <h:commandLink action="#{pilotoController.prepareView}" value="#{bundle.ListPilotoViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{pilotoController.prepareEdit}" value="#{bundle.ListPilotoEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{pilotoController.destroy}" value="#{bundle.ListPilotoDestroyLink}"/>
-                        </h:column>
-                    </h:dataTable>
-                </h:panelGroup>
+                           
+                            
+                        <p:commandLink value="Ver pilotos" type="button" action="#{pilotoController.setViewIndex(rowId)}" oncomplete="PF('ViewDialog').show(); " />
+                        <!--Edit-->
+                        <p:commandLink value="Editar pilotos" type="button" action="#{pilotoController.setEditIndex(rowId)}" oncomplete="PF('EditDialog').show();" />
+             
+                        </p:column>
+                    </p:dataTable>
+                </p:panelGroup>
                 <br />
                 <h:commandLink action="#{pilotoController.prepareCreate}" value="#{bundle.ListPilotoCreateLink}"/>
                 <br />
                 <br />
                 <h:link outcome="/index" value="#{bundle.ListPilotoIndexLink}"/>
             </h:form>
+                  <ui:include src="View.xhtml"></ui:include>
+        </p:dialog>
+        <p:dialog header="Editar pilotos" widgetVar="EditDialog" minHeight="40">
+            <ui:include src="Edit.xhtml"></ui:include>
+        </p:dialog>
         </ui:define>
     </ui:composition>
-
-</html>

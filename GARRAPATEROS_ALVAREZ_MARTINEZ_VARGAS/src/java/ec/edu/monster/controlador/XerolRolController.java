@@ -4,9 +4,11 @@ import ec.edu.monster.modelo.XerolRol;
 import ec.edu.monster.controlador.util.JsfUtil;
 import ec.edu.monster.controlador.util.PaginationHelper;
 import ec.edu.monster.facades.XerolRolFacade;
+import ec.edu.monster.modelo.XeopcOpcion;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -23,6 +25,7 @@ import javax.faces.model.SelectItem;
 public class XerolRolController implements Serializable {
 
     private XerolRol current;
+    private int createRequest = 0;
     private DataModel items = null;
     @EJB
     private ec.edu.monster.facades.XerolRolFacade ejbFacade;
@@ -30,6 +33,11 @@ public class XerolRolController implements Serializable {
     private int selectedItemIndex;
 
     public XerolRolController() {
+    }
+       @PostConstruct
+    public void init() {
+        prepareList();
+        getItems();
     }
 
     public XerolRol getSelected() {
@@ -67,28 +75,52 @@ public class XerolRolController implements Serializable {
         return "List";
     }
 
-    public String prepareView() {
+    public Boolean prepareView() {
         current = (XerolRol) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "View";
+        return true;
+    }
+     public String setViewIndex(Object t) {
+        
+        getItems().setRowIndex((int) t);
+        prepareView();
+        return "";
+    }
+    //Este método reemplaza al prepareEdit
+    public String setEditIndex(Object t) {
+        
+        getItems().setRowIndex((int) t);
+        prepareEdit();
+        return "";
     }
 
-    public String prepareCreate() {
+    public void prepareCreate() {
         current = new XerolRol();
         selectedItemIndex = -1;
-        return "Create";
+        createRequest = 0;
     }
-
-    public String create() {
+    
+    public void create() {
         try {
+            System.out.println("Create request " + createRequest);
+            if (createRequest != 0) {
+                System.out.println("No reate");
+                return;
+            }
+
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("XerolRolCreated"));
-            return prepareCreate();
+            current = null;
+            createRequest++;
+            recreateModel();
+            getItems();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
-            return null;
+            //return null;
         }
     }
+
+   
 
     public String prepareEdit() {
         current = (XerolRol) getItems().getRowData();
