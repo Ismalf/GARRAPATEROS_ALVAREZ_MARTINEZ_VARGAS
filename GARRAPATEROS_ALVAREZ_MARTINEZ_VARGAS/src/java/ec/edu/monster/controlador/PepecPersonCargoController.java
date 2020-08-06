@@ -7,6 +7,7 @@ import ec.edu.monster.facades.PepecPersonCargoFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -28,8 +29,15 @@ public class PepecPersonCargoController implements Serializable {
     private ec.edu.monster.facades.PepecPersonCargoFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
+    private int createRequest;
 
     public PepecPersonCargoController() {
+    }
+
+    @PostConstruct
+    public void init() {
+        prepareList();
+        getItems();
     }
 
     public PepecPersonCargo getSelected() {
@@ -68,35 +76,58 @@ public class PepecPersonCargoController implements Serializable {
         return "List";
     }
 
-    public String prepareView() {
+    public Boolean prepareView() {
         current = (PepecPersonCargo) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "View";
+        return true;
+    }
+// Este método reemplaza al prepareView
+
+    public String setViewIndex(Object t) {
+
+        getItems().setRowIndex((int) t);
+        prepareView();
+        return "";
     }
 
-    public String prepareCreate() {
+    //Este método reemplaza al prepareEdit
+    public String setEditIndex(Object t) {
+
+        getItems().setRowIndex((int) t);
+        prepareEdit();
+        return "";
+    }
+
+    public void prepareCreate() {
         current = new PepecPersonCargo();
         current.setPepecPersonCargoPK(new ec.edu.monster.modelo.PepecPersonCargoPK());
         selectedItemIndex = -1;
-        return "Create";
+        createRequest = 0;
     }
 
-    public String create() {
+    public void create() {
         try {
+            if (createRequest != 0) {
+                System.out.println("No reate");
+                return;
+            }
             current.getPepecPersonCargoPK().setPeperId(current.getPeperPerson().getPeperId());
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("PepecPersonCargoCreated"));
-            return prepareCreate();
+            current = null;
+            createRequest++;
+            recreateModel();
+            getItems();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
-            return null;
+            //return null;
         }
     }
 
-    public String prepareEdit() {
+    public void prepareEdit() {
         current = (PepecPersonCargo) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "Edit";
+        //return "Edit";
     }
 
     public String update() {

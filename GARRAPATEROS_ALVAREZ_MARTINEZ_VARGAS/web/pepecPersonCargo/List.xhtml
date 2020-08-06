@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -19,57 +20,58 @@
                     <h:outputText value="#{pepecPersonCargoController.pagination.pageFirstItem + 1}..#{pepecPersonCargoController.pagination.pageLastItem + 1}/#{pepecPersonCargoController.pagination.itemsCount}"/>&nbsp;
                     <h:commandLink action="#{pepecPersonCargoController.previous}" value="#{bundle.Previous} #{pepecPersonCargoController.pagination.pageSize}" rendered="#{pepecPersonCargoController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{pepecPersonCargoController.next}" value="#{bundle.Next} #{pepecPersonCargoController.pagination.pageSize}" rendered="#{pepecPersonCargoController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{pepecPersonCargoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
+                    <p:dataTable value="#{pepecPersonCargoController.items}" var="item" rowIndexVar="rowId">
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPepecPersonCargoTitle_pepecPersonCargoPK_idContrato}"/>
                             </f:facet>
                             <h:outputText value="#{item.pepecPersonCargoPK.idContrato}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPepecPersonCargoTitle_pepecFecini}"/>
                             </f:facet>
                             <h:outputText value="#{item.pepecFecini}">
                                 <f:convertDateTime pattern="MM/dd/yyyy" />
                             </h:outputText>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPepecPersonCargoTitle_pepecFecfin}"/>
                             </f:facet>
                             <h:outputText value="#{item.pepecFecfin}">
                                 <f:convertDateTime pattern="MM/dd/yyyy" />
                             </h:outputText>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPepecPersonCargoTitle_pecarCodigo}"/>
                             </f:facet>
                             <h:outputText value="#{item.pecarCodigo}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPepecPersonCargoTitle_peperPerson}"/>
                             </f:facet>
                             <h:outputText value="#{item.peperPerson}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
-                            <h:commandLink action="#{pepecPersonCargoController.prepareView}" value="#{bundle.ListPepecPersonCargoViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{pepecPersonCargoController.prepareEdit}" value="#{bundle.ListPepecPersonCargoEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{pepecPersonCargoController.destroy}" value="#{bundle.ListPepecPersonCargoDestroyLink}"/>
-                        </h:column>
-                    </h:dataTable>
+                            <p:commandLink value="Ver persona" type="button" action="#{pepecPersonCargoController.setViewIndex(rowId)}" oncomplete="PF('ViewContratoDialog').show(); " />
+                            <p:commandLink value="Editar persona" type="button" action="#{pepecPersonCargoController.setEditIndex(rowId)}" oncomplete="PF('EditContratoDialog').show();" />
+                        </p:column>
+                    </p:dataTable>
                 </h:panelGroup>
                 <br />
-                <h:commandLink action="#{pepecPersonCargoController.prepareCreate}" value="#{bundle.ListPepecPersonCargoCreateLink}"/>
-                
             </h:form>
+            <p:dialog header="Ver Contrato" widgetVar="ViewContratoDialog" minHeight="40">
+                <ui:include src="View.xhtml"></ui:include>
+            </p:dialog>
+            <p:dialog header="Editar Contrato" widgetVar="EditContratoDialog" minHeight="40">
+                <ui:include src="Edit.xhtml"></ui:include>
+            </p:dialog>
         </ui:define>
     </ui:composition>
 

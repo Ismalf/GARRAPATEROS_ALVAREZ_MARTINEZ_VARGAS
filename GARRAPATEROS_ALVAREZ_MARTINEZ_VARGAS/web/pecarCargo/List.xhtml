@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -19,35 +20,35 @@
                     <h:outputText value="#{pecarCargoController.pagination.pageFirstItem + 1}..#{pecarCargoController.pagination.pageLastItem + 1}/#{pecarCargoController.pagination.itemsCount}"/>&nbsp;
                     <h:commandLink action="#{pecarCargoController.previous}" value="#{bundle.Previous} #{pecarCargoController.pagination.pageSize}" rendered="#{pecarCargoController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{pecarCargoController.next}" value="#{bundle.Next} #{pecarCargoController.pagination.pageSize}" rendered="#{pecarCargoController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{pecarCargoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
+                    <p:dataTable value="#{pecarCargoController.items}" var="item" rowIndexVar="rowId">
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPecarCargoTitle_pecarCodigo}"/>
                             </f:facet>
                             <h:outputText value="#{item.pecarCodigo}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPecarCargoTitle_pecarDescri}"/>
                             </f:facet>
                             <h:outputText value="#{item.pecarDescri}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
-                            <h:commandLink action="#{pecarCargoController.prepareView}" value="#{bundle.ListPecarCargoViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{pecarCargoController.prepareEdit}" value="#{bundle.ListPecarCargoEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{pecarCargoController.destroy}" value="#{bundle.ListPecarCargoDestroyLink}"/>
-                        </h:column>
-                    </h:dataTable>
+                            <p:commandLink value="Ver persona" type="button" action="#{pecarCargoController.setViewIndex(rowId)}" oncomplete="PF('ViewCargoDialog').show(); " />
+                            <p:commandLink value="Editar persona" type="button" action="#{pecarCargoController.setEditIndex(rowId)}" oncomplete="PF('EditCargoDialog').show();" />
+                        </p:column>
+                    </p:dataTable>
                 </h:panelGroup>
-                <br />
-                <h:commandLink action="#{pecarCargoController.prepareCreate}" value="#{bundle.ListPecarCargoCreateLink}"/>
-                
             </h:form>
+            <p:dialog header="Ver Cargo" widgetVar="ViewCargoDialog" minHeight="40">
+                <ui:include src="View.xhtml"></ui:include>
+            </p:dialog>
+            <p:dialog header="Editar Cargo" widgetVar="EditCargoDialog" minHeight="40">
+                <ui:include src="Edit.xhtml"></ui:include>
+            </p:dialog>
         </ui:define>
     </ui:composition>
 

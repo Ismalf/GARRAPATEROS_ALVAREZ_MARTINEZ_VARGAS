@@ -42,19 +42,62 @@
                         <p:tab title="Gestionar Géneros">
                             <h:panelGrid columns="2" cellpadding="10">
 
-                                <ui:include src="/pesexSexo/List.xhtml"></ui:include>
+                                
+                                <!--INSERTAR ESTO CON UN ID REPRESENTATIVO-->
+                                <p:outputPanel id="sexocontent">
+                                    <p:autoUpdate/><!--IMPORTANTE-->
+                                    <ui:include src="pesexSexo/List.xhtml"></ui:include>
+                                </p:outputPanel>
+                                <br/>
+                                <h:form>
+                                    <p:commandButton value="Crear persona" type="button" onclick="PF('dlgsex').show();" />
+                                </h:form>
+
+                                <p:dialog header="Creación de persona" widgetVar="dlgsex" minHeight="40">
+                                    <f:ajax event="open" listener="#{pesexSexoController.prepareCreate}"></f:ajax>
+                                    <f:ajax event="close" render="sexocontent"></f:ajax>
+                                    <ui:include src="pesexSexo/Create.xhtml"></ui:include>
+                                </p:dialog>
                             </h:panelGrid>
                         </p:tab>
                         <p:tab title="Gestionar Cargos">
                             <h:panelGrid columns="2" cellpadding="10">
 
-                                <ui:include src="/pecarCargo/List.xhtml"></ui:include>
+                                
+                                <!--INSERTAR ESTO CON UN ID REPRESENTATIVO-->
+                                <p:outputPanel id="cargocontent">
+                                    <p:autoUpdate/><!--IMPORTANTE-->
+                                    <ui:include src="pecarCargo/List.xhtml"></ui:include>
+                                </p:outputPanel>
+                                <br/>
+                                <h:form>
+                                    <p:commandButton value="Crear persona" type="button" onclick="PF('dlgcargo').show();" />
+                                </h:form>
+
+                                <p:dialog header="Creación de persona" widgetVar="dlgcargo" minHeight="40">
+                                    <f:ajax event="open" listener="#{pecarCargoController.prepareCreate}"></f:ajax>
+                                    <f:ajax event="close" render="cargocontent"></f:ajax>
+                                    <ui:include src="pecarCargo/Create.xhtml"></ui:include>
+                                </p:dialog>
                             </h:panelGrid>
                         </p:tab>
                         <p:tab title="Gestionar Contratos">
                             <h:panelGrid columns="2" cellpadding="10">
+                                <!--INSERTAR ESTO CON UN ID REPRESENTATIVO-->
+                                <p:outputPanel id="contractcontent">
+                                    <p:autoUpdate/><!--IMPORTANTE-->
+                                    <ui:include src="pepecPersonCargo/List.xhtml"></ui:include>
+                                </p:outputPanel>
+                                <br/>
+                                <h:form>
+                                    <p:commandButton value="Crear persona" type="button" onclick="PF('dlgcontrato').show();" />
+                                </h:form>
 
-                                <ui:include src="/pepecPersonCargo/List.xhtml"></ui:include>
+                                <p:dialog header="Creación de persona" widgetVar="dlgcontrato" minHeight="40">
+                                    <f:ajax event="open" listener="#{pepecPersonCargoController.prepareCreate}"></f:ajax>
+                                    <f:ajax event="close" render="contractcontent"></f:ajax>
+                                    <ui:include src="pepecPersonCargo/Create.xhtml"></ui:include>
+                                </p:dialog>
                             </h:panelGrid>
                         </p:tab>
                     </p:tabView>

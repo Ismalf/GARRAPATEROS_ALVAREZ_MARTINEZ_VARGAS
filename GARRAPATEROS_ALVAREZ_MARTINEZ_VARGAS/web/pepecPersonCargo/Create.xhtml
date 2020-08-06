@@ -10,13 +10,9 @@
             <h:outputText value="#{bundle.CreatePepecPersonCargoTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
+            
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreatePepecPersonCargoLabel_pepecPersonCargoPK_idContrato}" for="pepecPersonCargoPK_idContrato" />
-                    <h:inputText id="pepecPersonCargoPK_idContrato" value="#{pepecPersonCargoController.selected.pepecPersonCargoPK.idContrato}" title="#{bundle.CreatePepecPersonCargoTitle_pepecPersonCargoPK_idContrato}" required="true" requiredMessage="#{bundle.CreatePepecPersonCargoRequiredMessage_pepecPersonCargoPK_idContrato}"/>
                     <h:outputLabel value="#{bundle.CreatePepecPersonCargoLabel_pepecFecini}" for="pepecFecini" />
                     <h:inputText id="pepecFecini" value="#{pepecPersonCargoController.selected.pepecFecini}" title="#{bundle.CreatePepecPersonCargoTitle_pepecFecini}" >
                         <f:convertDateTime pattern="MM/dd/yyyy" />
