@@ -75,7 +75,7 @@
                     </h:dataTable>
                 </h:panelGroup>
                 <br />
-                <h:commandLink action="#{vuelosController.prepareCreate}" value="#{bundle.ListVuelosCreateLink}"/>
+                <h:commandLink action="#{vuelosController.prepareCreate}" value="#{bundle.ListVuelosCreateLink}" actionListener="#{vuelosController.update()}"/>
                 <br />
                 <br />
                 <h:link outcome="/index" value="#{bundle.ListVuelosIndexLink}"/>

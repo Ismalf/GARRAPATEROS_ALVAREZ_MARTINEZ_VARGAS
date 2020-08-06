@@ -30,28 +30,15 @@
                                     <h:commandLink action="peperPersonController.prepareCreate" value="bundle.ListPeperPersonCreateLink"/>-->
                                     <p:commandButton value="Crear persona" type="button" onclick="PF('dlg1').show();" />
                                 </h:form>
+                                
+                                    
+                                
                                 <p:dialog header="Creación de persona" widgetVar="dlg1" minHeight="40">
                                     <f:ajax event="open" listener="#{peperPersonController.prepareCreate}"></f:ajax>
                                     <f:ajax event="close" render="personcontent"></f:ajax>
                                     <ui:include src="peperPerson/Create.xhtml"></ui:include>
                                 </p:dialog>
-                                <p:dialog header="Creación de persona" widgetVar="ViewDialog" minHeight="40">
-                                    <f:ajax event="open" listener="#{peperPersonController.prepareCreate}"></f:ajax>
-                                    <f:ajax event="close" render="personcontent"></f:ajax>
-                                    <ui:include src="peperPerson/View.xhtml"></ui:include>
-                                </p:dialog>
-                                <p:dialog header="Creación de persona" widgetVar="EditDialog" minHeight="40">
-                                    <f:ajax event="open" listener="#{peperPersonController.prepareCreate}"></f:ajax>
-                                    <f:ajax event="close" render="personcontent"></f:ajax>
-                                    <ui:include src="peperPerson/Edit.xhtml"></ui:include>
-                                </p:dialog>
-                                <!--<p:dialog header="Creación de persona" widgetVar="dlg4" minHeight="40">
-                                    <f:ajax event="open" listener="#{peperPersonController.prepareCreate}"></f:ajax>
-                                    <f:ajax event="close" render="personcontent"></f:ajax>
-                                    <ui:include src="peperPerson/Create.xhtml"></ui:include>
-                                </p:dialog>-->
-
-
+                                
                             </h:panelGrid>
                         </p:tab>
                         <p:tab title="Gestionar Géneros">
