@@ -29,6 +29,9 @@
                                 <h:form>
                                     <p:commandButton value="Crear persona" type="button" onclick="PF('dlg1').show();" />
                                 </h:form>
+                                
+                                    
+                                
                                 <p:dialog header="Creación de persona" widgetVar="dlg1" minHeight="40">
                                     <f:ajax event="open" listener="#{peperPersonController.prepareCreate}"></f:ajax>
                                     <f:ajax event="close" render="personcontent"></f:ajax>
