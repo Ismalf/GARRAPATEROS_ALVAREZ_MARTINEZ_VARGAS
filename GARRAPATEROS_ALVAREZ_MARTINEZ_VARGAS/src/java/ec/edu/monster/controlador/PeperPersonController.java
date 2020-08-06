@@ -7,6 +7,8 @@ import ec.edu.monster.facades.PeperPersonFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
+import javafx.scene.control.Alert;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
@@ -20,6 +22,7 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 import javax.faces.view.ViewScoped;
+import org.primefaces.PF;
 
 @Named("peperPersonController")
 @SessionScoped
@@ -36,6 +39,12 @@ public class PeperPersonController implements Serializable {
 
     public PeperPersonController() {
 
+    }
+
+    @PostConstruct
+    public void init() {
+        prepareList();
+        getItems();
     }
 
     public PeperPerson getSelected() {
@@ -73,10 +82,27 @@ public class PeperPersonController implements Serializable {
         return "List";
     }
 
-    public void prepareView() {
+    public Boolean prepareView() {
+
+        
         current = (PeperPerson) getItems().getRowData();
+        System.out.println("current " + current.getPesexCodigo());
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         //return "View";
+        return true;
+    }
+
+    public String setViewIndex(Object t) {
+        System.out.println("Items " + t);
+        getItems().setRowIndex((int) t);
+        prepareView();
+        return "";
+    }
+    public String setEditIndex(Object t) {
+        System.out.println("Items " + t);
+        getItems().setRowIndex((int) t);
+        prepareEdit();
+        return "";
     }
 
     public void prepareCreate() {
@@ -87,12 +113,12 @@ public class PeperPersonController implements Serializable {
 
     public void create() {
         try {
-            System.out.println("Create request "+createRequest);
+            System.out.println("Create request " + createRequest);
             if (createRequest != 0) {
                 System.out.println("No reate");
                 return;
             }
-            
+
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("PeperPersonCreated"));
             current = null;

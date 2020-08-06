@@ -10,24 +10,23 @@
     </h:head>
     <h:body style="background-color: #333;">
 
-        <p:tabView dynamic="true" cache="false" >
+        <p:tabView dynamic="true" cache="false">
             <p:tab title="Personas">
                 <h:panelGrid columns="2" cellpadding="10">
                     <p:tabView orientation="left">
+                        <p:ajax event="tabChange" listener="#{adminpanelController.onTabChange}"/>
                         <p:tab title="Gestionar Persona" >
 
                             <h:panelGrid columns="2" cellpadding="10">
-                                <!--<iframe src="faces/peperPerson/List.xhtml" width="100%" height="100%"></iframe>-->
-                                <h:form>
-                                    <p:outputPanel id="personcontent">
-                                        <p:autoUpdate/>
-                                        <ui:include src="peperPerson/List.xhtml"></ui:include>
 
-                                    </p:outputPanel>
-                                    <!--<p:commandButton action="peperPersonController.prepareCreate2" value="TEST">
-                                        <f:ajax render="personcontent" immediate="true"></f:ajax>
-                                    </p:commandButton>
-                                    <h:commandLink action="peperPersonController.prepareCreate" value="bundle.ListPeperPersonCreateLink"/>-->
+
+                                <p:outputPanel id="personcontent">
+                                    <p:autoUpdate/>
+                                    <ui:include src="peperPerson/List.xhtml"></ui:include>
+
+                                </p:outputPanel>
+                                <br></br>
+                                <h:form>
                                     <p:commandButton value="Crear persona" type="button" onclick="PF('dlg1').show();" />
                                 </h:form>
                                 <p:dialog header="Creación de persona" widgetVar="dlg1" minHeight="40">
@@ -35,22 +34,6 @@
                                     <f:ajax event="close" render="personcontent"></f:ajax>
                                     <ui:include src="peperPerson/Create.xhtml"></ui:include>
                                 </p:dialog>
-                                <p:dialog header="Creación de persona" widgetVar="ViewDialog" minHeight="40">
-                                    <f:ajax event="open" listener="#{peperPersonController.prepareCreate}"></f:ajax>
-                                    <f:ajax event="close" render="personcontent"></f:ajax>
-                                    <ui:include src="peperPerson/View.xhtml"></ui:include>
-                                </p:dialog>
-                                <p:dialog header="Creación de persona" widgetVar="EditDialog" minHeight="40">
-                                    <f:ajax event="open" listener="#{peperPersonController.prepareCreate}"></f:ajax>
-                                    <f:ajax event="close" render="personcontent"></f:ajax>
-                                    <ui:include src="peperPerson/Edit.xhtml"></ui:include>
-                                </p:dialog>
-                                <!--<p:dialog header="Creación de persona" widgetVar="dlg4" minHeight="40">
-                                    <f:ajax event="open" listener="#{peperPersonController.prepareCreate}"></f:ajax>
-                                    <f:ajax event="close" render="personcontent"></f:ajax>
-                                    <ui:include src="peperPerson/Create.xhtml"></ui:include>
-                                </p:dialog>-->
-
 
                             </h:panelGrid>
                         </p:tab>

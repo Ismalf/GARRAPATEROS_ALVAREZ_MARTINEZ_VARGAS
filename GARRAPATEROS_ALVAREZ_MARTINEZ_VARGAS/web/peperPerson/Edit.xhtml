@@ -10,13 +10,10 @@
         <h:outputText value="#{bundle.EditPeperPersonTitle}"></h:outputText>
     </ui:define>
     <ui:define name="body">
-        <h:panelGroup id="messagePanel" layout="block">
-            <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-        </h:panelGroup>
+        
         <h:form>
             <h:panelGrid columns="2">
-                <h:outputLabel value="#{bundle.EditPeperPersonLabel_peperId}" for="peperId" />
-                <h:inputText id="peperId" value="#{peperPersonController.selected.peperId}" title="#{bundle.EditPeperPersonTitle_peperId}" required="true" requiredMessage="#{bundle.EditPeperPersonRequiredMessage_peperId}"/>
+                
                 <h:outputLabel value="#{bundle.EditPeperPersonLabel_peperNombre}" for="peperNombre" />
                 <h:inputText id="peperNombre" value="#{peperPersonController.selected.peperNombre}" title="#{bundle.EditPeperPersonTitle_peperNombre}" required="true" requiredMessage="#{bundle.EditPeperPersonRequiredMessage_peperNombre}"/>
                 <h:outputLabel value="#{bundle.EditPeperPersonLabel_peperApelli}" for="peperApelli" />
@@ -35,24 +32,8 @@
                 <h:selectOneMenu id="pesexCodigo" value="#{peperPersonController.selected.pesexCodigo}" title="#{bundle.EditPeperPersonTitle_pesexCodigo}" required="true" requiredMessage="#{bundle.EditPeperPersonRequiredMessage_pesexCodigo}">
                     <f:selectItems value="#{pesexSexoController.itemsAvailableSelectOne}"/>
                 </h:selectOneMenu>
-                <h:outputLabel value="#{bundle.EditPeperPersonLabel_paracaidistas}" for="paracaidistas" />
-                <h:selectOneMenu id="paracaidistas" value="#{peperPersonController.selected.paracaidistas}" title="#{bundle.EditPeperPersonTitle_paracaidistas}" >
-                    <f:selectItems value="#{paracaidistasController.itemsAvailableSelectOne}"/>
-                </h:selectOneMenu>
-                <h:outputLabel value="#{bundle.EditPeperPersonLabel_piloto}" for="piloto" />
-                <h:selectOneMenu id="piloto" value="#{peperPersonController.selected.piloto}" title="#{bundle.EditPeperPersonTitle_piloto}" >
-                    <f:selectItems value="#{pilotoController.itemsAvailableSelectOne}"/>
-                </h:selectOneMenu>
             </h:panelGrid>
             <h:commandLink action="#{peperPersonController.update}" value="#{bundle.EditPeperPersonSaveLink}"/>
-            <br />
-            <br />
-            <h:link outcome="View" value="#{bundle.EditPeperPersonViewLink}"/>
-            <br />
-            <h:commandLink action="#{peperPersonController.prepareList}" value="#{bundle.EditPeperPersonShowAllLink}" immediate="true"/>
-            <br />
-            <br />
-            <h:link outcome="/index" value="#{bundle.EditPeperPersonIndexLink}" />
         </h:form>
     </ui:define>
 </ui:composition>
