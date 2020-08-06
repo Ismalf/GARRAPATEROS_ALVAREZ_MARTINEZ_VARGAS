@@ -12,6 +12,7 @@
     </ui:define>
     <ui:define name="body">
         <h:form styleClass="jsfcrud_list_form" id="peperList">
+            <!--BORRAR ESTE PANEL GROUP DEL RESTO DE COMPONENTES (VIEW, EDIT, DELETE)-->
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
@@ -20,7 +21,7 @@
                 <h:outputText value="#{peperPersonController.pagination.pageFirstItem + 1}..#{peperPersonController.pagination.pageLastItem + 1}/#{peperPersonController.pagination.itemsCount}"/>&nbsp;
                 <h:commandLink action="#{peperPersonController.previous}" value="#{bundle.Previous} #{peperPersonController.pagination.pageSize}" rendered="#{peperPersonController.pagination.hasPreviousPage}"/>&nbsp;
                 <h:commandLink action="#{peperPersonController.next}" value="#{bundle.Next} #{peperPersonController.pagination.pageSize}" rendered="#{peperPersonController.pagination.hasNextPage}"/>&nbsp;
-                <p:dataTable value="#{peperPersonController.items}" var="item" rowIndexVar="rowId">
+                <p:dataTable value="#{peperPersonController.items}" var="item" rowIndexVar="rowId"><!--COPIAR EN LAS TABLAS DE LIST-->
                     <p:autoUpdate/>
                     <p:column>
                         <f:facet name="header">
@@ -77,6 +78,7 @@
                             <h:outputText value="&nbsp;"/>
                         </f:facet>
                         <!--View-->
+                        <!--UTILIZAR COMMAND LINK CON LA SIGUIENTE SINTAXIS-->
                         <p:commandLink value="Ver persona" type="button" action="#{peperPersonController.setViewIndex(rowId)}" oncomplete="PF('ViewDialog').show(); " />
                         <!--Edit-->
                         <p:commandLink value="Editar persona" type="button" action="#{peperPersonController.setEditIndex(rowId)}" oncomplete="PF('EditDialog').show();" />
@@ -88,6 +90,7 @@
             </h:panelGroup>
             <br />
         </h:form>
+        <!--INCLUIR LOS DIALOGOS PARA EDITAR Y VISUALIZAR FUERA DE LA FORMA-->
         <p:dialog header="Ver persona" widgetVar="ViewDialog" minHeight="40">
             <ui:include src="View.xhtml"></ui:include>
         </p:dialog>

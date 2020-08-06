@@ -11,26 +11,25 @@
     <h:body style="background-color: #333;">
 
         <p:tabView dynamic="true" cache="false">
+            <!--Está relacionado con un subsistema-->
             <p:tab title="Personas">
                 <h:panelGrid columns="2" cellpadding="10">
                     <p:tabView orientation="left">
+                        <!--BORRAR-->
                         <p:ajax event="tabChange" listener="#{adminpanelController.onTabChange}"/>
+                        <!--Con una tabla de la base-->
                         <p:tab title="Gestionar Persona" >
-
+                            
                             <h:panelGrid columns="2" cellpadding="10">
-
-
+                                <!--INSERTAR ESTO CON UN ID REPRESENTATIVO-->
                                 <p:outputPanel id="personcontent">
-                                    <p:autoUpdate/>
+                                    <p:autoUpdate/><!--IMPORTANTE-->
                                     <ui:include src="peperPerson/List.xhtml"></ui:include>
-
                                 </p:outputPanel>
-                                <br></br>
+                                <br/>
                                 <h:form>
                                     <p:commandButton value="Crear persona" type="button" onclick="PF('dlg1').show();" />
                                 </h:form>
-                                
-                                    
                                 
                                 <p:dialog header="Creación de persona" widgetVar="dlg1" minHeight="40">
                                     <f:ajax event="open" listener="#{peperPersonController.prepareCreate}"></f:ajax>

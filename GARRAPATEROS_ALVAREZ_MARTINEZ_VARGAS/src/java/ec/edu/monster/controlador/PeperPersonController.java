@@ -41,6 +41,9 @@ public class PeperPersonController implements Serializable {
 
     }
 
+    /**
+     Cuando se crea el bean se inicializa la "Lista"
+     */
     @PostConstruct
     public void init() {
         prepareList();
@@ -77,34 +80,41 @@ public class PeperPersonController implements Serializable {
         return pagination;
     }
 
+    /**
+     Esto no se usa, en vez de esto usar el método init()
+     */
     public String prepareList() {
         recreateModel();
         return "List";
     }
 
+    /*
+        NO llamar desde la vista
+    */
     public Boolean prepareView() {
-
-        
         current = (PeperPerson) getItems().getRowData();
-        System.out.println("current " + current.getPesexCodigo());
+        
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        //return "View";
+        
         return true;
     }
 
+    //Copiar en otros controladores !!!!!!!!
+    // Este método reemplaza al prepareView
     public String setViewIndex(Object t) {
-        System.out.println("Items " + t);
+        
         getItems().setRowIndex((int) t);
         prepareView();
         return "";
     }
+    //Este método reemplaza al prepareEdit
     public String setEditIndex(Object t) {
-        System.out.println("Items " + t);
+        
         getItems().setRowIndex((int) t);
         prepareEdit();
         return "";
     }
-
+    
     public void prepareCreate() {
         current = new PeperPerson();
         selectedItemIndex = -1;
@@ -131,6 +141,9 @@ public class PeperPersonController implements Serializable {
         }
     }
 
+    /*
+        NO llamar desde la vista
+    */
     public void prepareEdit() {
         current = (PeperPerson) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
