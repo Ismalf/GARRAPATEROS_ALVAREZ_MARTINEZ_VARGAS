@@ -7,6 +7,7 @@ import ec.edu.monster.facades.SaltoFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -23,6 +24,7 @@ import javax.faces.model.SelectItem;
 public class SaltoController implements Serializable {
 
     private Salto current;
+    private int createRequest = 0;
     private DataModel items = null;
     @EJB
     private ec.edu.monster.facades.SaltoFacade ejbFacade;
@@ -30,6 +32,11 @@ public class SaltoController implements Serializable {
     private int selectedItemIndex;
 
     public SaltoController() {
+    }
+     @PostConstruct
+    public void init() {
+        prepareList();
+        getItems();
     }
 
     public Salto getSelected() {
@@ -67,10 +74,10 @@ public class SaltoController implements Serializable {
         return "List";
     }
 
-    public String prepareView() {
+    public Boolean prepareView() {
         current = (Salto) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "View";
+        return true;
     }
 
     public String prepareCreate() {
@@ -79,23 +86,32 @@ public class SaltoController implements Serializable {
         return "Create";
     }
 
-    public String create() {
+     public void create() {
         try {
+            System.out.println("Create request " + createRequest);
+            if (createRequest != 0) {
+                System.out.println("No reate");
+                return;
+            }
+
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("SaltoCreated"));
-            return prepareCreate();
+            current = null;
+            createRequest++;
+            recreateModel();
+            getItems();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
-            return null;
+            //return null;
         }
     }
 
-    public String prepareEdit() {
+public void prepareEdit() {
         current = (Salto) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "Edit";
+        //return "Edit";
     }
-
+    
     public String update() {
         try {
             getFacade().edit(current);
@@ -127,6 +143,19 @@ public class SaltoController implements Serializable {
             recreateModel();
             return "List";
         }
+    }
+         public String setViewIndex(Object t) {
+        
+        getItems().setRowIndex((int) t);
+        prepareView();
+        return "";
+    }
+    //Este método reemplaza al prepareEdit
+    public String setEditIndex(Object t) {
+        
+        getItems().setRowIndex((int) t);
+        prepareEdit();
+        return "";
     }
 
     private void performDestroy() {

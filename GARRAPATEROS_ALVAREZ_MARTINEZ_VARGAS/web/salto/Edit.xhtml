@@ -3,16 +3,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
             <h:outputText value="#{bundle.EditSaltoTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
+            
             <h:form>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.EditSaltoLabel_idSalto}" for="idSalto" />
@@ -36,12 +35,12 @@
                         <f:selectItems value="#{vuelosController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
                 </h:panelGrid>
-                <h:commandLink action="#{saltoController.update}" value="#{bundle.EditSaltoSaveLink}"/>
+                <p:commandButton action="#{saltoController.update}" value="#{bundle.EditSaltoSaveLink}"/>
                 <br />
                 <br />
                 <h:link outcome="View" value="#{bundle.EditSaltoViewLink}"/>
                 <br />
-                <h:commandLink action="#{saltoController.prepareList}" value="#{bundle.EditSaltoShowAllLink}" immediate="true"/>
+                <p:commandButton action="#{saltoController.prepareList}" value="#{bundle.EditSaltoShowAllLink}" immediate="true"/>
                 <br />
                 <br />
                 <h:link outcome="/index" value="#{bundle.EditSaltoIndexLink}" />
