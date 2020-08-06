@@ -76,17 +76,21 @@
                         <f:facet name="header">
                             <h:outputText value="&nbsp;"/>
                         </f:facet>
-                        <h:commandLink action="#{peperPersonController.prepareView}" value="#{bundle.ListPeperPersonViewLink}"/>
-                        <h:outputText value=" "/>
-                        <h:commandLink action="#{peperPersonController.prepareEdit}" value="#{bundle.ListPeperPersonEditLink}"/>
-                        <h:outputText value=" "/>
-                        <h:commandLink action="#{peperPersonController.destroy}" value="#{bundle.ListPeperPersonDestroyLink}"/>
+                        <!--View-->
+                        <p:commandButton value="Ver persona" type="button" onclick="PF('ViewDialog').show();" />
+                        <!--Edit-->
+                        <p:commandButton value="Editar persona" type="button" onclick="PF('EditDialog').show();" />
+                        <!--Delete
+                        <p:commandButton value="Crear persona" type="button" onclick="PF('dlg1').show();" />-->
+
                     </p:column>
                 </p:dataTable>
             </h:panelGroup>
             <br />
-            
+
+
         </h:form>
+        
     </ui:define>
 </ui:composition>
 

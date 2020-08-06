@@ -73,10 +73,10 @@ public class PeperPersonController implements Serializable {
         return "List";
     }
 
-    public String prepareView() {
+    public void prepareView() {
         current = (PeperPerson) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "View";
+        //return "View";
     }
 
     public void prepareCreate() {
@@ -105,10 +105,10 @@ public class PeperPersonController implements Serializable {
         }
     }
 
-    public String prepareEdit() {
+    public void prepareEdit() {
         current = (PeperPerson) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "Edit";
+        //return "Edit";
     }
 
     public String update() {
