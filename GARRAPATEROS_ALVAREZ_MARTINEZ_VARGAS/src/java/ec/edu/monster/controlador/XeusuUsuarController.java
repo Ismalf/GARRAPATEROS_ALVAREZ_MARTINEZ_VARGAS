@@ -7,6 +7,7 @@ import ec.edu.monster.facades.XeusuUsuarFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -24,6 +25,7 @@ public class XeusuUsuarController implements Serializable {
 
     private XeusuUsuar current;
     private DataModel items = null;
+     private int createRequest = 0;
     @EJB
     private ec.edu.monster.facades.XeusuUsuarFacade ejbFacade;
     private PaginationHelper pagination;
@@ -31,6 +33,13 @@ public class XeusuUsuarController implements Serializable {
 
     public XeusuUsuarController() {
     }
+    
+     @PostConstruct
+    public void init() {
+        prepareList();
+        getItems();
+    }
+
 
     public XeusuUsuar getSelected() {
         if (current == null) {
@@ -66,29 +75,58 @@ public class XeusuUsuarController implements Serializable {
         recreateModel();
         return "List";
     }
-
-    public String prepareView() {
+    public Boolean prepareView() {
         current = (XeusuUsuar) getItems().getRowData();
+        
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "View";
+        
+        return true;
     }
 
-    public String prepareCreate() {
+   
+        //Copiar en otros controladores !!!!!!!!
+    // Este método reemplaza al prepareView
+    public String setViewIndex(Object t) {
+        
+        getItems().setRowIndex((int) t);
+        prepareView();
+        return "";
+    }
+    //Este método reemplaza al prepareEdit
+    public String setEditIndex(Object t) {
+        
+        getItems().setRowIndex((int) t);
+        prepareEdit();
+        return "";
+    }
+    
+
+    public void prepareCreate() {
         current = new XeusuUsuar();
         selectedItemIndex = -1;
-        return "Create";
+       createRequest = 0;
     }
-
-    public String create() {
+    
+    public void create() {
         try {
+            System.out.println("Create request " + createRequest);
+            if (createRequest != 0) {
+                System.out.println("No reate");
+                return;
+            }
+
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("XeusuUsuarCreated"));
-            return prepareCreate();
+            current = null;
+            createRequest++;
+            recreateModel();
+            getItems();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
-            return null;
+            //return null;
         }
     }
+
 
     public String prepareEdit() {
         current = (XeusuUsuar) getItems().getRowData();

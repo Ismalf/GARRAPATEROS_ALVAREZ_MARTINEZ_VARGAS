@@ -4,9 +4,11 @@ import ec.edu.monster.modelo.Avioneta;
 import ec.edu.monster.controlador.util.JsfUtil;
 import ec.edu.monster.controlador.util.PaginationHelper;
 import ec.edu.monster.facades.AvionetaFacade;
+import ec.edu.monster.modelo.PeperPerson;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -23,6 +25,7 @@ import javax.faces.model.SelectItem;
 public class AvionetaController implements Serializable {
 
     private Avioneta current;
+    private int createRequest = 0;
     private DataModel items = null;
     @EJB
     private ec.edu.monster.facades.AvionetaFacade ejbFacade;
@@ -30,6 +33,11 @@ public class AvionetaController implements Serializable {
     private int selectedItemIndex;
 
     public AvionetaController() {
+    }
+     @PostConstruct
+    public void init() {
+        prepareList();
+        getItems();
     }
 
     public Avioneta getSelected() {
@@ -67,10 +75,10 @@ public class AvionetaController implements Serializable {
         return "List";
     }
 
-    public String prepareView() {
+    public void prepareView() {
         current = (Avioneta) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "View";
+         createRequest = 0;
     }
 
     public String prepareCreate() {
@@ -78,22 +86,46 @@ public class AvionetaController implements Serializable {
         selectedItemIndex = -1;
         return "Create";
     }
+     public String setViewIndex(Object t) {
+        
+        getItems().setRowIndex((int) t);
+        prepareView();
+        return "";
+    }
+    //Este método reemplaza al prepareEdit
+    public String setEditIndex(Object t) {
+        
+        getItems().setRowIndex((int) t);
+        prepareEdit();
+        return "";
+    }
 
-    public String create() {
+    
+     public void create() {
         try {
+            System.out.println("Create request " + createRequest);
+            if (createRequest != 0) {
+                System.out.println("No reate");
+                return;
+            }
+
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("AvionetaCreated"));
-            return prepareCreate();
+            current = null;
+            createRequest++;
+            recreateModel();
+            getItems();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
-            return null;
+            //return null;
         }
     }
 
-    public String prepareEdit() {
+   
+     public void prepareEdit() {
         current = (Avioneta) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "Edit";
+        //return "Edit";
     }
 
     public String update() {
