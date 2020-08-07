@@ -20,6 +20,7 @@
                     <h:commandLink action="#{xeperPerfilController.previous}" value="#{bundle.Previous} #{xeperPerfilController.pagination.pageSize}" rendered="#{xeperPerfilController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{xeperPerfilController.next}" value="#{bundle.Next} #{xeperPerfilController.pagination.pageSize}" rendered="#{xeperPerfilController.pagination.hasNextPage}"/>&nbsp;
                     <p:dataTable value="#{xeperPerfilController.items}" var="item" rowIndexVar="rowId">
+                        <p:autoUpdate/>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListXeperPerfilTitle_xeperCodper}"/>
@@ -52,12 +53,10 @@
                     </p:dataTable>
                 </h:panelGroup>
                 <br />
-                <h:commandLink action="#{xeperPerfilController.prepareCreate}" value="#{bundle.ListXeperPerfilCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListXeperPerfilIndexLink}"/>
+               
             </h:form>
-              <ui:include src="View.xhtml"></ui:include>
+              <p:dialog header="Ver Perfil" widgetVar="ViewDialog" minHeight="40">
+            <ui:include src="View.xhtml"></ui:include>
         </p:dialog>
         <p:dialog header="Editar Perfil" widgetVar="EditDialog" minHeight="40">
             <ui:include src="Edit.xhtml"></ui:include>
