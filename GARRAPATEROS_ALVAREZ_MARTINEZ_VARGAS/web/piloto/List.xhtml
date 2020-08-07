@@ -7,66 +7,67 @@
                 xmlns:p="http://primefaces.org/ui"
                 >
     <ui:define name="title">
-            <h:outputText value="#{bundle.ListPilotoTitle}"></h:outputText>
-        </ui:define>
-        <ui:define name="body">
-            <h:form styleClass="jsfcrud_list_form">
-                <h:panelGroup id="messagePanel" layout="block">
-                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                </h:panelGroup>
-                <h:outputText escape="false" value="#{bundle.ListPilotoEmpty}" rendered="#{pilotoController.items.rowCount == 0}"/>
-                <h:panelGroup rendered="#{pilotoController.items.rowCount > 0}">
-                    <h:outputText value="#{pilotoController.pagination.pageFirstItem + 1}..#{pilotoController.pagination.pageLastItem + 1}/#{pilotoController.pagination.itemsCount}"/>&nbsp;
-                    <h:commandLink action="#{pilotoController.previous}" value="#{bundle.Previous} #{pilotoController.pagination.pageSize}" rendered="#{pilotoController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{pilotoController.next}" value="#{bundle.Next} #{pilotoController.pagination.pageSize}" rendered="#{pilotoController.pagination.hasNextPage}"/>&nbsp;
-                    <p:dataTable value="#{pilotoController.items}" var="item" rowIndexVar="rowId">
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPilotoTitle_peperId}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.peperId}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPilotoTitle_licenciaPiloto}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.licenciaPiloto}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPilotoTitle_horasVuelo}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.horasVuelo}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPilotoTitle_peperPerson}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.peperPerson}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="&nbsp;"/>
-                            </f:facet>
-                           
-                            
+        <h:outputText value="#{bundle.ListPilotoTitle}"></h:outputText>
+    </ui:define>
+    <ui:define name="body">
+        <h:form styleClass="jsfcrud_list_form">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:outputText escape="false" value="#{bundle.ListPilotoEmpty}" rendered="#{pilotoController.items.rowCount == 0}"/>
+            <h:panelGroup rendered="#{pilotoController.items.rowCount > 0}">
+                <h:outputText value="#{pilotoController.pagination.pageFirstItem + 1}..#{pilotoController.pagination.pageLastItem + 1}/#{pilotoController.pagination.itemsCount}"/>&nbsp;
+                <h:commandLink action="#{pilotoController.previous}" value="#{bundle.Previous} #{pilotoController.pagination.pageSize}" rendered="#{pilotoController.pagination.hasPreviousPage}"/>&nbsp;
+                <h:commandLink action="#{pilotoController.next}" value="#{bundle.Next} #{pilotoController.pagination.pageSize}" rendered="#{pilotoController.pagination.hasNextPage}"/>&nbsp;
+                <p:dataTable value="#{pilotoController.items}" var="item" rowIndexVar="rowId">
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPilotoTitle_peperId}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.peperId}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPilotoTitle_licenciaPiloto}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.licenciaPiloto}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPilotoTitle_horasVuelo}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.horasVuelo}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPilotoTitle_peperPerson}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.peperPerson}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="&nbsp;"/>
+                        </f:facet>
+
+
                         <p:commandLink value="Ver pilotos" type="button" action="#{pilotoController.setViewIndex(rowId)}" oncomplete="PF('ViewDialog').show(); " />
                         <!--Edit-->
                         <p:commandLink value="Editar pilotos" type="button" action="#{pilotoController.setEditIndex(rowId)}" oncomplete="PF('EditDialog').show();" />
-             
-                        </p:column>
-                    </p:dataTable>
-                </p:panelGroup>
-                <br />
-                <h:commandLink action="#{pilotoController.prepareCreate}" value="#{bundle.ListPilotoCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListPilotoIndexLink}"/>
-            </h:form>
-                  <ui:include src="View.xhtml"></ui:include>
+
+                    </p:column>
+                </p:dataTable>
+            </h:panelGroup>
+            <br />
+            <h:commandLink action="#{pilotoController.prepareCreate}" value="#{bundle.ListPilotoCreateLink}"/>
+            <br />
+            <br />
+            <h:link outcome="/index" value="#{bundle.ListPilotoIndexLink}"/>
+        </h:form>
+        <p:dialog header="Ver pilotos" widgetVar="ViewDialog" minHeight="40">
+            <ui:include src="View.xhtml"></ui:include>
         </p:dialog>
         <p:dialog header="Editar pilotos" widgetVar="EditDialog" minHeight="40">
             <ui:include src="Edit.xhtml"></ui:include>
         </p:dialog>
-        </ui:define>
-    </ui:composition>
+    </ui:define>
+</ui:composition>
