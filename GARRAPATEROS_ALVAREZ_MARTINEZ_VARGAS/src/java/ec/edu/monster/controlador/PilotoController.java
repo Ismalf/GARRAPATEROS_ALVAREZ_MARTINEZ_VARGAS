@@ -4,9 +4,11 @@ import ec.edu.monster.modelo.Piloto;
 import ec.edu.monster.controlador.util.JsfUtil;
 import ec.edu.monster.controlador.util.PaginationHelper;
 import ec.edu.monster.facades.PilotoFacade;
+import ec.edu.monster.modelo.Paracaidistas;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -23,6 +25,7 @@ import javax.faces.model.SelectItem;
 public class PilotoController implements Serializable {
 
     private Piloto current;
+        private int createRequest = 0;
     private DataModel items = null;
     @EJB
     private ec.edu.monster.facades.PilotoFacade ejbFacade;
@@ -30,6 +33,11 @@ public class PilotoController implements Serializable {
     private int selectedItemIndex;
 
     public PilotoController() {
+    }
+      @PostConstruct
+    public void init() {
+        prepareList();
+        getItems();
     }
 
     public Piloto getSelected() {
@@ -61,6 +69,19 @@ public class PilotoController implements Serializable {
         }
         return pagination;
     }
+      public String setViewIndex(Object t) {
+        
+        getItems().setRowIndex((int) t);
+        prepareView();
+        return "";
+    }
+    //Este método reemplaza al prepareEdit
+    public String setEditIndex(Object t) {
+        
+        getItems().setRowIndex((int) t);
+        prepareEdit();
+        return "";
+    }
 
     public String prepareList() {
         recreateModel();
@@ -73,20 +94,29 @@ public class PilotoController implements Serializable {
         return "View";
     }
 
-    public String prepareCreate() {
+    public void prepareCreate() {
         current = new Piloto();
         selectedItemIndex = -1;
-        return "Create";
+           createRequest = 0;
     }
-
-    public String create() {
+    public void create() 
+    {
         try {
+            System.out.println("Create request " + createRequest);
+            if (createRequest != 0) {
+                System.out.println("No reate");
+                return;
+            }
+
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("PilotoCreated"));
-            return prepareCreate();
+            current = null;
+            createRequest++;
+            recreateModel();
+            getItems();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
-            return null;
+            //return null;
         }
     }
 

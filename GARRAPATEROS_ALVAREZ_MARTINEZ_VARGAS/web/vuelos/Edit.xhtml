@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -36,12 +37,12 @@
                         <f:selectItems value="#{pilotoController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
                 </h:panelGrid>
-                <h:commandLink action="#{vuelosController.update}" value="#{bundle.EditVuelosSaveLink}"/>
+                <p:commandButton action="#{vuelosController.update}" value="#{bundle.EditVuelosSaveLink}"/>
                 <br />
                 <br />
                 <h:link outcome="View" value="#{bundle.EditVuelosViewLink}"/>
                 <br />
-                <h:commandLink action="#{vuelosController.prepareList}" value="#{bundle.EditVuelosShowAllLink}" immediate="true"/>
+                <p:commandButton action="#{vuelosController.prepareList}" value="#{bundle.EditVuelosShowAllLink}" immediate="true"/>
                 <br />
                 <br />
                 <h:link outcome="/index" value="#{bundle.EditVuelosIndexLink}" />
