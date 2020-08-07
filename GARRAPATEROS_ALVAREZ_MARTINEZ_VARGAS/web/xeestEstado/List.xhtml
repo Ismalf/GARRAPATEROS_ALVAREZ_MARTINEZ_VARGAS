@@ -20,6 +20,7 @@
                     <h:commandLink action="#{xeestEstadoController.previous}" value="#{bundle.Previous} #{xeestEstadoController.pagination.pageSize}" rendered="#{xeestEstadoController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{xeestEstadoController.next}" value="#{bundle.Next} #{xeestEstadoController.pagination.pageSize}" rendered="#{xeestEstadoController.pagination.hasNextPage}"/>&nbsp;
                     <h:dataTable value="#{xeestEstadoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                     <p:autoUpdate/>
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListXeestEstadoTitle_xeestCodigo}"/>

@@ -20,6 +20,7 @@
                     <h:commandLink action="#{xeusuUsuarController.previous}" value="#{bundle.Previous} #{xeusuUsuarController.pagination.pageSize}" rendered="#{xeusuUsuarController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{xeusuUsuarController.next}" value="#{bundle.Next} #{xeusuUsuarController.pagination.pageSize}" rendered="#{xeusuUsuarController.pagination.hasNextPage}"/>&nbsp;
                     <p:dataTable value="#{xeusuUsuarController.items}" var="item" rowIndexVar="rowId">
+                        
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListXeusuUsuarTitle_xeusuPasswo}"/>
@@ -107,10 +108,7 @@
                     </p:dataTable>
                 </h:panelGroup>
                 <br />
-                <h:commandLink action="#{xeusuUsuarController.prepareCreate}" value="#{bundle.ListXeusuUsuarCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListXeusuUsuarIndexLink}"/>
+                
             </h:form>
              <!--INCLUIR LOS DIALOGOS PARA EDITAR Y VISUALIZAR FUERA DE LA FORMA-->
         <p:dialog header="Ver usuario" widgetVar="ViewDialog" minHeight="40">

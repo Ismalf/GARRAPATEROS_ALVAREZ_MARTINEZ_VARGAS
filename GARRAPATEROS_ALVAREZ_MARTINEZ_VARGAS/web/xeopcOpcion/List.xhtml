@@ -20,6 +20,7 @@
                     <h:commandLink action="#{xeopcOpcionController.previous}" value="#{bundle.Previous} #{xeopcOpcionController.pagination.pageSize}" rendered="#{xeopcOpcionController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{xeopcOpcionController.next}" value="#{bundle.Next} #{xeopcOpcionController.pagination.pageSize}" rendered="#{xeopcOpcionController.pagination.hasNextPage}"/>&nbsp;
                     <p:dataTable value="#{xeopcOpcionController.items}" var="item" rowIndexVar="rowId">
+                        <p:autoUpdate/>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListXeopcOpcionTitle_xeopcCodopc}"/>
@@ -57,16 +58,15 @@
                     </p:dataTable>
                 </h:panelGroup>
                 <br />
-                <h:commandLink action="#{xeopcOpcionController.prepareCreate}" value="#{bundle.ListXeopcOpcionCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListXeopcOpcionIndexLink}"/>
             </h:form>
-                   <ui:include src="View.xhtml"></ui:include>
-        </p:dialog>
-        <p:dialog header="Editar Opciones" widgetVar="EditDialog" minHeight="40">
+ 
+        <p:dialog header="Ver Opciones" widgetVar="ViewOpcionDialog" minHeight="40">
             <ui:include src="Edit.xhtml"></ui:include>
         </p:dialog>
+            <p:dialog header="Editar Opciones" widgetVar="ViewOpcionDialog" minHeight="40">
+            <ui:include src="Edit.xhtml"></ui:include>
+        </p:dialog>
+        
         </ui:define>
     </ui:composition>
 

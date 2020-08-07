@@ -20,6 +20,7 @@
                     <h:commandLink action="#{xeautAutentController.previous}" value="#{bundle.Previous} #{xeautAutentController.pagination.pageSize}" rendered="#{xeautAutentController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{xeautAutentController.next}" value="#{bundle.Next} #{xeautAutentController.pagination.pageSize}" rendered="#{xeautAutentController.pagination.hasNextPage}"/>&nbsp;
                     <p:dataTable value="#{xeautAutentController.items}" var="item" rowIndexVar="rowId">
+                        <p:autoUpdate/>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListXeautAutentTitle_xeautCodigo}"/>
@@ -60,11 +61,9 @@
                     </p:dataTable>
                 </h:panelGroup>
                 <br />
-                <h:commandLink action="#{xeautAutentController.prepareCreate}" value="#{bundle.ListXeautAutentCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListXeautAutentIndexLink}"/>
-            </h:form> <p:dialog header="Ver autenticación" widgetVar="ViewDialog" minHeight="40">
+                
+            </h:form> 
+            <p:dialog header="Ver autenticación" widgetVar="ViewDialog" minHeight="40">
             <ui:include src="View.xhtml"></ui:include>
         </p:dialog>
         <p:dialog header="Editar Autenticación" widgetVar="EditDialog" minHeight="40">

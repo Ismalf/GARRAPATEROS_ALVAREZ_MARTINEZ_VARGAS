@@ -20,6 +20,7 @@
                 <h:commandLink action="#{pilotoController.previous}" value="#{bundle.Previous} #{pilotoController.pagination.pageSize}" rendered="#{pilotoController.pagination.hasPreviousPage}"/>&nbsp;
                 <h:commandLink action="#{pilotoController.next}" value="#{bundle.Next} #{pilotoController.pagination.pageSize}" rendered="#{pilotoController.pagination.hasNextPage}"/>&nbsp;
                 <p:dataTable value="#{pilotoController.items}" var="item" rowIndexVar="rowId">
+                 <p:autoUpdate/>
                     <p:column>
                         <f:facet name="header">
                             <h:outputText value="#{bundle.ListPilotoTitle_peperId}"/>
@@ -58,10 +59,7 @@
                 </p:dataTable>
             </h:panelGroup>
             <br />
-            <h:commandLink action="#{pilotoController.prepareCreate}" value="#{bundle.ListPilotoCreateLink}"/>
-            <br />
-            <br />
-            <h:link outcome="/index" value="#{bundle.ListPilotoIndexLink}"/>
+         
         </h:form>
         <p:dialog header="Ver pilotos" widgetVar="ViewDialog" minHeight="40">
             <ui:include src="View.xhtml"></ui:include>
