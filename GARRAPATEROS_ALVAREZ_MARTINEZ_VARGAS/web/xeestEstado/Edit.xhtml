@@ -19,14 +19,7 @@
                     <h:inputText id="xeestDescri" value="#{xeestEstadoController.selected.xeestDescri}" title="#{bundle.EditXeestEstadoTitle_xeestDescri}" required="true" requiredMessage="#{bundle.EditXeestEstadoRequiredMessage_xeestDescri}"/>
                 </h:panelGrid>
                 <h:commandLink action="#{xeestEstadoController.update}" value="#{bundle.EditXeestEstadoSaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditXeestEstadoViewLink}"/>
-                <br />
-                <h:commandLink action="#{xeestEstadoController.prepareList}" value="#{bundle.EditXeestEstadoShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditXeestEstadoIndexLink}" />
+                
             </h:form>
         </ui:define>
     </ui:composition>

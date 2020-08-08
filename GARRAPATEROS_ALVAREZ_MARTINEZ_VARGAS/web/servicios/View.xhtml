@@ -22,16 +22,11 @@
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{serviciosController.destroyAndView}" value="#{bundle.ViewServiciosDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewServiciosEditLink}"/>
-                <br />
+                
                 <h:commandLink action="#{serviciosController.prepareCreate}" value="#{bundle.ViewServiciosCreateLink}" />
                 <br />
                 <h:commandLink action="#{serviciosController.prepareList}" value="#{bundle.ViewServiciosShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewServiciosIndexLink}"/>
+                
 
             </h:form>
         </ui:define>

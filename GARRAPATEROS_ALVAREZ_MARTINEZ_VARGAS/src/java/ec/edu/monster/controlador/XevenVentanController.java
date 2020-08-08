@@ -7,6 +7,7 @@ import ec.edu.monster.facades.XevenVentanFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -28,8 +29,16 @@ public class XevenVentanController implements Serializable {
     private ec.edu.monster.facades.XevenVentanFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
+    private int createRequest;
+    
 
     public XevenVentanController() {
+    }
+
+    @PostConstruct
+    public void init() {
+        prepareList();
+        getItems();
     }
 
     public XevenVentan getSelected() {
@@ -73,20 +82,27 @@ public class XevenVentanController implements Serializable {
         return "View";
     }
 
-    public String prepareCreate() {
+    public void prepareCreate() {
         current = new XevenVentan();
         selectedItemIndex = -1;
-        return "Create";
+        createRequest = 0;
     }
 
-    public String create() {
+    public void create() {
         try {
+            if (createRequest != 0) {
+                System.out.println("No reate");
+                return;
+            }
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("XevenVentanCreated"));
-            return prepareCreate();
+            current = null;
+            createRequest++;
+            recreateModel();
+            getItems();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
-            return null;
+            //return null;
         }
     }
 

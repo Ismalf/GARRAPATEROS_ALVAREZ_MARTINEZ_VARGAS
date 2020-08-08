@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -19,43 +20,48 @@
                     <h:outputText value="#{serviciosController.pagination.pageFirstItem + 1}..#{serviciosController.pagination.pageLastItem + 1}/#{serviciosController.pagination.itemsCount}"/>&nbsp;
                     <h:commandLink action="#{serviciosController.previous}" value="#{bundle.Previous} #{serviciosController.pagination.pageSize}" rendered="#{serviciosController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{serviciosController.next}" value="#{bundle.Next} #{serviciosController.pagination.pageSize}" rendered="#{serviciosController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{serviciosController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
+                    <p:dataTable value="#{serviciosController.items}" var="item" rowIndexVar="rowId">
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListServiciosTitle_idPrecio}"/>
                             </f:facet>
                             <h:outputText value="#{item.idPrecio}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListServiciosTitle_descripcion}"/>
                             </f:facet>
                             <h:outputText value="#{item.descripcion}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListServiciosTitle_monto}"/>
                             </f:facet>
                             <h:outputText value="#{item.monto}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
-                            <h:commandLink action="#{serviciosController.prepareView}" value="#{bundle.ListServiciosViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{serviciosController.prepareEdit}" value="#{bundle.ListServiciosEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{serviciosController.destroy}" value="#{bundle.ListServiciosDestroyLink}"/>
-                        </h:column>
-                    </h:dataTable>
+                            
+                            <!--View-->
+                            <!--UTILIZAR COMMAND LINK CON LA SIGUIENTE SINTAXIS-->
+                            <p:commandLink value="Ver servicio" type="button" action="#{serviciosController.setViewIndex(rowId)}" oncomplete="PF('ViewServicioDialog').show(); " />
+                            <!--Edit-->
+                            <p:commandLink value="Editar servicio" type="button" action="#{serviciosController.setEditIndex(rowId)}" oncomplete="PF('EditServicioDialog').show();" />
+                            <!--Delete
+                            <p:commandButton value="Crear persona" type="button" onclick="PF('dlg1').show();" />-->
+                        </p:column>
+                    </p:dataTable>
                 </h:panelGroup>
-                <br />
-                <h:commandLink action="#{serviciosController.prepareCreate}" value="#{bundle.ListServiciosCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListServiciosIndexLink}"/>
+                
             </h:form>
+            <p:dialog header="Ver servicio" widgetVar="ViewServicioDialog" minHeight="40">
+                <ui:include src="View.xhtml"></ui:include>
+            </p:dialog>
+            <p:dialog header="Editar servicio" widgetVar="EditServicioDialog" minHeight="40">
+                <ui:include src="Edit.xhtml"></ui:include>
+            </p:dialog>
         </ui:define>
     </ui:composition>
 

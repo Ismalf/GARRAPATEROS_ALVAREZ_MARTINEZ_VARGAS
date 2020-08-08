@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -11,65 +12,66 @@
         </ui:define>
         <ui:define name="body">
             <h:form styleClass="jsfcrud_list_form">
-                <h:panelGroup id="messagePanel" layout="block">
-                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                </h:panelGroup>
                 <h:outputText escape="false" value="#{bundle.ListFeresReservaEmpty}" rendered="#{feresReservaController.items.rowCount == 0}"/>
                 <h:panelGroup rendered="#{feresReservaController.items.rowCount > 0}">
                     <h:outputText value="#{feresReservaController.pagination.pageFirstItem + 1}..#{feresReservaController.pagination.pageLastItem + 1}/#{feresReservaController.pagination.itemsCount}"/>&nbsp;
                     <h:commandLink action="#{feresReservaController.previous}" value="#{bundle.Previous} #{feresReservaController.pagination.pageSize}" rendered="#{feresReservaController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{feresReservaController.next}" value="#{bundle.Next} #{feresReservaController.pagination.pageSize}" rendered="#{feresReservaController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{feresReservaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
+                    <p:dataTable value="#{feresReservaController.items}" var="item" rowIndexVar="rowId">
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListFeresReservaTitle_feresCodigo}"/>
                             </f:facet>
                             <h:outputText value="#{item.feresCodigo}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListFeresReservaTitle_feresFecha}"/>
                             </f:facet>
                             <h:outputText value="#{item.feresFecha}">
                                 <f:convertDateTime pattern="MM/dd/yyyy" />
                             </h:outputText>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListFeresReservaTitle_feresDescri}"/>
                             </f:facet>
                             <h:outputText value="#{item.feresDescri}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListFeresReservaTitle_feresEstado}"/>
                             </f:facet>
                             <h:outputText value="#{item.feresEstado}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListFeresReservaTitle_pecomCodigo}"/>
                             </f:facet>
                             <h:outputText value="#{item.pecomCodigo}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
-                            <h:commandLink action="#{feresReservaController.prepareView}" value="#{bundle.ListFeresReservaViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{feresReservaController.prepareEdit}" value="#{bundle.ListFeresReservaEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{feresReservaController.destroy}" value="#{bundle.ListFeresReservaDestroyLink}"/>
-                        </h:column>
-                    </h:dataTable>
+                            <!--View-->
+                            <!--UTILIZAR COMMAND LINK CON LA SIGUIENTE SINTAXIS-->
+                            <p:commandLink value="Ver detalle" type="button" action="#{feresReservaController.setViewIndex(rowId)}" oncomplete="PF('ViewDetalleDialog').show(); " />
+                            <!--Edit-->
+                            <p:commandLink value="Editar detalle" type="button" action="#{feresReservaController.setEditIndex(rowId)}" oncomplete="PF('EditDetalleDialog').show();" />
+                            <!--Delete
+                            <p:commandButton value="Crear persona" type="button" onclick="PF('dlg1').show();" />-->
+
+                        </p:column>
+                    </p:dataTable>
                 </h:panelGroup>
-                <br />
-                <h:commandLink action="#{feresReservaController.prepareCreate}" value="#{bundle.ListFeresReservaCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListFeresReservaIndexLink}"/>
             </h:form>
+            <p:dialog header="Ver detalle" widgetVar="ViewDetalleDialog" minHeight="40">
+                <ui:include src="View.xhtml"></ui:include>
+            </p:dialog>
+            <p:dialog header="Editar detalle" widgetVar="EditDetalleDialog" minHeight="40">
+                <ui:include src="Edit.xhtml"></ui:include>
+            </p:dialog>
         </ui:define>
     </ui:composition>
 

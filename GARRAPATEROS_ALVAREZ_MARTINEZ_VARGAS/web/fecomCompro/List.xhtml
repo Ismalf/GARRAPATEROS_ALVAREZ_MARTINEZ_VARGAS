@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -11,15 +12,12 @@
         </ui:define>
         <ui:define name="body">
             <h:form styleClass="jsfcrud_list_form">
-                <h:panelGroup id="messagePanel" layout="block">
-                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                </h:panelGroup>
                 <h:outputText escape="false" value="#{bundle.ListFecomComproEmpty}" rendered="#{fecomComproController.items.rowCount == 0}"/>
                 <h:panelGroup rendered="#{fecomComproController.items.rowCount > 0}">
                     <h:outputText value="#{fecomComproController.pagination.pageFirstItem + 1}..#{fecomComproController.pagination.pageLastItem + 1}/#{fecomComproController.pagination.itemsCount}"/>&nbsp;
                     <h:commandLink action="#{fecomComproController.previous}" value="#{bundle.Previous} #{fecomComproController.pagination.pageSize}" rendered="#{fecomComproController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{fecomComproController.next}" value="#{bundle.Next} #{fecomComproController.pagination.pageSize}" rendered="#{fecomComproController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{fecomComproController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                    <p:dataTable value="#{fecomComproController.items}" var="item" rowIndexVar="rowId">
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListFecomComproTitle_pecomCodigo}"/>
@@ -50,20 +48,23 @@
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
-                            <h:commandLink action="#{fecomComproController.prepareView}" value="#{bundle.ListFecomComproViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{fecomComproController.prepareEdit}" value="#{bundle.ListFecomComproEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{fecomComproController.destroy}" value="#{bundle.ListFecomComproDestroyLink}"/>
+                            <!--View-->
+                            <!--UTILIZAR COMMAND LINK CON LA SIGUIENTE SINTAXIS-->
+                            <p:commandLink value="Ver comprobante" type="button" action="#{fecomComproController.setViewIndex(rowId)}" oncomplete="PF('ViewComprobanteDialog').show(); " />
+                            <!--Edit-->
+                            <p:commandLink value="Editar comprobante" type="button" action="#{fecomComproController.setEditIndex(rowId)}" oncomplete="PF('EditComprobanteDialog').show();" />
+                            <!--Delete
+                            <p:commandButton value="Crear persona" type="button" onclick="PF('dlg1').show();" />-->
                         </h:column>
-                    </h:dataTable>
+                    </p:dataTable>
                 </h:panelGroup>
-                <br />
-                <h:commandLink action="#{fecomComproController.prepareCreate}" value="#{bundle.ListFecomComproCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListFecomComproIndexLink}"/>
             </h:form>
+            <p:dialog header="Ver comprobante" widgetVar="ViewComprobanteDialog" minHeight="40">
+                <ui:include src="View.xhtml"></ui:include>
+            </p:dialog>
+            <p:dialog header="Editar comprobante" widgetVar="EditComprobanteDialog" minHeight="40">
+                <ui:include src="Edit.xhtml"></ui:include>
+            </p:dialog>
         </ui:define>
     </ui:composition>
 

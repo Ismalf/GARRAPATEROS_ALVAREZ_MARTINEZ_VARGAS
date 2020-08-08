@@ -21,14 +21,7 @@
                     <h:inputText id="monto" value="#{serviciosController.selected.monto}" title="#{bundle.EditServiciosTitle_monto}" />
                 </h:panelGrid>
                 <h:commandLink action="#{serviciosController.update}" value="#{bundle.EditServiciosSaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditServiciosViewLink}"/>
-                <br />
-                <h:commandLink action="#{serviciosController.prepareList}" value="#{bundle.EditServiciosShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditServiciosIndexLink}" />
+                
             </h:form>
         </ui:define>
     </ui:composition>

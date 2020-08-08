@@ -23,14 +23,9 @@
                     </h:selectOneMenu>
                 </h:panelGrid>
                 <h:commandLink action="#{xesisSistemController.update}" value="#{bundle.EditXesisSistemSaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditXesisSistemViewLink}"/>
-                <br />
+                
                 <h:commandLink action="#{xesisSistemController.prepareList}" value="#{bundle.EditXesisSistemShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditXesisSistemIndexLink}" />
+                
             </h:form>
         </ui:define>
     </ui:composition>

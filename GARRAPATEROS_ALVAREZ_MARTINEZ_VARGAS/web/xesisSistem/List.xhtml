@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -19,43 +20,43 @@
                     <h:outputText value="#{xesisSistemController.pagination.pageFirstItem + 1}..#{xesisSistemController.pagination.pageLastItem + 1}/#{xesisSistemController.pagination.itemsCount}"/>&nbsp;
                     <h:commandLink action="#{xesisSistemController.previous}" value="#{bundle.Previous} #{xesisSistemController.pagination.pageSize}" rendered="#{xesisSistemController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{xesisSistemController.next}" value="#{bundle.Next} #{xesisSistemController.pagination.pageSize}" rendered="#{xesisSistemController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{xesisSistemController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
+                    <p:dataTable value="#{xesisSistemController.items}" var="item" rowIndexVar="rowId">
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListXesisSistemTitle_xesisCodsis}"/>
                             </f:facet>
                             <h:outputText value="#{item.xesisCodsis}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListXesisSistemTitle_xesisDescri}"/>
                             </f:facet>
                             <h:outputText value="#{item.xesisDescri}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListXesisSistemTitle_xeestCodigo}"/>
                             </f:facet>
                             <h:outputText value="#{item.xeestCodigo}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
-                            <h:commandLink action="#{xesisSistemController.prepareView}" value="#{bundle.ListXesisSistemViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{xesisSistemController.prepareEdit}" value="#{bundle.ListXesisSistemEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{xesisSistemController.destroy}" value="#{bundle.ListXesisSistemDestroyLink}"/>
-                        </h:column>
-                    </h:dataTable>
+                            <p:commandLink value="Ver sistema" type="button" action="#{xesisSistemController.setViewIndex(rowId)}" oncomplete="PF('ViewSistemaDialog').show(); " />
+                            <!--Edit-->
+                            <p:commandLink value="Editar sistema" type="button" action="#{xesisSistemController.setEditIndex(rowId)}" oncomplete="PF('EditSistemaDialog').show();" />
+                        </p:column>
+                    </p:dataTable>
                 </h:panelGroup>
-                <br />
-                <h:commandLink action="#{xesisSistemController.prepareCreate}" value="#{bundle.ListXesisSistemCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListXesisSistemIndexLink}"/>
+
             </h:form>
+            <p:dialog header="Ver sistema" widgetVar="ViewSistemaDialog" minHeight="40">
+                <ui:include src="View.xhtml"></ui:include>
+            </p:dialog>
+            <p:dialog header="Editar sistema" widgetVar="EditSistemaDialog" minHeight="40">
+                <ui:include src="Edit.xhtml"></ui:include>
+            </p:dialog>
         </ui:define>
     </ui:composition>
 

@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -19,49 +20,49 @@
                     <h:outputText value="#{xevenVentanController.pagination.pageFirstItem + 1}..#{xevenVentanController.pagination.pageLastItem + 1}/#{xevenVentanController.pagination.itemsCount}"/>&nbsp;
                     <h:commandLink action="#{xevenVentanController.previous}" value="#{bundle.Previous} #{xevenVentanController.pagination.pageSize}" rendered="#{xevenVentanController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{xevenVentanController.next}" value="#{bundle.Next} #{xevenVentanController.pagination.pageSize}" rendered="#{xevenVentanController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{xevenVentanController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
+                    <p:dataTable value="#{xevenVentanController.items}" var="item" rowIndexVar="rowId">
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListXevenVentanTitle_xevenCodven}"/>
                             </f:facet>
                             <h:outputText value="#{item.xevenCodven}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListXevenVentanTitle_xevenDescri}"/>
                             </f:facet>
                             <h:outputText value="#{item.xevenDescri}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListXevenVentanTitle_xevenMensaj}"/>
                             </f:facet>
                             <h:outputText value="#{item.xevenMensaj}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListXevenVentanTitle_xeopcCodopc}"/>
                             </f:facet>
                             <h:outputText value="#{item.xeopcCodopc}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
-                            <h:commandLink action="#{xevenVentanController.prepareView}" value="#{bundle.ListXevenVentanViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{xevenVentanController.prepareEdit}" value="#{bundle.ListXevenVentanEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{xevenVentanController.destroy}" value="#{bundle.ListXevenVentanDestroyLink}"/>
-                        </h:column>
-                    </h:dataTable>
+                            <p:commandLink value="Ver ventana" type="button" action="#{xevenVentanController.setViewIndex(rowId)}" oncomplete="PF('ViewVentanaDialog').show(); " />
+                            <!--Edit-->
+                            <p:commandLink value="Editar ventana" type="button" action="#{xevenVentanController.setEditIndex(rowId)}" oncomplete="PF('EditVentanaDialog').show();" />
+                        </p:column>
+                    </p:dataTable>
                 </h:panelGroup>
-                <br />
-                <h:commandLink action="#{xevenVentanController.prepareCreate}" value="#{bundle.ListXevenVentanCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListXevenVentanIndexLink}"/>
+               
             </h:form>
+            <p:dialog header="Ver ventana" widgetVar="ViewVentanaDialog" minHeight="40">
+                <ui:include src="View.xhtml"></ui:include>
+            </p:dialog>
+            <p:dialog header="Editar ventana" widgetVar="EditVentanaDialog" minHeight="40">
+                <ui:include src="Edit.xhtml"></ui:include>
+            </p:dialog>
         </ui:define>
     </ui:composition>
 

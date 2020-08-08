@@ -19,38 +19,40 @@
                     <h:outputText value="#{xeestEstadoController.pagination.pageFirstItem + 1}..#{xeestEstadoController.pagination.pageLastItem + 1}/#{xeestEstadoController.pagination.itemsCount}"/>&nbsp;
                     <h:commandLink action="#{xeestEstadoController.previous}" value="#{bundle.Previous} #{xeestEstadoController.pagination.pageSize}" rendered="#{xeestEstadoController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{xeestEstadoController.next}" value="#{bundle.Next} #{xeestEstadoController.pagination.pageSize}" rendered="#{xeestEstadoController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{xeestEstadoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                    <p:dataTable value="#{xeestEstadoController.items}" var="item" rowIndexVar="rowId">
                      <p:autoUpdate/>
-                        <h:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListXeestEstadoTitle_xeestCodigo}"/>
                             </f:facet>
                             <h:outputText value="#{item.xeestCodigo}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListXeestEstadoTitle_xeestDescri}"/>
                             </f:facet>
                             <h:outputText value="#{item.xeestDescri}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
-                            <h:commandLink action="#{xeestEstadoController.prepareView}" value="#{bundle.ListXeestEstadoViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{xeestEstadoController.prepareEdit}" value="#{bundle.ListXeestEstadoEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{xeestEstadoController.destroy}" value="#{bundle.ListXeestEstadoDestroyLink}"/>
-                        </h:column>
-                    </h:dataTable>
+                            <!--View-->
+                            <!--UTILIZAR COMMAND LINK CON LA SIGUIENTE SINTAXIS-->
+                            <p:commandLink value="Ver estado" type="button" action="#{xeestEstadoController.setViewIndex(rowId)}" oncomplete="PF('ViewEstadoDialog').show(); " />
+                            <!--Edit-->
+                            <p:commandLink value="Editar estado" type="button" action="#{xeestEstadoController.setEditIndex(rowId)}" oncomplete="PF('EditEstadoDialog').show();" />
+                        </p:column>
+                    </p:dataTable>
                 </h:panelGroup>
-                <br />
-                <h:commandLink action="#{xeestEstadoController.prepareCreate}" value="#{bundle.ListXeestEstadoCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListXeestEstadoIndexLink}"/>
+                
             </h:form>
+             <p:dialog header="Ver estado" widgetVar="ViewEstadoDialog" minHeight="40">
+                <ui:include src="View.xhtml"></ui:include>
+            </p:dialog>
+            <p:dialog header="Editar estado" widgetVar="EditEstadoDialog" minHeight="40">
+                <ui:include src="Edit.xhtml"></ui:include>
+            </p:dialog>
         </ui:define>
     </ui:composition>
 

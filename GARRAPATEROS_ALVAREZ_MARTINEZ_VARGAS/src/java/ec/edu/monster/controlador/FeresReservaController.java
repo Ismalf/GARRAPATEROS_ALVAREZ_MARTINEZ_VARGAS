@@ -7,6 +7,7 @@ import ec.edu.monster.facades.FeresReservaFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -28,8 +29,15 @@ public class FeresReservaController implements Serializable {
     private ec.edu.monster.facades.FeresReservaFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
+    private int createRequest;
 
     public FeresReservaController() {
+    }
+
+    @PostConstruct
+    public void init() {
+        prepareList();
+        getItems();
     }
 
     public FeresReserva getSelected() {
@@ -66,6 +74,22 @@ public class FeresReservaController implements Serializable {
         recreateModel();
         return "List";
     }
+    // Este método reemplaza al prepareView
+
+    public String setViewIndex(Object t) {
+
+        getItems().setRowIndex((int) t);
+        prepareView();
+        return "";
+    }
+
+    //Este método reemplaza al prepareEdit
+    public String setEditIndex(Object t) {
+
+        getItems().setRowIndex((int) t);
+        prepareEdit();
+        return "";
+    }
 
     public String prepareView() {
         current = (FeresReserva) getItems().getRowData();
@@ -73,20 +97,27 @@ public class FeresReservaController implements Serializable {
         return "View";
     }
 
-    public String prepareCreate() {
+    public void prepareCreate() {
         current = new FeresReserva();
         selectedItemIndex = -1;
-        return "Create";
+        createRequest=0;
     }
 
-    public String create() {
+    public void create() {
         try {
+            if (createRequest != 0) {
+                System.out.println("No reate");
+                return;
+            }
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("FeresReservaCreated"));
-            return prepareCreate();
+            current = null;
+            createRequest++;
+            recreateModel();
+            getItems();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
-            return null;
+            //return null;
         }
     }
 

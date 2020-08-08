@@ -7,70 +7,70 @@
                 xmlns:p="http://primefaces.org/ui"
                 >
     <ui:define name="title">
-            <h:outputText value="#{bundle.ListXeautAutentTitle}"></h:outputText>
-        </ui:define>
-        <ui:define name="body">
-            <h:form styleClass="jsfcrud_list_form">
-                <h:panelGroup id="messagePanel" layout="block">
-                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                </h:panelGroup>
-                <h:outputText escape="false" value="#{bundle.ListXeautAutentEmpty}" rendered="#{xeautAutentController.items.rowCount == 0}"/>
-                <h:panelGroup rendered="#{xeautAutentController.items.rowCount > 0}">
-                    <h:outputText value="#{xeautAutentController.pagination.pageFirstItem + 1}..#{xeautAutentController.pagination.pageLastItem + 1}/#{xeautAutentController.pagination.itemsCount}"/>&nbsp;
-                    <h:commandLink action="#{xeautAutentController.previous}" value="#{bundle.Previous} #{xeautAutentController.pagination.pageSize}" rendered="#{xeautAutentController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{xeautAutentController.next}" value="#{bundle.Next} #{xeautAutentController.pagination.pageSize}" rendered="#{xeautAutentController.pagination.hasNextPage}"/>&nbsp;
-                    <p:dataTable value="#{xeautAutentController.items}" var="item" rowIndexVar="rowId">
-                        <p:autoUpdate/>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListXeautAutentTitle_xeautCodigo}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.xeautCodigo}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListXeautAutentTitle_xeautFechai}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.xeautFechai}">
-                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                            </h:outputText>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListXeautAutentTitle_xeautDescri}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.xeautDescri}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListXeautAutentTitle_xeusuEmail}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.xeusuEmail}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="&nbsp;"/>
-                            </f:facet>
-                            
-                              
-                             <p:commandLink value="Ver persona" type="button" action="#{xeautAutentController.setViewIndex(rowId)}" oncomplete="PF('ViewDialog').show(); " />
+        <h:outputText value="#{bundle.ListXeautAutentTitle}"></h:outputText>
+    </ui:define>
+    <ui:define name="body">
+        <h:form styleClass="jsfcrud_list_form">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:outputText escape="false" value="#{bundle.ListXeautAutentEmpty}" rendered="#{xeautAutentController.items.rowCount == 0}"/>
+            <h:panelGroup rendered="#{xeautAutentController.items.rowCount > 0}">
+                <h:outputText value="#{xeautAutentController.pagination.pageFirstItem + 1}..#{xeautAutentController.pagination.pageLastItem + 1}/#{xeautAutentController.pagination.itemsCount}"/>&nbsp;
+                <h:commandLink action="#{xeautAutentController.previous}" value="#{bundle.Previous} #{xeautAutentController.pagination.pageSize}" rendered="#{xeautAutentController.pagination.hasPreviousPage}"/>&nbsp;
+                <h:commandLink action="#{xeautAutentController.next}" value="#{bundle.Next} #{xeautAutentController.pagination.pageSize}" rendered="#{xeautAutentController.pagination.hasNextPage}"/>&nbsp;
+                <p:dataTable value="#{xeautAutentController.items}" var="item" rowIndexVar="rowId">
+                    <p:autoUpdate/>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListXeautAutentTitle_xeautCodigo}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.xeautCodigo}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListXeautAutentTitle_xeautFechai}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.xeautFechai}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListXeautAutentTitle_xeautDescri}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.xeautDescri}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListXeautAutentTitle_xeusuEmail}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.xeusuEmail}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="&nbsp;"/>
+                        </f:facet>
+
+
+                        <p:commandLink value="Ver persona" type="button" action="#{xeautAutentController.setViewIndex(rowId)}" oncomplete="PF('ViewDialog').show(); " />
                         <!--Edit-->
                         <p:commandLink value="Editar persona" type="button" action="#{xeautAutentController.setEditIndex(rowId)}" oncomplete="PF('EditDialog').show();" />
-             
-                        </p:column>
-                    </p:dataTable>
-                </h:panelGroup>
-                <br />
-                
-            </h:form> 
-            <p:dialog header="Ver autenticación" widgetVar="ViewDialog" minHeight="40">
+
+                    </p:column>
+                </p:dataTable>
+            </h:panelGroup>
+            <br />
+
+        </h:form> 
+        <p:dialog header="Ver autenticación" widgetVar="ViewDialog" minHeight="40">
             <ui:include src="View.xhtml"></ui:include>
         </p:dialog>
         <p:dialog header="Editar Autenticación" widgetVar="EditDialog" minHeight="40">
             <ui:include src="Edit.xhtml"></ui:include>
         </p:dialog>
-            
-        </ui:define>
-    </ui:composition>
+
+    </ui:define>
+</ui:composition>
 
 

@@ -22,17 +22,11 @@
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{xesisSistemController.destroyAndView}" value="#{bundle.ViewXesisSistemDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewXesisSistemEditLink}"/>
-                <br />
+                
                 <h:commandLink action="#{xesisSistemController.prepareCreate}" value="#{bundle.ViewXesisSistemCreateLink}" />
                 <br />
                 <h:commandLink action="#{xesisSistemController.prepareList}" value="#{bundle.ViewXesisSistemShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewXesisSistemIndexLink}"/>
-
+                
             </h:form>
         </ui:define>
     </ui:composition>

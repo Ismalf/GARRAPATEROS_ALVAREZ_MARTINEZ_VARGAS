@@ -7,6 +7,7 @@ import ec.edu.monster.facades.XesisSistemFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -28,8 +29,15 @@ public class XesisSistemController implements Serializable {
     private ec.edu.monster.facades.XesisSistemFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
+    private int createRequest;
 
     public XesisSistemController() {
+    }
+
+    @PostConstruct
+    public void init() {
+        prepareList();
+        getItems();
     }
 
     public XesisSistem getSelected() {
@@ -67,26 +75,50 @@ public class XesisSistemController implements Serializable {
         return "List";
     }
 
-    public String prepareView() {
+    public void prepareView() {
         current = (XesisSistem) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "View";
+        //return "View";
     }
 
-    public String prepareCreate() {
+    public void prepareCreate() {
         current = new XesisSistem();
         selectedItemIndex = -1;
-        return "Create";
+        createRequest = 0;
+    }
+//Copiar en otros controladores !!!!!!!!
+    // Este método reemplaza al prepareView
+
+    public String setViewIndex(Object t) {
+
+        getItems().setRowIndex((int) t);
+        prepareView();
+        return "";
     }
 
-    public String create() {
+    //Este método reemplaza al prepareEdit
+    public String setEditIndex(Object t) {
+
+        getItems().setRowIndex((int) t);
+        prepareEdit();
+        return "";
+    }
+
+    public void create() {
         try {
+            if (createRequest != 0) {
+                System.out.println("No reate");
+                return;
+            }
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("XesisSistemCreated"));
-            return prepareCreate();
+            current = null;
+            createRequest++;
+            recreateModel();
+            getItems();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
-            return null;
+            //return null;
         }
     }
 

@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -19,57 +20,56 @@
                     <h:outputText value="#{fepagPagoController.pagination.pageFirstItem + 1}..#{fepagPagoController.pagination.pageLastItem + 1}/#{fepagPagoController.pagination.itemsCount}"/>&nbsp;
                     <h:commandLink action="#{fepagPagoController.previous}" value="#{bundle.Previous} #{fepagPagoController.pagination.pageSize}" rendered="#{fepagPagoController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{fepagPagoController.next}" value="#{bundle.Next} #{fepagPagoController.pagination.pageSize}" rendered="#{fepagPagoController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{fepagPagoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
+                    <p:dataTable value="#{fepagPagoController.items}" var="item" rowIndexVar="rowId">
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListFepagPagoTitle_feticTipopa}"/>
                             </f:facet>
                             <h:outputText value="#{item.feticTipopa}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListFepagPagoTitle_feticFecha}"/>
                             </f:facet>
                             <h:outputText value="#{item.feticFecha}">
                                 <f:convertDateTime pattern="MM/dd/yyyy" />
                             </h:outputText>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListFepagPagoTitle_feticCantidad}"/>
                             </f:facet>
                             <h:outputText value="#{item.feticCantidad}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListFepagPagoTitle_feticId}"/>
                             </f:facet>
                             <h:outputText value="#{item.feticId}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListFepagPagoTitle_feresCodigo}"/>
                             </f:facet>
                             <h:outputText value="#{item.feresCodigo}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
-                            <h:commandLink action="#{fepagPagoController.prepareView}" value="#{bundle.ListFepagPagoViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{fepagPagoController.prepareEdit}" value="#{bundle.ListFepagPagoEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{fepagPagoController.destroy}" value="#{bundle.ListFepagPagoDestroyLink}"/>
-                        </h:column>
-                    </h:dataTable>
+                            <p:commandLink value="Ver pago" type="button" action="#{fepagPagoController.setViewIndex(rowId)}" oncomplete="PF('ViewPagoDialog').show(); " />
+                            <!--Edit-->
+                            <p:commandLink value="Editar pago" type="button" action="#{fepagPagoController.setEditIndex(rowId)}" oncomplete="PF('EditPagoDialog').show();" />
+                        </p:column>
+                    </p:dataTable>
                 </h:panelGroup>
-                <br />
-                <h:commandLink action="#{fepagPagoController.prepareCreate}" value="#{bundle.ListFepagPagoCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListFepagPagoIndexLink}"/>
             </h:form>
+            <p:dialog header="Ver pago" widgetVar="ViewPagoDialog" minHeight="40">
+                <ui:include src="View.xhtml"></ui:include>
+            </p:dialog>
+            <p:dialog header="Editar pago" widgetVar="EditPagoDialog" minHeight="40">
+                <ui:include src="Edit.xhtml"></ui:include>
+            </p:dialog>
         </ui:define>
     </ui:composition>
 
