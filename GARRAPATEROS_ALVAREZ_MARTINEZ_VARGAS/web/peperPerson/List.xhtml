@@ -13,9 +13,7 @@
     <ui:define name="body">
         <h:form styleClass="jsfcrud_list_form" id="peperList">
             <!--BORRAR ESTE PANEL GROUP DEL RESTO DE COMPONENTES (VIEW, EDIT, DELETE)-->
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
+            
             <h:outputText escape="false" value="#{bundle.ListPeperPersonEmpty}" rendered="#{peperPersonController.items.rowCount == 0}"/>
             <h:panelGroup rendered="#{peperPersonController.items.rowCount > 0}">
                 <h:outputText value="#{peperPersonController.pagination.pageFirstItem + 1}..#{peperPersonController.pagination.pageLastItem + 1}/#{peperPersonController.pagination.itemsCount}"/>&nbsp;

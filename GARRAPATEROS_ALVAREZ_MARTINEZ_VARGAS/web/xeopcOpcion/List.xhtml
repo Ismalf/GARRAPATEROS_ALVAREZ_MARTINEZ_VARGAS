@@ -11,9 +11,7 @@
         </ui:define>
         <ui:define name="body">
             <h:form styleClass="jsfcrud_list_form">
-                <h:panelGroup id="messagePanel" layout="block">
-                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                </h:panelGroup>
+                
                 <h:outputText escape="false" value="#{bundle.ListXeopcOpcionEmpty}" rendered="#{xeopcOpcionController.items.rowCount == 0}"/>
                 <h:panelGroup rendered="#{xeopcOpcionController.items.rowCount > 0}">
                     <h:outputText value="#{xeopcOpcionController.pagination.pageFirstItem + 1}..#{xeopcOpcionController.pagination.pageLastItem + 1}/#{xeopcOpcionController.pagination.itemsCount}"/>&nbsp;

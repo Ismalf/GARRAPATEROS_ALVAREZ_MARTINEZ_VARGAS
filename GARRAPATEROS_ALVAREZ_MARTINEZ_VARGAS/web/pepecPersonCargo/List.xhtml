@@ -12,9 +12,7 @@
         </ui:define>
         <ui:define name="body">
             <h:form styleClass="jsfcrud_list_form">
-                <h:panelGroup id="messagePanel" layout="block">
-                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                </h:panelGroup>
+                
                 <h:outputText escape="false" value="#{bundle.ListPepecPersonCargoEmpty}" rendered="#{pepecPersonCargoController.items.rowCount == 0}"/>
                 <h:panelGroup rendered="#{pepecPersonCargoController.items.rowCount > 0}">
                     <h:outputText value="#{pepecPersonCargoController.pagination.pageFirstItem + 1}..#{pepecPersonCargoController.pagination.pageLastItem + 1}/#{pepecPersonCargoController.pagination.itemsCount}"/>&nbsp;

@@ -11,9 +11,7 @@
     </ui:define>
     <ui:define name="body">
         <h:form styleClass="jsfcrud_list_form">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
+            
             <h:outputText escape="false" value="#{bundle.ListXeautAutentEmpty}" rendered="#{xeautAutentController.items.rowCount == 0}"/>
             <h:panelGroup rendered="#{xeautAutentController.items.rowCount > 0}">
                 <h:outputText value="#{xeautAutentController.pagination.pageFirstItem + 1}..#{xeautAutentController.pagination.pageLastItem + 1}/#{xeautAutentController.pagination.itemsCount}"/>&nbsp;

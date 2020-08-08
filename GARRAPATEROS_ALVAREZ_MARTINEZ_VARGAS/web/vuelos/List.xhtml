@@ -10,9 +10,7 @@
     </ui:define>
     <ui:define name="body">
         <h:form styleClass="jsfcrud_list_form">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
+            
             <h:outputText escape="false" value="#{bundle.ListVuelosEmpty}" rendered="#{vuelosController.items.rowCount == 0}"/>
             <h:panelGroup rendered="#{vuelosController.items.rowCount > 0}">
                 <h:outputText value="#{vuelosController.pagination.pageFirstItem + 1}..#{vuelosController.pagination.pageLastItem + 1}/#{vuelosController.pagination.itemsCount}"/>&nbsp;
