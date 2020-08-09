@@ -25,7 +25,7 @@ import javax.faces.model.SelectItem;
 public class PilotoController implements Serializable {
 
     private Piloto current;
-        private int createRequest = 0;
+    private int createRequest = 0;
     private DataModel items = null;
     @EJB
     private ec.edu.monster.facades.PilotoFacade ejbFacade;
@@ -34,7 +34,8 @@ public class PilotoController implements Serializable {
 
     public PilotoController() {
     }
-      @PostConstruct
+
+    @PostConstruct
     public void init() {
         prepareList();
         getItems();
@@ -69,15 +70,17 @@ public class PilotoController implements Serializable {
         }
         return pagination;
     }
-      public String setViewIndex(Object t) {
-        
+
+    public String setViewIndex(Object t) {
+
         getItems().setRowIndex((int) t);
         prepareView();
         return "";
     }
+
     //Este método reemplaza al prepareEdit
     public String setEditIndex(Object t) {
-        
+
         getItems().setRowIndex((int) t);
         prepareEdit();
         return "";
@@ -97,10 +100,10 @@ public class PilotoController implements Serializable {
     public void prepareCreate() {
         current = new Piloto();
         selectedItemIndex = -1;
-           createRequest = 0;
+        createRequest = 0;
     }
-    public void create() 
-    {
+
+    public void create() {
         try {
             System.out.println("Create request " + createRequest);
             if (createRequest != 0) {

@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Crear cuenta</title>
+    </h:head>
+    <h:body style="background-color: #333; color:#ccc; display: inline-block;">
+        <h1>Nueva cuenta</h1>
+        <h:form style="margin:0 auto;">
+            <h:panelGrid columns="2" cellpadding="5" id="panel">
+                <p:outputLabel value="Ingrese su correo" for="correo"/>
+                <p:inputText id="correo" value="#{crearcuentaController.usuario.xeusuEmail}">
+                    <f:validateRegex pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"/>
+                </p:inputText>
+
+                <p:outputLabel value="Ingrese su contraseña " for="password"/>
+                <p:password id="password" feedback="true" value="#{crearcuentaController.usuario.xeusuPasswo}"/>
+
+                <p:outputLabel value="Ingrese su nombre" for="nombre"/>
+                <p:inputText id="nombre" value="#{crearcuentaController.persona.peperNombre}"/>
+
+                <p:outputLabel value="Ingrese su apellido" for="apellido"/>
+                <p:inputText id="apellido" value="#{crearcuentaController.persona.peperApelli}"/>
+                <p:outputLabel for="@next" value="Género:" />
+                <p:selectOneMenu id="console" style="width:125px" value="#{crearcuentaController.persona.pesexCodigo}">
+                    <f:selectItems value="#{pesexSexoController.itemsAvailableSelectOne}"/>
+                </p:selectOneMenu>
+                <p:outputLabel value="Ingrese su cédula" for="cedula"/>
+                <p:inputText id="cedula" value="#{crearcuentaController.persona.peperCedula}"/>
+
+                <p:outputLabel for="fechanacimiento" value="Ingrese su fecha de nacimiento" />
+                <p:datePicker id="fechanacimiento" view="month" showIcon="true" yearRange="1900:2002" yearNavigator="true" value="#{crearcuentaController.persona.peperNacimi}" />
+
+                <p:outputLabel value="Ingrese su teléfono" for="telf"/>
+                <p:inputText id="telf" value="#{crearcuentaController.persona.peperTelf}"/>
+
+                <p:outputLabel value="Ingrese su dirección" for="dir"/>
+                <p:inputText id="dir" value="#{crearcuentaController.persona.peperDir}"/>
+
+                <p:commandButton ajax="true" value="Registrarse" validateClient="true" update="panel" action="#{crearcuentaController.saveData()}"/>
+            </h:panelGrid>
+        </h:form>
+    </h:body>
+</html>
+

@@ -6,14 +6,17 @@
 package ec.edu.monster.facades;
 
 import ec.edu.monster.modelo.PeperPerson;
+import java.math.BigInteger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.PersistenceContext;
 
 /**
  *
  * @author sebas
  */
+
 @Stateless
 public class PeperPersonFacade extends AbstractFacade<PeperPerson> {
 
@@ -27,6 +30,10 @@ public class PeperPersonFacade extends AbstractFacade<PeperPerson> {
 
     public PeperPersonFacade() {
         super(PeperPerson.class);
+    }
+    
+    public Integer getLastId(){
+        return ((BigInteger) em.createNativeQuery("SELECT LAST_INSERT_ID()").getSingleResult()).intValue();
     }
     
 }
