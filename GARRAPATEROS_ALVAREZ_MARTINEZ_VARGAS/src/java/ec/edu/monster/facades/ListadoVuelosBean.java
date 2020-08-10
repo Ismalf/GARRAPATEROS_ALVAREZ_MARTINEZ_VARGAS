@@ -33,10 +33,7 @@ public class ListadoVuelosBean {
     public void setListado(List<Object[]> listado) {
         this.listado = listado;
     }
-    
-    
-    
-    
+     
     /**
      * Creates a new instance of ListadoVuelosBean
      */
@@ -50,5 +47,7 @@ public class ListadoVuelosBean {
         listado=vueFacade.obtenerInfoVuelos();
         
     }
+    
+    
     
 }

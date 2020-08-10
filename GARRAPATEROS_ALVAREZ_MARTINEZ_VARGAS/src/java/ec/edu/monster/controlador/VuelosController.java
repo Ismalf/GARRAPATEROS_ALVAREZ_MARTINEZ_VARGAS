@@ -6,6 +6,7 @@ import ec.edu.monster.controlador.util.PaginationHelper;
 import ec.edu.monster.facades.VuelosFacade;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.ResourceBundle;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -26,6 +27,7 @@ public class VuelosController implements Serializable {
     private Vuelos current;
     private DataModel items = null;
         private int createRequest = 0;
+        private VuelosFacade pv;
     @EJB
     private ec.edu.monster.facades.VuelosFacade ejbFacade;
     private PaginationHelper pagination;
@@ -73,6 +75,8 @@ public class VuelosController implements Serializable {
         recreateModel();
         return "List";
     }
+    
+   
 
     public Boolean prepareView() {
         current = (Vuelos) getItems().getRowData();

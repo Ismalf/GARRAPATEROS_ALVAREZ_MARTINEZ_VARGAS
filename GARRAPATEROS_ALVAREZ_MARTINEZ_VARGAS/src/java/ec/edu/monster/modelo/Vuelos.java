@@ -43,6 +43,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Vuelos.findByFechaVuelo", query = "SELECT v FROM Vuelos v WHERE v.fechaVuelo = :fechaVuelo")})
 public class Vuelos implements Serializable {
 
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -169,5 +170,7 @@ public class Vuelos implements Serializable {
     public String toString() {
         return "ec.edu.monster.modelo.Vuelos[ idVuelo=" + idVuelo + " ]";
     }
+
+   
     
 }

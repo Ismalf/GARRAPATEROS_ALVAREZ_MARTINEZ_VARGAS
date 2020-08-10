@@ -38,6 +38,19 @@ public class SaltoController implements Serializable {
         prepareList();
         getItems();
     }
+    
+    public void saveSaltos()
+    {
+        
+    }
+
+    public Salto getCurrent() {
+        return current;
+    }
+
+    public void setCurrent(Salto current) {
+        this.current = current;
+    }
 
     public Salto getSelected() {
         if (current == null) {
@@ -68,6 +81,8 @@ public class SaltoController implements Serializable {
         }
         return pagination;
     }
+    
+    
 
     public String prepareList() {
         recreateModel();

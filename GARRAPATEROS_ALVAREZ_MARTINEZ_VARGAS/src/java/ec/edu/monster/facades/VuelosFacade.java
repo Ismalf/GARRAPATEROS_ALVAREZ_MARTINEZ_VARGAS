@@ -40,5 +40,11 @@ public class VuelosFacade extends AbstractFacade<Vuelos> {
         List<Object[]> listado = q.getResultList();
         return listado;
     }
+    public List infoVuelos()
+    {
+        Query q = em.createNativeQuery("SELECT * FROM vuelos");
+        List<Object[]> info = q.getResultList();
+        return info;
+    }
 
 }
