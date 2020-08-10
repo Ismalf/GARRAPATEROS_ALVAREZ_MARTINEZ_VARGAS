@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
             <h:outputText value="#{bundle.EditPecarCargoTitle}"></h:outputText>
@@ -12,9 +13,9 @@
             <h:form>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.EditPecarCargoLabel_pecarCodigo}" for="pecarCodigo" />
-                    <h:inputText id="pecarCodigo" value="#{pecarCargoController.selected.pecarCodigo}" title="#{bundle.EditPecarCargoTitle_pecarCodigo}" required="true" requiredMessage="#{bundle.EditPecarCargoRequiredMessage_pecarCodigo}"/>
+                    <p:inputText id="pecarCodigo" value="#{pecarCargoController.selected.pecarCodigo}" title="#{bundle.EditPecarCargoTitle_pecarCodigo}" required="true" requiredMessage="#{bundle.EditPecarCargoRequiredMessage_pecarCodigo}"/>
                     <h:outputLabel value="#{bundle.EditPecarCargoLabel_pecarDescri}" for="pecarDescri" />
-                    <h:inputText id="pecarDescri" value="#{pecarCargoController.selected.pecarDescri}" title="#{bundle.EditPecarCargoTitle_pecarDescri}" required="true" requiredMessage="#{bundle.EditPecarCargoRequiredMessage_pecarDescri}"/>
+                    <p:inputText id="pecarDescri" value="#{pecarCargoController.selected.pecarDescri}" title="#{bundle.EditPecarCargoTitle_pecarDescri}" required="true" requiredMessage="#{bundle.EditPecarCargoRequiredMessage_pecarDescri}"/>
                 </h:panelGrid>
                 <h:commandLink action="#{pecarCargoController.update}" value="#{bundle.EditPecarCargoSaveLink}"/>
             </h:form>

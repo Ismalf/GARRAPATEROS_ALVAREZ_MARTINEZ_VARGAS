@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -14,23 +15,23 @@
             <h:form>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.EditPepecPersonCargoLabel_pepecPersonCargoPK_idContrato}" for="pepecPersonCargoPK_idContrato" />
-                    <h:inputText id="pepecPersonCargoPK_idContrato" value="#{pepecPersonCargoController.selected.pepecPersonCargoPK.idContrato}" title="#{bundle.EditPepecPersonCargoTitle_pepecPersonCargoPK_idContrato}" required="true" requiredMessage="#{bundle.EditPepecPersonCargoRequiredMessage_pepecPersonCargoPK_idContrato}"/>
+                    <p:inputText id="pepecPersonCargoPK_idContrato" value="#{pepecPersonCargoController.selected.pepecPersonCargoPK.idContrato}" title="#{bundle.EditPepecPersonCargoTitle_pepecPersonCargoPK_idContrato}" required="true" requiredMessage="#{bundle.EditPepecPersonCargoRequiredMessage_pepecPersonCargoPK_idContrato}"/>
                     <h:outputLabel value="#{bundle.EditPepecPersonCargoLabel_pepecFecini}" for="pepecFecini" />
-                    <h:inputText id="pepecFecini" value="#{pepecPersonCargoController.selected.pepecFecini}" title="#{bundle.EditPepecPersonCargoTitle_pepecFecini}" >
+                    <p:inputText id="pepecFecini" value="#{pepecPersonCargoController.selected.pepecFecini}" title="#{bundle.EditPepecPersonCargoTitle_pepecFecini}" >
                         <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:inputText>
+                    </p:inputText>
                     <h:outputLabel value="#{bundle.EditPepecPersonCargoLabel_pepecFecfin}" for="pepecFecfin" />
-                    <h:inputText id="pepecFecfin" value="#{pepecPersonCargoController.selected.pepecFecfin}" title="#{bundle.EditPepecPersonCargoTitle_pepecFecfin}" >
+                    <p:inputText id="pepecFecfin" value="#{pepecPersonCargoController.selected.pepecFecfin}" title="#{bundle.EditPepecPersonCargoTitle_pepecFecfin}" >
                         <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:inputText>
+                    </p:inputText>
                     <h:outputLabel value="#{bundle.EditPepecPersonCargoLabel_pecarCodigo}" for="pecarCodigo" />
-                    <h:selectOneMenu id="pecarCodigo" value="#{pepecPersonCargoController.selected.pecarCodigo}" title="#{bundle.EditPepecPersonCargoTitle_pecarCodigo}" required="true" requiredMessage="#{bundle.EditPepecPersonCargoRequiredMessage_pecarCodigo}">
+                    <p:selectOneMenu id="pecarCodigo" value="#{pepecPersonCargoController.selected.pecarCodigo}" title="#{bundle.EditPepecPersonCargoTitle_pecarCodigo}" required="true" requiredMessage="#{bundle.EditPepecPersonCargoRequiredMessage_pecarCodigo}">
                         <f:selectItems value="#{pecarCargoController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
+                    </p:selectOneMenu>
                     <h:outputLabel value="#{bundle.EditPepecPersonCargoLabel_peperPerson}" for="peperPerson" />
-                    <h:selectOneMenu id="peperPerson" value="#{pepecPersonCargoController.selected.peperPerson}" title="#{bundle.EditPepecPersonCargoTitle_peperPerson}" required="true" requiredMessage="#{bundle.EditPepecPersonCargoRequiredMessage_peperPerson}">
+                    <p:selectOneMenu id="peperPerson" value="#{pepecPersonCargoController.selected.peperPerson}" title="#{bundle.EditPepecPersonCargoTitle_peperPerson}" required="true" requiredMessage="#{bundle.EditPepecPersonCargoRequiredMessage_peperPerson}">
                         <f:selectItems value="#{peperPersonController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
+                    </p:selectOneMenu>
                 </h:panelGrid>
                 <h:commandLink action="#{pepecPersonCargoController.update}" value="#{bundle.EditPepecPersonCargoSaveLink}"/>
             </h:form>

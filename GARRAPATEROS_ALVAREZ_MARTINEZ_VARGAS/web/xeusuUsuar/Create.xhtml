@@ -14,37 +14,37 @@
             <h:form>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.CreateXeusuUsuarLabel_xeusuPasswo}" for="xeusuPasswo" />
-                    <h:inputText id="xeusuPasswo" value="#{xeusuUsuarController.selected.xeusuPasswo}" title="#{bundle.CreateXeusuUsuarTitle_xeusuPasswo}" required="true" requiredMessage="#{bundle.CreateXeusuUsuarRequiredMessage_xeusuPasswo}"/>
+                    <p:inputText id="xeusuPasswo" value="#{xeusuUsuarController.selected.xeusuPasswo}" title="#{bundle.CreateXeusuUsuarTitle_xeusuPasswo}" required="true" requiredMessage="#{bundle.CreateXeusuUsuarRequiredMessage_xeusuPasswo}"/>
                     <h:outputLabel value="#{bundle.CreateXeusuUsuarLabel_xeusuUltpas}" for="xeusuUltpas" />
-                    <h:inputText id="xeusuUltpas" value="#{xeusuUsuarController.selected.xeusuUltpas}" title="#{bundle.CreateXeusuUsuarTitle_xeusuUltpas}" />
+                    <p:inputText id="xeusuUltpas" value="#{xeusuUsuarController.selected.xeusuUltpas}" title="#{bundle.CreateXeusuUsuarTitle_xeusuUltpas}" />
                     <h:outputLabel value="#{bundle.CreateXeusuUsuarLabel_xeusuFeccre}" for="xeusuFeccre" />
-                    <h:inputText id="xeusuFeccre" value="#{xeusuUsuarController.selected.xeusuFeccre}" title="#{bundle.CreateXeusuUsuarTitle_xeusuFeccre}" >
+                    <p:inputText id="xeusuFeccre" value="#{xeusuUsuarController.selected.xeusuFeccre}" title="#{bundle.CreateXeusuUsuarTitle_xeusuFeccre}" >
                         <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:inputText>
+                    </p:inputText>
                     <h:outputLabel value="#{bundle.CreateXeusuUsuarLabel_xeusuFecmod}" for="xeusuFecmod" />
-                    <h:inputText id="xeusuFecmod" value="#{xeusuUsuarController.selected.xeusuFecmod}" title="#{bundle.CreateXeusuUsuarTitle_xeusuFecmod}" >
+                    <p:inputText id="xeusuFecmod" value="#{xeusuUsuarController.selected.xeusuFecmod}" title="#{bundle.CreateXeusuUsuarTitle_xeusuFecmod}" >
                         <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:inputText>
+                    </p:inputText>
                     <h:outputLabel value="#{bundle.CreateXeusuUsuarLabel_xeusuFeccad}" for="xeusuFeccad" />
-                    <h:inputText id="xeusuFeccad" value="#{xeusuUsuarController.selected.xeusuFeccad}" title="#{bundle.CreateXeusuUsuarTitle_xeusuFeccad}" >
+                    <p:inputText id="xeusuFeccad" value="#{xeusuUsuarController.selected.xeusuFeccad}" title="#{bundle.CreateXeusuUsuarTitle_xeusuFeccad}" >
                         <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:inputText>
+                    </p:inputText>
                     <h:outputLabel value="#{bundle.CreateXeusuUsuarLabel_xeusuPiefir}" for="xeusuPiefir" />
-                    <h:inputText id="xeusuPiefir" value="#{xeusuUsuarController.selected.xeusuPiefir}" title="#{bundle.CreateXeusuUsuarTitle_xeusuPiefir}" />
+                    <p:inputText id="xeusuPiefir" value="#{xeusuUsuarController.selected.xeusuPiefir}" title="#{bundle.CreateXeusuUsuarTitle_xeusuPiefir}" />
                     <h:outputLabel value="#{bundle.CreateXeusuUsuarLabel_xeusuObserv}" for="xeusuObserv" />
-                    <h:inputText id="xeusuObserv" value="#{xeusuUsuarController.selected.xeusuObserv}" title="#{bundle.CreateXeusuUsuarTitle_xeusuObserv}" />
+                    <p:inputText id="xeusuObserv" value="#{xeusuUsuarController.selected.xeusuObserv}" title="#{bundle.CreateXeusuUsuarTitle_xeusuObserv}" />
                     <h:outputLabel value="#{bundle.CreateXeusuUsuarLabel_xeusuEmail}" for="xeusuEmail" />
-                    <h:inputText id="xeusuEmail" value="#{xeusuUsuarController.selected.xeusuEmail}" title="#{bundle.CreateXeusuUsuarTitle_xeusuEmail}" required="true" requiredMessage="#{bundle.CreateXeusuUsuarRequiredMessage_xeusuEmail}"/>
+                    <p:inputText id="xeusuEmail" value="#{xeusuUsuarController.selected.xeusuEmail}" title="#{bundle.CreateXeusuUsuarTitle_xeusuEmail}" required="true" requiredMessage="#{bundle.CreateXeusuUsuarRequiredMessage_xeusuEmail}"/>
                     <h:outputLabel value="#{bundle.CreateXeusuUsuarLabel_xeusuTipo}" for="xeusuTipo" />
-                    <h:inputText id="xeusuTipo" value="#{xeusuUsuarController.selected.xeusuTipo}" title="#{bundle.CreateXeusuUsuarTitle_xeusuTipo}" />
+                    <p:inputText id="xeusuTipo" value="#{xeusuUsuarController.selected.xeusuTipo}" title="#{bundle.CreateXeusuUsuarTitle_xeusuTipo}" />
                     <h:outputLabel value="#{bundle.CreateXeusuUsuarLabel_xeperCodper}" for="xeperCodper" />
-                    <h:selectOneMenu id="xeperCodper" value="#{xeusuUsuarController.selected.xeperCodper}" title="#{bundle.CreateXeusuUsuarTitle_xeperCodper}" required="true" requiredMessage="#{bundle.CreateXeusuUsuarRequiredMessage_xeperCodper}">
+                    <p:selectOneMenu id="xeperCodper" value="#{xeusuUsuarController.selected.xeperCodper}" title="#{bundle.CreateXeusuUsuarTitle_xeperCodper}" required="true" requiredMessage="#{bundle.CreateXeusuUsuarRequiredMessage_xeperCodper}">
                         <f:selectItems value="#{xeperPerfilController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
+                    </p:selectOneMenu>
                     <h:outputLabel value="#{bundle.CreateXeusuUsuarLabel_peperId}" for="peperId" />
-                    <h:selectOneMenu id="peperId" value="#{xeusuUsuarController.selected.peperId}" title="#{bundle.CreateXeusuUsuarTitle_peperId}" required="true" requiredMessage="#{bundle.CreateXeusuUsuarRequiredMessage_peperId}">
+                    <p:selectOneMenu id="peperId" value="#{xeusuUsuarController.selected.peperId}" title="#{bundle.CreateXeusuUsuarTitle_peperId}" required="true" requiredMessage="#{bundle.CreateXeusuUsuarRequiredMessage_peperId}">
                         <f:selectItems value="#{peperPersonController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
+                    </p:selectOneMenu>
                 </h:panelGrid>
                 <br />
                 <p:commandButton action="#{xeusuUsuarController.create}" value="#{bundle.CreateXeusuUsuarSaveLink}" />

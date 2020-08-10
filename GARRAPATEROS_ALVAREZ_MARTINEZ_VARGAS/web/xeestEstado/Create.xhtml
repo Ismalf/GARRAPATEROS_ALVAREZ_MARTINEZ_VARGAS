@@ -14,9 +14,9 @@
             <h:form>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.CreateXeestEstadoLabel_xeestCodigo}" for="xeestCodigo" />
-                    <h:inputText id="xeestCodigo" value="#{xeestEstadoController.selected.xeestCodigo}" title="#{bundle.CreateXeestEstadoTitle_xeestCodigo}" required="true" requiredMessage="#{bundle.CreateXeestEstadoRequiredMessage_xeestCodigo}"/>
+                    <p:inputText id="xeestCodigo" value="#{xeestEstadoController.selected.xeestCodigo}" title="#{bundle.CreateXeestEstadoTitle_xeestCodigo}" required="true" requiredMessage="#{bundle.CreateXeestEstadoRequiredMessage_xeestCodigo}"/>
                     <h:outputLabel value="#{bundle.CreateXeestEstadoLabel_xeestDescri}" for="xeestDescri" />
-                    <h:inputText id="xeestDescri" value="#{xeestEstadoController.selected.xeestDescri}" title="#{bundle.CreateXeestEstadoTitle_xeestDescri}" required="true" requiredMessage="#{bundle.CreateXeestEstadoRequiredMessage_xeestDescri}"/>
+                    <p:inputText id="xeestDescri" value="#{xeestEstadoController.selected.xeestDescri}" title="#{bundle.CreateXeestEstadoTitle_xeestDescri}" required="true" requiredMessage="#{bundle.CreateXeestEstadoRequiredMessage_xeestDescri}"/>
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{xeestEstadoController.create}" value="#{bundle.CreateXeestEstadoSaveLink}" />

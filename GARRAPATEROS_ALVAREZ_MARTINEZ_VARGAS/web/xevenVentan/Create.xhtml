@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -14,15 +15,15 @@
             <h:form>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.CreateXevenVentanLabel_xevenCodven}" for="xevenCodven" />
-                    <h:inputText id="xevenCodven" value="#{xevenVentanController.selected.xevenCodven}" title="#{bundle.CreateXevenVentanTitle_xevenCodven}" required="true" requiredMessage="#{bundle.CreateXevenVentanRequiredMessage_xevenCodven}"/>
+                    <p:inputText id="xevenCodven" value="#{xevenVentanController.selected.xevenCodven}" title="#{bundle.CreateXevenVentanTitle_xevenCodven}" required="true" requiredMessage="#{bundle.CreateXevenVentanRequiredMessage_xevenCodven}"/>
                     <h:outputLabel value="#{bundle.CreateXevenVentanLabel_xevenDescri}" for="xevenDescri" />
-                    <h:inputText id="xevenDescri" value="#{xevenVentanController.selected.xevenDescri}" title="#{bundle.CreateXevenVentanTitle_xevenDescri}" required="true" requiredMessage="#{bundle.CreateXevenVentanRequiredMessage_xevenDescri}"/>
+                    <p:inputText id="xevenDescri" value="#{xevenVentanController.selected.xevenDescri}" title="#{bundle.CreateXevenVentanTitle_xevenDescri}" required="true" requiredMessage="#{bundle.CreateXevenVentanRequiredMessage_xevenDescri}"/>
                     <h:outputLabel value="#{bundle.CreateXevenVentanLabel_xevenMensaj}" for="xevenMensaj" />
-                    <h:inputText id="xevenMensaj" value="#{xevenVentanController.selected.xevenMensaj}" title="#{bundle.CreateXevenVentanTitle_xevenMensaj}" required="true" requiredMessage="#{bundle.CreateXevenVentanRequiredMessage_xevenMensaj}"/>
+                    <p:inputText id="xevenMensaj" value="#{xevenVentanController.selected.xevenMensaj}" title="#{bundle.CreateXevenVentanTitle_xevenMensaj}" required="true" requiredMessage="#{bundle.CreateXevenVentanRequiredMessage_xevenMensaj}"/>
                     <h:outputLabel value="#{bundle.CreateXevenVentanLabel_xeopcCodopc}" for="xeopcCodopc" />
-                    <h:selectOneMenu id="xeopcCodopc" value="#{xevenVentanController.selected.xeopcCodopc}" title="#{bundle.CreateXevenVentanTitle_xeopcCodopc}" required="true" requiredMessage="#{bundle.CreateXevenVentanRequiredMessage_xeopcCodopc}">
+                    <p:selectOneMenu id="xeopcCodopc" value="#{xevenVentanController.selected.xeopcCodopc}" title="#{bundle.CreateXevenVentanTitle_xeopcCodopc}" required="true" requiredMessage="#{bundle.CreateXevenVentanRequiredMessage_xeopcCodopc}">
                         <f:selectItems value="#{xeopcOpcionController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
+                    </p:selectOneMenu>
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{xevenVentanController.create}" value="#{bundle.CreateXevenVentanSaveLink}" />

@@ -14,17 +14,17 @@
             <h:form>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.EditXeopcOpcionLabel_xeopcCodopc}" for="xeopcCodopc" />
-                    <h:inputText id="xeopcCodopc" value="#{xeopcOpcionController.selected.xeopcCodopc}" title="#{bundle.EditXeopcOpcionTitle_xeopcCodopc}" required="true" requiredMessage="#{bundle.EditXeopcOpcionRequiredMessage_xeopcCodopc}"/>
+                    <p:inputText id="xeopcCodopc" value="#{xeopcOpcionController.selected.xeopcCodopc}" title="#{bundle.EditXeopcOpcionTitle_xeopcCodopc}" required="true" requiredMessage="#{bundle.EditXeopcOpcionRequiredMessage_xeopcCodopc}"/>
                     <h:outputLabel value="#{bundle.EditXeopcOpcionLabel_xeopcDescri}" for="xeopcDescri" />
-                    <h:inputText id="xeopcDescri" value="#{xeopcOpcionController.selected.xeopcDescri}" title="#{bundle.EditXeopcOpcionTitle_xeopcDescri}" required="true" requiredMessage="#{bundle.EditXeopcOpcionRequiredMessage_xeopcDescri}"/>
+                    <p:inputText id="xeopcDescri" value="#{xeopcOpcionController.selected.xeopcDescri}" title="#{bundle.EditXeopcOpcionTitle_xeopcDescri}" required="true" requiredMessage="#{bundle.EditXeopcOpcionRequiredMessage_xeopcDescri}"/>
                     <h:outputLabel value="#{bundle.EditXeopcOpcionLabel_xerolRol}" for="xerolRol" />
-                    <h:selectOneMenu id="xerolRol" value="#{xeopcOpcionController.selected.xerolRol}" title="#{bundle.EditXeopcOpcionTitle_xerolRol}" >
+                    <p:selectOneMenu id="xerolRol" value="#{xeopcOpcionController.selected.xerolRol}" title="#{bundle.EditXeopcOpcionTitle_xerolRol}" >
                         <f:selectItems value="#{xerolRolController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
+                    </p:selectOneMenu>
                     <h:outputLabel value="#{bundle.EditXeopcOpcionLabel_xesisCodsis}" for="xesisCodsis" />
-                    <h:selectOneMenu id="xesisCodsis" value="#{xeopcOpcionController.selected.xesisCodsis}" title="#{bundle.EditXeopcOpcionTitle_xesisCodsis}" required="true" requiredMessage="#{bundle.EditXeopcOpcionRequiredMessage_xesisCodsis}">
+                    <p:selectOneMenu id="xesisCodsis" value="#{xeopcOpcionController.selected.xesisCodsis}" title="#{bundle.EditXeopcOpcionTitle_xesisCodsis}" required="true" requiredMessage="#{bundle.EditXeopcOpcionRequiredMessage_xesisCodsis}">
                         <f:selectItems value="#{xesisSistemController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
+                    </p:selectOneMenu>
                 </h:panelGrid>
                 <h:commandLink action="#{xeopcOpcionController.update}" value="#{bundle.EditXeopcOpcionSaveLink}"/>
                 

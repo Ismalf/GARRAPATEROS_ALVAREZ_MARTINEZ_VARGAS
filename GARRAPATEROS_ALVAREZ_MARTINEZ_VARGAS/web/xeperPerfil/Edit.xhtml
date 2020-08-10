@@ -14,11 +14,11 @@
             <h:form>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.EditXeperPerfilLabel_xeperCodper}" for="xeperCodper" />
-                    <h:inputText id="xeperCodper" value="#{xeperPerfilController.selected.xeperCodper}" title="#{bundle.EditXeperPerfilTitle_xeperCodper}" required="true" requiredMessage="#{bundle.EditXeperPerfilRequiredMessage_xeperCodper}"/>
+                    <p:inputText id="xeperCodper" value="#{xeperPerfilController.selected.xeperCodper}" title="#{bundle.EditXeperPerfilTitle_xeperCodper}" required="true" requiredMessage="#{bundle.EditXeperPerfilRequiredMessage_xeperCodper}"/>
                     <h:outputLabel value="#{bundle.EditXeperPerfilLabel_xeperDescri}" for="xeperDescri" />
-                    <h:inputText id="xeperDescri" value="#{xeperPerfilController.selected.xeperDescri}" title="#{bundle.EditXeperPerfilTitle_xeperDescri}" required="true" requiredMessage="#{bundle.EditXeperPerfilRequiredMessage_xeperDescri}"/>
+                    <p:inputText id="xeperDescri" value="#{xeperPerfilController.selected.xeperDescri}" title="#{bundle.EditXeperPerfilTitle_xeperDescri}" required="true" requiredMessage="#{bundle.EditXeperPerfilRequiredMessage_xeperDescri}"/>
                     <h:outputLabel value="#{bundle.EditXeperPerfilLabel_xeperObserv}" for="xeperObserv" />
-                    <h:inputText id="xeperObserv" value="#{xeperPerfilController.selected.xeperObserv}" title="#{bundle.EditXeperPerfilTitle_xeperObserv}" required="true" requiredMessage="#{bundle.EditXeperPerfilRequiredMessage_xeperObserv}"/>
+                    <p:inputText id="xeperObserv" value="#{xeperPerfilController.selected.xeperObserv}" title="#{bundle.EditXeperPerfilTitle_xeperObserv}" required="true" requiredMessage="#{bundle.EditXeperPerfilRequiredMessage_xeperObserv}"/>
                 </h:panelGrid>
                 <p:commandButton action="#{xeperPerfilController.update}" value="#{bundle.EditXeperPerfilSaveLink}"/>
                 <br />

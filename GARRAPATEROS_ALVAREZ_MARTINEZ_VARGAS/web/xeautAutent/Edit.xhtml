@@ -14,17 +14,17 @@
             <h:form>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.EditXeautAutentLabel_xeautCodigo}" for="xeautCodigo" />
-                    <h:inputText id="xeautCodigo" value="#{xeautAutentController.selected.xeautCodigo}" title="#{bundle.EditXeautAutentTitle_xeautCodigo}" required="true" requiredMessage="#{bundle.EditXeautAutentRequiredMessage_xeautCodigo}"/>
+                    <p:inputText id="xeautCodigo" value="#{xeautAutentController.selected.xeautCodigo}" title="#{bundle.EditXeautAutentTitle_xeautCodigo}" required="true" requiredMessage="#{bundle.EditXeautAutentRequiredMessage_xeautCodigo}"/>
                     <h:outputLabel value="#{bundle.EditXeautAutentLabel_xeautFechai}" for="xeautFechai" />
-                    <h:inputText id="xeautFechai" value="#{xeautAutentController.selected.xeautFechai}" title="#{bundle.EditXeautAutentTitle_xeautFechai}" required="true" requiredMessage="#{bundle.EditXeautAutentRequiredMessage_xeautFechai}">
+                    <p:inputText id="xeautFechai" value="#{xeautAutentController.selected.xeautFechai}" title="#{bundle.EditXeautAutentTitle_xeautFechai}" required="true" requiredMessage="#{bundle.EditXeautAutentRequiredMessage_xeautFechai}">
                         <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:inputText>
+                    </p:inputText>
                     <h:outputLabel value="#{bundle.EditXeautAutentLabel_xeautDescri}" for="xeautDescri" />
-                    <h:inputText id="xeautDescri" value="#{xeautAutentController.selected.xeautDescri}" title="#{bundle.EditXeautAutentTitle_xeautDescri}" required="true" requiredMessage="#{bundle.EditXeautAutentRequiredMessage_xeautDescri}"/>
+                    <p:inputText id="xeautDescri" value="#{xeautAutentController.selected.xeautDescri}" title="#{bundle.EditXeautAutentTitle_xeautDescri}" required="true" requiredMessage="#{bundle.EditXeautAutentRequiredMessage_xeautDescri}"/>
                     <h:outputLabel value="#{bundle.EditXeautAutentLabel_xeusuEmail}" for="xeusuEmail" />
-                    <h:selectOneMenu id="xeusuEmail" value="#{xeautAutentController.selected.xeusuEmail}" title="#{bundle.EditXeautAutentTitle_xeusuEmail}" required="true" requiredMessage="#{bundle.EditXeautAutentRequiredMessage_xeusuEmail}">
+                    <p:selectOneMenu id="xeusuEmail" value="#{xeautAutentController.selected.xeusuEmail}" title="#{bundle.EditXeautAutentTitle_xeusuEmail}" required="true" requiredMessage="#{bundle.EditXeautAutentRequiredMessage_xeusuEmail}">
                         <f:selectItems value="#{xeusuUsuarController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
+                    </p:selectOneMenu>
                 </h:panelGrid>
                 <h:commandLink action="#{xeautAutentController.update}" value="#{bundle.EditXeautAutentSaveLink}"/>
                 <br />

@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -14,9 +15,9 @@
             <h:form>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.CreatePesexSexoLabel_pesexCodigo}" for="pesexCodigo" />
-                    <h:inputText id="pesexCodigo" value="#{pesexSexoController.selected.pesexCodigo}" title="#{bundle.CreatePesexSexoTitle_pesexCodigo}" required="true" requiredMessage="#{bundle.CreatePesexSexoRequiredMessage_pesexCodigo}"/>
+                    <p:inputText id="pesexCodigo" value="#{pesexSexoController.selected.pesexCodigo}" title="#{bundle.CreatePesexSexoTitle_pesexCodigo}" required="true" requiredMessage="#{bundle.CreatePesexSexoRequiredMessage_pesexCodigo}"/>
                     <h:outputLabel value="#{bundle.CreatePesexSexoLabel_pesexDescri}" for="pesexDescri" />
-                    <h:inputText id="pesexDescri" value="#{pesexSexoController.selected.pesexDescri}" title="#{bundle.CreatePesexSexoTitle_pesexDescri}" required="true" requiredMessage="#{bundle.CreatePesexSexoRequiredMessage_pesexDescri}"/>
+                    <p:inputText id="pesexDescri" value="#{pesexSexoController.selected.pesexDescri}" title="#{bundle.CreatePesexSexoTitle_pesexDescri}" required="true" requiredMessage="#{bundle.CreatePesexSexoRequiredMessage_pesexDescri}"/>
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{pesexSexoController.create}" value="#{bundle.CreatePesexSexoSaveLink}" />

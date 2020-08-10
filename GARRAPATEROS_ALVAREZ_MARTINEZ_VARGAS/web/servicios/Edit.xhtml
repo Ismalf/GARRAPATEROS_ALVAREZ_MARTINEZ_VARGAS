@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -14,11 +15,11 @@
             <h:form>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.EditServiciosLabel_idPrecio}" for="idPrecio" />
-                    <h:inputText id="idPrecio" value="#{serviciosController.selected.idPrecio}" title="#{bundle.EditServiciosTitle_idPrecio}" required="true" requiredMessage="#{bundle.EditServiciosRequiredMessage_idPrecio}"/>
+                    <p:inputText id="idPrecio" value="#{serviciosController.selected.idPrecio}" title="#{bundle.EditServiciosTitle_idPrecio}" required="true" requiredMessage="#{bundle.EditServiciosRequiredMessage_idPrecio}"/>
                     <h:outputLabel value="#{bundle.EditServiciosLabel_descripcion}" for="descripcion" />
-                    <h:inputText id="descripcion" value="#{serviciosController.selected.descripcion}" title="#{bundle.EditServiciosTitle_descripcion}" />
+                    <p:inputText id="descripcion" value="#{serviciosController.selected.descripcion}" title="#{bundle.EditServiciosTitle_descripcion}" />
                     <h:outputLabel value="#{bundle.EditServiciosLabel_monto}" for="monto" />
-                    <h:inputText id="monto" value="#{serviciosController.selected.monto}" title="#{bundle.EditServiciosTitle_monto}" />
+                    <p:inputText id="monto" value="#{serviciosController.selected.monto}" title="#{bundle.EditServiciosTitle_monto}" />
                 </h:panelGrid>
                 <h:commandLink action="#{serviciosController.update}" value="#{bundle.EditServiciosSaveLink}"/>
                 

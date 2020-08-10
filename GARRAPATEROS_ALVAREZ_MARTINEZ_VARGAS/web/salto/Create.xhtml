@@ -14,25 +14,25 @@
             <h:form>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.CreateSaltoLabel_idSalto}" for="idSalto" />
-                    <h:inputText id="idSalto" value="#{saltoController.selected.idSalto}" title="#{bundle.CreateSaltoTitle_idSalto}" required="true" requiredMessage="#{bundle.CreateSaltoRequiredMessage_idSalto}"/>
+                    <p:inputText id="idSalto" value="#{saltoController.selected.idSalto}" title="#{bundle.CreateSaltoTitle_idSalto}" required="true" requiredMessage="#{bundle.CreateSaltoRequiredMessage_idSalto}"/>
                     <h:outputLabel value="#{bundle.CreateSaltoLabel_tipoSalto}" for="tipoSalto" />
-                    <h:inputText id="tipoSalto" value="#{saltoController.selected.tipoSalto}" title="#{bundle.CreateSaltoTitle_tipoSalto}" />
+                    <p:inputText id="tipoSalto" value="#{saltoController.selected.tipoSalto}" title="#{bundle.CreateSaltoTitle_tipoSalto}" />
                     <h:outputLabel value="#{bundle.CreateSaltoLabel_montoSalto}" for="montoSalto" />
-                    <h:inputText id="montoSalto" value="#{saltoController.selected.montoSalto}" title="#{bundle.CreateSaltoTitle_montoSalto}" />
+                    <p:inputText id="montoSalto" value="#{saltoController.selected.montoSalto}" title="#{bundle.CreateSaltoTitle_montoSalto}" />
                     <h:outputLabel value="#{bundle.CreateSaltoLabel_descuentoSalto}" for="descuentoSalto" />
-                    <h:inputText id="descuentoSalto" value="#{saltoController.selected.descuentoSalto}" title="#{bundle.CreateSaltoTitle_descuentoSalto}" />
+                    <p:inputText id="descuentoSalto" value="#{saltoController.selected.descuentoSalto}" title="#{bundle.CreateSaltoTitle_descuentoSalto}" />
                     <h:outputLabel value="#{bundle.CreateSaltoLabel_peperId}" for="peperId" />
-                    <h:selectOneMenu id="peperId" value="#{saltoController.selected.peperId}" title="#{bundle.CreateSaltoTitle_peperId}" required="true" requiredMessage="#{bundle.CreateSaltoRequiredMessage_peperId}">
+                    <p:selectOneMenu id="peperId" value="#{saltoController.selected.peperId}" title="#{bundle.CreateSaltoTitle_peperId}" required="true" requiredMessage="#{bundle.CreateSaltoRequiredMessage_peperId}">
                         <f:selectItems value="#{paracaidistasController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
+                    </p:selectOneMenu>
                     <h:outputLabel value="#{bundle.CreateSaltoLabel_feresCodigo}" for="feresCodigo" />
-                    <h:selectOneMenu id="feresCodigo" value="#{saltoController.selected.feresCodigo}" title="#{bundle.CreateSaltoTitle_feresCodigo}" required="true" requiredMessage="#{bundle.CreateSaltoRequiredMessage_feresCodigo}">
+                    <p:selectOneMenu id="feresCodigo" value="#{saltoController.selected.feresCodigo}" title="#{bundle.CreateSaltoTitle_feresCodigo}" required="true" requiredMessage="#{bundle.CreateSaltoRequiredMessage_feresCodigo}">
                         <f:selectItems value="#{feresReservaController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
+                    </p:selectOneMenu>
                     <h:outputLabel value="#{bundle.CreateSaltoLabel_idVuelo}" for="idVuelo" />
-                    <h:selectOneMenu id="idVuelo" value="#{saltoController.selected.idVuelo}" title="#{bundle.CreateSaltoTitle_idVuelo}" required="true" requiredMessage="#{bundle.CreateSaltoRequiredMessage_idVuelo}">
+                    <p:selectOneMenu id="idVuelo" value="#{saltoController.selected.idVuelo}" title="#{bundle.CreateSaltoTitle_idVuelo}" required="true" requiredMessage="#{bundle.CreateSaltoRequiredMessage_idVuelo}">
                         <f:selectItems value="#{vuelosController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
+                    </p:selectOneMenu>
                 </h:panelGrid>
                 <br />
                 <p:commandButton action="#{saltoController.create}" value="#{bundle.CreateSaltoSaveLink}" />

@@ -14,25 +14,25 @@
             <h:form>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.EditSaltoLabel_idSalto}" for="idSalto" />
-                    <h:inputText id="idSalto" value="#{saltoController.selected.idSalto}" title="#{bundle.EditSaltoTitle_idSalto}" required="true" requiredMessage="#{bundle.EditSaltoRequiredMessage_idSalto}"/>
+                    <p:inputText id="idSalto" value="#{saltoController.selected.idSalto}" title="#{bundle.EditSaltoTitle_idSalto}" required="true" requiredMessage="#{bundle.EditSaltoRequiredMessage_idSalto}"/>
                     <h:outputLabel value="#{bundle.EditSaltoLabel_tipoSalto}" for="tipoSalto" />
-                    <h:inputText id="tipoSalto" value="#{saltoController.selected.tipoSalto}" title="#{bundle.EditSaltoTitle_tipoSalto}" />
+                    <p:inputText id="tipoSalto" value="#{saltoController.selected.tipoSalto}" title="#{bundle.EditSaltoTitle_tipoSalto}" />
                     <h:outputLabel value="#{bundle.EditSaltoLabel_montoSalto}" for="montoSalto" />
-                    <h:inputText id="montoSalto" value="#{saltoController.selected.montoSalto}" title="#{bundle.EditSaltoTitle_montoSalto}" />
+                    <p:inputText id="montoSalto" value="#{saltoController.selected.montoSalto}" title="#{bundle.EditSaltoTitle_montoSalto}" />
                     <h:outputLabel value="#{bundle.EditSaltoLabel_descuentoSalto}" for="descuentoSalto" />
-                    <h:inputText id="descuentoSalto" value="#{saltoController.selected.descuentoSalto}" title="#{bundle.EditSaltoTitle_descuentoSalto}" />
+                    <p:inputText id="descuentoSalto" value="#{saltoController.selected.descuentoSalto}" title="#{bundle.EditSaltoTitle_descuentoSalto}" />
                     <h:outputLabel value="#{bundle.EditSaltoLabel_peperId}" for="peperId" />
-                    <h:selectOneMenu id="peperId" value="#{saltoController.selected.peperId}" title="#{bundle.EditSaltoTitle_peperId}" required="true" requiredMessage="#{bundle.EditSaltoRequiredMessage_peperId}">
+                    <p:selectOneMenu id="peperId" value="#{saltoController.selected.peperId}" title="#{bundle.EditSaltoTitle_peperId}" required="true" requiredMessage="#{bundle.EditSaltoRequiredMessage_peperId}">
                         <f:selectItems value="#{paracaidistasController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
+                    </p:selectOneMenu>
                     <h:outputLabel value="#{bundle.EditSaltoLabel_feresCodigo}" for="feresCodigo" />
-                    <h:selectOneMenu id="feresCodigo" value="#{saltoController.selected.feresCodigo}" title="#{bundle.EditSaltoTitle_feresCodigo}" required="true" requiredMessage="#{bundle.EditSaltoRequiredMessage_feresCodigo}">
+                    <p:selectOneMenu id="feresCodigo" value="#{saltoController.selected.feresCodigo}" title="#{bundle.EditSaltoTitle_feresCodigo}" required="true" requiredMessage="#{bundle.EditSaltoRequiredMessage_feresCodigo}">
                         <f:selectItems value="#{feresReservaController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
+                    </p:selectOneMenu>
                     <h:outputLabel value="#{bundle.EditSaltoLabel_idVuelo}" for="idVuelo" />
-                    <h:selectOneMenu id="idVuelo" value="#{saltoController.selected.idVuelo}" title="#{bundle.EditSaltoTitle_idVuelo}" required="true" requiredMessage="#{bundle.EditSaltoRequiredMessage_idVuelo}">
+                    <p:selectOneMenu id="idVuelo" value="#{saltoController.selected.idVuelo}" title="#{bundle.EditSaltoTitle_idVuelo}" required="true" requiredMessage="#{bundle.EditSaltoRequiredMessage_idVuelo}">
                         <f:selectItems value="#{vuelosController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
+                    </p:selectOneMenu>
                 </h:panelGrid>
                 <p:commandButton action="#{saltoController.update}" value="#{bundle.EditSaltoSaveLink}"/>
                 <br />

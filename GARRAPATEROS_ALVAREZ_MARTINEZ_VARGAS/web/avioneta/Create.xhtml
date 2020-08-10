@@ -14,13 +14,13 @@
             <h:form>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.CreateAvionetaLabel_idAvioneta}" for="idAvioneta" />
-                    <h:inputText id="idAvioneta" value="#{avionetaController.selected.idAvioneta}" title="#{bundle.CreateAvionetaTitle_idAvioneta}" required="true" requiredMessage="#{bundle.CreateAvionetaRequiredMessage_idAvioneta}"/>
+                    <p:inputText id="idAvioneta" value="#{avionetaController.selected.idAvioneta}" title="#{bundle.CreateAvionetaTitle_idAvioneta}" required="true" requiredMessage="#{bundle.CreateAvionetaRequiredMessage_idAvioneta}"/>
                     <h:outputLabel value="#{bundle.CreateAvionetaLabel_matricula}" for="matricula" />
-                    <h:inputText id="matricula" value="#{avionetaController.selected.matricula}" title="#{bundle.CreateAvionetaTitle_matricula}" />
+                    <p:inputText id="matricula" value="#{avionetaController.selected.matricula}" title="#{bundle.CreateAvionetaTitle_matricula}" />
                     <h:outputLabel value="#{bundle.CreateAvionetaLabel_modelo}" for="modelo" />
-                    <h:inputText id="modelo" value="#{avionetaController.selected.modelo}" title="#{bundle.CreateAvionetaTitle_modelo}" />
+                    <p:inputText id="modelo" value="#{avionetaController.selected.modelo}" title="#{bundle.CreateAvionetaTitle_modelo}" />
                     <h:outputLabel value="#{bundle.CreateAvionetaLabel_anio}" for="anio" />
-                    <h:inputText id="anio" value="#{avionetaController.selected.anio}" title="#{bundle.CreateAvionetaTitle_anio}" />
+                    <p:inputText id="anio" value="#{avionetaController.selected.anio}" title="#{bundle.CreateAvionetaTitle_anio}" />
                 </h:panelGrid>
                 <br />
                 <p:commandButton action="#{avionetaController.create}" value="#{bundle.CreateAvionetaSaveLink}" />

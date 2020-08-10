@@ -17,23 +17,23 @@
             <h:panelGrid columns="2">
                 
                 <h:outputLabel value="#{bundle.CreatePeperPersonLabel_peperNombre}" for="peperNombre" />
-                <h:inputText id="peperNombre" value="#{peperPersonController.selected.peperNombre}" title="#{bundle.CreatePeperPersonTitle_peperNombre}" required="true" requiredMessage="#{bundle.CreatePeperPersonRequiredMessage_peperNombre}"/>
+                <p:inputText id="peperNombre" value="#{peperPersonController.selected.peperNombre}" title="#{bundle.CreatePeperPersonTitle_peperNombre}" required="true" requiredMessage="#{bundle.CreatePeperPersonRequiredMessage_peperNombre}"/>
                 <h:outputLabel value="#{bundle.CreatePeperPersonLabel_peperApelli}" for="peperApelli" />
-                <h:inputText id="peperApelli" value="#{peperPersonController.selected.peperApelli}" title="#{bundle.CreatePeperPersonTitle_peperApelli}" required="true" requiredMessage="#{bundle.CreatePeperPersonRequiredMessage_peperApelli}"/>
+                <p:inputText id="peperApelli" value="#{peperPersonController.selected.peperApelli}" title="#{bundle.CreatePeperPersonTitle_peperApelli}" required="true" requiredMessage="#{bundle.CreatePeperPersonRequiredMessage_peperApelli}"/>
                 <h:outputLabel value="#{bundle.CreatePeperPersonLabel_peperCedula}" for="peperCedula" />
-                <h:inputText id="peperCedula" value="#{peperPersonController.selected.peperCedula}" title="#{bundle.CreatePeperPersonTitle_peperCedula}" required="true" requiredMessage="#{bundle.CreatePeperPersonRequiredMessage_peperCedula}"/>
+                <p:inputText id="peperCedula" value="#{peperPersonController.selected.peperCedula}" title="#{bundle.CreatePeperPersonTitle_peperCedula}" required="true" requiredMessage="#{bundle.CreatePeperPersonRequiredMessage_peperCedula}"/>
                 <h:outputLabel value="#{bundle.CreatePeperPersonLabel_peperNacimi}" for="peperNacimi" />
-                <h:inputText id="peperNacimi" value="#{peperPersonController.selected.peperNacimi}" title="#{bundle.CreatePeperPersonTitle_peperNacimi}" >
+                <p:inputText id="peperNacimi" value="#{peperPersonController.selected.peperNacimi}" title="#{bundle.CreatePeperPersonTitle_peperNacimi}" >
                     <f:convertDateTime pattern="MM/dd/yyyy" />
-                </h:inputText>
+                </p:inputText>
                 <h:outputLabel value="#{bundle.CreatePeperPersonLabel_peperTelf}" for="peperTelf" />
-                <h:inputText id="peperTelf" value="#{peperPersonController.selected.peperTelf}" title="#{bundle.CreatePeperPersonTitle_peperTelf}" />
+                <p:inputText id="peperTelf" value="#{peperPersonController.selected.peperTelf}" title="#{bundle.CreatePeperPersonTitle_peperTelf}" />
                 <h:outputLabel value="#{bundle.CreatePeperPersonLabel_peperDir}" for="peperDir" />
-                <h:inputText id="peperDir" value="#{peperPersonController.selected.peperDir}" title="#{bundle.CreatePeperPersonTitle_peperDir}" />
+                <p:inputText id="peperDir" value="#{peperPersonController.selected.peperDir}" title="#{bundle.CreatePeperPersonTitle_peperDir}" />
                 <h:outputLabel value="#{bundle.CreatePeperPersonLabel_pesexCodigo}" for="pesexCodigo" />
-                <h:selectOneMenu id="pesexCodigo" value="#{peperPersonController.selected.pesexCodigo}" title="#{bundle.CreatePeperPersonTitle_pesexCodigo}" required="true" requiredMessage="#{bundle.CreatePeperPersonRequiredMessage_pesexCodigo}">
+                <p:selectOneMenu id="pesexCodigo" value="#{peperPersonController.selected.pesexCodigo}" title="#{bundle.CreatePeperPersonTitle_pesexCodigo}" required="true" requiredMessage="#{bundle.CreatePeperPersonRequiredMessage_pesexCodigo}">
                     <f:selectItems value="#{pesexSexoController.itemsAvailableSelectOne}"/>
-                </h:selectOneMenu>
+                </p:selectOneMenu>
                 
             </h:panelGrid>
             <br />

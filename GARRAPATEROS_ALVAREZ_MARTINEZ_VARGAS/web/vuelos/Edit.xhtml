@@ -14,27 +14,27 @@
             <h:form>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.EditVuelosLabel_idVuelo}" for="idVuelo" />
-                    <h:inputText id="idVuelo" value="#{vuelosController.selected.idVuelo}" title="#{bundle.EditVuelosTitle_idVuelo}" required="true" requiredMessage="#{bundle.EditVuelosRequiredMessage_idVuelo}"/>
+                    <p:inputText id="idVuelo" value="#{vuelosController.selected.idVuelo}" title="#{bundle.EditVuelosTitle_idVuelo}" required="true" requiredMessage="#{bundle.EditVuelosRequiredMessage_idVuelo}"/>
                     <h:outputLabel value="#{bundle.EditVuelosLabel_horaSalida}" for="horaSalida" />
-                    <h:inputText id="horaSalida" value="#{vuelosController.selected.horaSalida}" title="#{bundle.EditVuelosTitle_horaSalida}" >
+                    <p:inputText id="horaSalida" value="#{vuelosController.selected.horaSalida}" title="#{bundle.EditVuelosTitle_horaSalida}" >
                         <f:convertDateTime pattern="HH:mm:ss" />
-                    </h:inputText>
+                    </p:inputText>
                     <h:outputLabel value="#{bundle.EditVuelosLabel_horaLlegada}" for="horaLlegada" />
-                    <h:inputText id="horaLlegada" value="#{vuelosController.selected.horaLlegada}" title="#{bundle.EditVuelosTitle_horaLlegada}" >
+                    <p:inputText id="horaLlegada" value="#{vuelosController.selected.horaLlegada}" title="#{bundle.EditVuelosTitle_horaLlegada}" >
                         <f:convertDateTime pattern="HH:mm:ss" />
-                    </h:inputText>
+                    </p:inputText>
                     <h:outputLabel value="#{bundle.EditVuelosLabel_fechaVuelo}" for="fechaVuelo" />
-                    <h:inputText id="fechaVuelo" value="#{vuelosController.selected.fechaVuelo}" title="#{bundle.EditVuelosTitle_fechaVuelo}" >
+                    <p:inputText id="fechaVuelo" value="#{vuelosController.selected.fechaVuelo}" title="#{bundle.EditVuelosTitle_fechaVuelo}" >
                         <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:inputText>
+                    </p:inputText>
                     <h:outputLabel value="#{bundle.EditVuelosLabel_idAvioneta}" for="idAvioneta" />
-                    <h:selectOneMenu id="idAvioneta" value="#{vuelosController.selected.idAvioneta}" title="#{bundle.EditVuelosTitle_idAvioneta}" required="true" requiredMessage="#{bundle.EditVuelosRequiredMessage_idAvioneta}">
+                    <p:selectOneMenu id="idAvioneta" value="#{vuelosController.selected.idAvioneta}" title="#{bundle.EditVuelosTitle_idAvioneta}" required="true" requiredMessage="#{bundle.EditVuelosRequiredMessage_idAvioneta}">
                         <f:selectItems value="#{avionetaController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
+                    </p:selectOneMenu>
                     <h:outputLabel value="#{bundle.EditVuelosLabel_peperId}" for="peperId" />
-                    <h:selectOneMenu id="peperId" value="#{vuelosController.selected.peperId}" title="#{bundle.EditVuelosTitle_peperId}" required="true" requiredMessage="#{bundle.EditVuelosRequiredMessage_peperId}">
+                    <p:selectOneMenu id="peperId" value="#{vuelosController.selected.peperId}" title="#{bundle.EditVuelosTitle_peperId}" required="true" requiredMessage="#{bundle.EditVuelosRequiredMessage_peperId}">
                         <f:selectItems value="#{pilotoController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
+                    </p:selectOneMenu>
                 </h:panelGrid>
                 <p:commandButton action="#{vuelosController.update}" value="#{bundle.EditVuelosSaveLink}"/>
                 <br />

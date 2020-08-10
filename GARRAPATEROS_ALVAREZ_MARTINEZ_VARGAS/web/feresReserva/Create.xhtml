@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -14,19 +15,19 @@
             <h:form>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.CreateFeresReservaLabel_feresCodigo}" for="feresCodigo" />
-                    <h:inputText id="feresCodigo" value="#{feresReservaController.selected.feresCodigo}" title="#{bundle.CreateFeresReservaTitle_feresCodigo}" required="true" requiredMessage="#{bundle.CreateFeresReservaRequiredMessage_feresCodigo}"/>
+                    <p:inputText id="feresCodigo" value="#{feresReservaController.selected.feresCodigo}" title="#{bundle.CreateFeresReservaTitle_feresCodigo}" required="true" requiredMessage="#{bundle.CreateFeresReservaRequiredMessage_feresCodigo}"/>
                     <h:outputLabel value="#{bundle.CreateFeresReservaLabel_feresFecha}" for="feresFecha" />
-                    <h:inputText id="feresFecha" value="#{feresReservaController.selected.feresFecha}" title="#{bundle.CreateFeresReservaTitle_feresFecha}" >
+                    <p:inputText id="feresFecha" value="#{feresReservaController.selected.feresFecha}" title="#{bundle.CreateFeresReservaTitle_feresFecha}" >
                         <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:inputText>
+                    </p:inputText>
                     <h:outputLabel value="#{bundle.CreateFeresReservaLabel_feresDescri}" for="feresDescri" />
-                    <h:inputText id="feresDescri" value="#{feresReservaController.selected.feresDescri}" title="#{bundle.CreateFeresReservaTitle_feresDescri}" />
+                    <p:inputText id="feresDescri" value="#{feresReservaController.selected.feresDescri}" title="#{bundle.CreateFeresReservaTitle_feresDescri}" />
                     <h:outputLabel value="#{bundle.CreateFeresReservaLabel_feresEstado}" for="feresEstado" />
-                    <h:inputText id="feresEstado" value="#{feresReservaController.selected.feresEstado}" title="#{bundle.CreateFeresReservaTitle_feresEstado}" />
+                    <p:inputText id="feresEstado" value="#{feresReservaController.selected.feresEstado}" title="#{bundle.CreateFeresReservaTitle_feresEstado}" />
                     <h:outputLabel value="#{bundle.CreateFeresReservaLabel_pecomCodigo}" for="pecomCodigo" />
-                    <h:selectOneMenu id="pecomCodigo" value="#{feresReservaController.selected.pecomCodigo}" title="#{bundle.CreateFeresReservaTitle_pecomCodigo}" required="true" requiredMessage="#{bundle.CreateFeresReservaRequiredMessage_pecomCodigo}">
+                    <p:selectOneMenu id="pecomCodigo" value="#{feresReservaController.selected.pecomCodigo}" title="#{bundle.CreateFeresReservaTitle_pecomCodigo}" required="true" requiredMessage="#{bundle.CreateFeresReservaRequiredMessage_pecomCodigo}">
                         <f:selectItems value="#{fecomComproController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
+                    </p:selectOneMenu>
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{feresReservaController.create}" value="#{bundle.CreateFeresReservaSaveLink}" />

@@ -14,15 +14,15 @@
             <h:form>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.CreatePilotoLabel_peperId}" for="peperId" />
-                    <h:inputText id="peperId" value="#{pilotoController.selected.peperId}" title="#{bundle.CreatePilotoTitle_peperId}" required="true" requiredMessage="#{bundle.CreatePilotoRequiredMessage_peperId}"/>
+                    <p:inputText id="peperId" value="#{pilotoController.selected.peperId}" title="#{bundle.CreatePilotoTitle_peperId}" required="true" requiredMessage="#{bundle.CreatePilotoRequiredMessage_peperId}"/>
                     <h:outputLabel value="#{bundle.CreatePilotoLabel_licenciaPiloto}" for="licenciaPiloto" />
-                    <h:inputText id="licenciaPiloto" value="#{pilotoController.selected.licenciaPiloto}" title="#{bundle.CreatePilotoTitle_licenciaPiloto}" />
+                    <p:inputText id="licenciaPiloto" value="#{pilotoController.selected.licenciaPiloto}" title="#{bundle.CreatePilotoTitle_licenciaPiloto}" />
                     <h:outputLabel value="#{bundle.CreatePilotoLabel_horasVuelo}" for="horasVuelo" />
-                    <h:inputText id="horasVuelo" value="#{pilotoController.selected.horasVuelo}" title="#{bundle.CreatePilotoTitle_horasVuelo}" />
+                    <p:inputText id="horasVuelo" value="#{pilotoController.selected.horasVuelo}" title="#{bundle.CreatePilotoTitle_horasVuelo}" />
                     <h:outputLabel value="#{bundle.CreatePilotoLabel_peperPerson}" for="peperPerson" />
-                    <h:selectOneMenu id="peperPerson" value="#{pilotoController.selected.peperPerson}" title="#{bundle.CreatePilotoTitle_peperPerson}" required="true" requiredMessage="#{bundle.CreatePilotoRequiredMessage_peperPerson}">
+                    <p:selectOneMenu id="peperPerson" value="#{pilotoController.selected.peperPerson}" title="#{bundle.CreatePilotoTitle_peperPerson}" required="true" requiredMessage="#{bundle.CreatePilotoRequiredMessage_peperPerson}">
                         <f:selectItems value="#{peperPersonController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
+                    </p:selectOneMenu>
                 </h:panelGrid>
                 <br />
                 <p:commandButton action="#{pilotoController.create}" value="#{bundle.CreatePilotoSaveLink}" />

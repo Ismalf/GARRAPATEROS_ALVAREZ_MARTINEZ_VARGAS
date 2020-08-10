@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -14,13 +15,13 @@
             <h:form>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.EditXesisSistemLabel_xesisCodsis}" for="xesisCodsis" />
-                    <h:inputText id="xesisCodsis" value="#{xesisSistemController.selected.xesisCodsis}" title="#{bundle.EditXesisSistemTitle_xesisCodsis}" required="true" requiredMessage="#{bundle.EditXesisSistemRequiredMessage_xesisCodsis}"/>
+                    <p:inputText id="xesisCodsis" value="#{xesisSistemController.selected.xesisCodsis}" title="#{bundle.EditXesisSistemTitle_xesisCodsis}" required="true" requiredMessage="#{bundle.EditXesisSistemRequiredMessage_xesisCodsis}"/>
                     <h:outputLabel value="#{bundle.EditXesisSistemLabel_xesisDescri}" for="xesisDescri" />
-                    <h:inputText id="xesisDescri" value="#{xesisSistemController.selected.xesisDescri}" title="#{bundle.EditXesisSistemTitle_xesisDescri}" required="true" requiredMessage="#{bundle.EditXesisSistemRequiredMessage_xesisDescri}"/>
+                    <p:inputText id="xesisDescri" value="#{xesisSistemController.selected.xesisDescri}" title="#{bundle.EditXesisSistemTitle_xesisDescri}" required="true" requiredMessage="#{bundle.EditXesisSistemRequiredMessage_xesisDescri}"/>
                     <h:outputLabel value="#{bundle.EditXesisSistemLabel_xeestCodigo}" for="xeestCodigo" />
-                    <h:selectOneMenu id="xeestCodigo" value="#{xesisSistemController.selected.xeestCodigo}" title="#{bundle.EditXesisSistemTitle_xeestCodigo}" required="true" requiredMessage="#{bundle.EditXesisSistemRequiredMessage_xeestCodigo}">
+                    <p:selectOneMenu id="xeestCodigo" value="#{xesisSistemController.selected.xeestCodigo}" title="#{bundle.EditXesisSistemTitle_xeestCodigo}" required="true" requiredMessage="#{bundle.EditXesisSistemRequiredMessage_xeestCodigo}">
                         <f:selectItems value="#{xeestEstadoController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
+                    </p:selectOneMenu>
                 </h:panelGrid>
                 <h:commandLink action="#{xesisSistemController.update}" value="#{bundle.EditXesisSistemSaveLink}"/>
                 

@@ -14,19 +14,19 @@
             <h:form>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.EditXerolRolLabel_xeopcCodopc}" for="xeopcCodopc" />
-                    <h:inputText id="xeopcCodopc" value="#{xerolRolController.selected.xeopcCodopc}" title="#{bundle.EditXerolRolTitle_xeopcCodopc}" required="true" requiredMessage="#{bundle.EditXerolRolRequiredMessage_xeopcCodopc}"/>
+                    <p:inputText id="xeopcCodopc" value="#{xerolRolController.selected.xeopcCodopc}" title="#{bundle.EditXerolRolTitle_xeopcCodopc}" required="true" requiredMessage="#{bundle.EditXerolRolRequiredMessage_xeopcCodopc}"/>
                     <h:outputLabel value="#{bundle.EditXerolRolLabel_xerolInserc}" for="xerolInserc" />
-                    <h:inputText id="xerolInserc" value="#{xerolRolController.selected.xerolInserc}" title="#{bundle.EditXerolRolTitle_xerolInserc}" required="true" requiredMessage="#{bundle.EditXerolRolRequiredMessage_xerolInserc}"/>
+                    <p:inputText id="xerolInserc" value="#{xerolRolController.selected.xerolInserc}" title="#{bundle.EditXerolRolTitle_xerolInserc}" required="true" requiredMessage="#{bundle.EditXerolRolRequiredMessage_xerolInserc}"/>
                     <h:outputLabel value="#{bundle.EditXerolRolLabel_xerolActual}" for="xerolActual" />
-                    <h:inputText id="xerolActual" value="#{xerolRolController.selected.xerolActual}" title="#{bundle.EditXerolRolTitle_xerolActual}" required="true" requiredMessage="#{bundle.EditXerolRolRequiredMessage_xerolActual}"/>
+                    <p:inputText id="xerolActual" value="#{xerolRolController.selected.xerolActual}" title="#{bundle.EditXerolRolTitle_xerolActual}" required="true" requiredMessage="#{bundle.EditXerolRolRequiredMessage_xerolActual}"/>
                     <h:outputLabel value="#{bundle.EditXerolRolLabel_xerolElimin}" for="xerolElimin" />
-                    <h:inputText id="xerolElimin" value="#{xerolRolController.selected.xerolElimin}" title="#{bundle.EditXerolRolTitle_xerolElimin}" required="true" requiredMessage="#{bundle.EditXerolRolRequiredMessage_xerolElimin}"/>
+                    <p:inputText id="xerolElimin" value="#{xerolRolController.selected.xerolElimin}" title="#{bundle.EditXerolRolTitle_xerolElimin}" required="true" requiredMessage="#{bundle.EditXerolRolRequiredMessage_xerolElimin}"/>
                     <h:outputLabel value="#{bundle.EditXerolRolLabel_xerolConsul}" for="xerolConsul" />
-                    <h:inputText id="xerolConsul" value="#{xerolRolController.selected.xerolConsul}" title="#{bundle.EditXerolRolTitle_xerolConsul}" required="true" requiredMessage="#{bundle.EditXerolRolRequiredMessage_xerolConsul}"/>
+                    <p:inputText id="xerolConsul" value="#{xerolRolController.selected.xerolConsul}" title="#{bundle.EditXerolRolTitle_xerolConsul}" required="true" requiredMessage="#{bundle.EditXerolRolRequiredMessage_xerolConsul}"/>
                     <h:outputLabel value="#{bundle.EditXerolRolLabel_xeopcOpcion}" for="xeopcOpcion" />
-                    <h:selectOneMenu id="xeopcOpcion" value="#{xerolRolController.selected.xeopcOpcion}" title="#{bundle.EditXerolRolTitle_xeopcOpcion}" required="true" requiredMessage="#{bundle.EditXerolRolRequiredMessage_xeopcOpcion}">
+                    <p:selectOneMenu id="xeopcOpcion" value="#{xerolRolController.selected.xeopcOpcion}" title="#{bundle.EditXerolRolTitle_xeopcOpcion}" required="true" requiredMessage="#{bundle.EditXerolRolRequiredMessage_xeopcOpcion}">
                         <f:selectItems value="#{xeopcOpcionController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
+                    </p:selectOneMenu>
                 </h:panelGrid>
                 <h:commandLink action="#{xerolRolController.update}" value="#{bundle.EditXerolRolSaveLink}"/>
                 <br />

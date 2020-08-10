@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -14,19 +15,19 @@
             <h:form>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.CreateFepagPagoLabel_feticTipopa}" for="feticTipopa" />
-                    <h:inputText id="feticTipopa" value="#{fepagPagoController.selected.feticTipopa}" title="#{bundle.CreateFepagPagoTitle_feticTipopa}" />
+                    <p:inputText id="feticTipopa" value="#{fepagPagoController.selected.feticTipopa}" title="#{bundle.CreateFepagPagoTitle_feticTipopa}" />
                     <h:outputLabel value="#{bundle.CreateFepagPagoLabel_feticFecha}" for="feticFecha" />
-                    <h:inputText id="feticFecha" value="#{fepagPagoController.selected.feticFecha}" title="#{bundle.CreateFepagPagoTitle_feticFecha}" >
+                    <p:inputText id="feticFecha" value="#{fepagPagoController.selected.feticFecha}" title="#{bundle.CreateFepagPagoTitle_feticFecha}" >
                         <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:inputText>
+                    </p:inputText>
                     <h:outputLabel value="#{bundle.CreateFepagPagoLabel_feticCantidad}" for="feticCantidad" />
-                    <h:inputText id="feticCantidad" value="#{fepagPagoController.selected.feticCantidad}" title="#{bundle.CreateFepagPagoTitle_feticCantidad}" />
+                    <p:inputText id="feticCantidad" value="#{fepagPagoController.selected.feticCantidad}" title="#{bundle.CreateFepagPagoTitle_feticCantidad}" />
                     <h:outputLabel value="#{bundle.CreateFepagPagoLabel_feticId}" for="feticId" />
-                    <h:inputText id="feticId" value="#{fepagPagoController.selected.feticId}" title="#{bundle.CreateFepagPagoTitle_feticId}" required="true" requiredMessage="#{bundle.CreateFepagPagoRequiredMessage_feticId}"/>
+                    <p:inputText id="feticId" value="#{fepagPagoController.selected.feticId}" title="#{bundle.CreateFepagPagoTitle_feticId}" required="true" requiredMessage="#{bundle.CreateFepagPagoRequiredMessage_feticId}"/>
                     <h:outputLabel value="#{bundle.CreateFepagPagoLabel_feresCodigo}" for="feresCodigo" />
-                    <h:selectOneMenu id="feresCodigo" value="#{fepagPagoController.selected.feresCodigo}" title="#{bundle.CreateFepagPagoTitle_feresCodigo}" required="true" requiredMessage="#{bundle.CreateFepagPagoRequiredMessage_feresCodigo}">
+                    <p:selectOneMenu id="feresCodigo" value="#{fepagPagoController.selected.feresCodigo}" title="#{bundle.CreateFepagPagoTitle_feresCodigo}" required="true" requiredMessage="#{bundle.CreateFepagPagoRequiredMessage_feresCodigo}">
                         <f:selectItems value="#{feresReservaController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
+                    </p:selectOneMenu>
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{fepagPagoController.create}" value="#{bundle.CreateFepagPagoSaveLink}" />
