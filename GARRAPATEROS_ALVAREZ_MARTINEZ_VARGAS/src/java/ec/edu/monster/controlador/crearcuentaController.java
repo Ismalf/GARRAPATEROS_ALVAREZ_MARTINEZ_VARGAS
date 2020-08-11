@@ -15,6 +15,8 @@ import ec.edu.monster.modelo.XeusuUsuar;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import javax.ejb.EJB;
 
@@ -43,7 +45,11 @@ public class crearcuentaController implements Serializable {
         initFields();
     }
 
-    public void saveData() {
+    public void saveData() throws NoSuchAlgorithmException {
+        MessageDigest sha = MessageDigest.getInstance("MD5");
+        
+        sha.update(usuario.getXeusuPasswo().getBytes());
+        usuario.setXeusuPasswo(new String(sha.digest()));
         personaFacade.create(persona);
         persona.setPeperId(personaFacade.getLastId());
         usuario.setPeperId(persona);
