@@ -88,5 +88,10 @@ public class crearcuentaController implements Serializable {
     public void setPersonaFacade(PeperPersonFacade personaFacade) {
         this.personaFacade = personaFacade;
     }
+    
+    public Boolean validar(){
+        System.out.println("aqui");
+        return true;
+    }
 
 }
