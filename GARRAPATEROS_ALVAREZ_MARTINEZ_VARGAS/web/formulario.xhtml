@@ -32,8 +32,8 @@ and open the template in the editor.
                                              
                   <h:outputLabel value="Tipo"/>
                   <p:selectOneMenu  value="#{saltosBean.tipo}" >
-                    <f:selectItem itemLabel="Tandem" itemValue="Tandem" value=""/>
-                    <f:selectItem itemLabel="Libre" itemValue="Libre" value=""/>
+                    <f:selectItem itemLabel="Tandem" itemValue="Tandem" />
+                    <f:selectItem itemLabel="Libre" itemValue="Libre" />
                     <p:ajax event="change" update="cantidad" listener="#{saltosBean.obtenerDisponibles()}"/>
            
                    </p:selectOneMenu>
