@@ -16,7 +16,6 @@
             <p:tab title="Personas">
                 <h:panelGrid columns="2" cellpadding="10">
                     <p:tabView orientation="left" >
-                        
                         <!--Con una tabla de la base-->
                         <p:tab title="Gestionar Persona" >
                             <h:panelGrid columns="2" cellpadding="10">
@@ -32,7 +31,7 @@
 
                                 <p:dialog header="Creación de persona" widgetVar="dlg1" minHeight="40">
                                     <p:ajax event="open"  listener="#{peperPersonController.prepareCreate}"></p:ajax>
-                                    <p:ajax event="close" update="personcontent"></p:ajax>
+                                    <p:ajax event="close" update="personcontent" oncomplete="#{paracaidistasController.reloadModel()}"></p:ajax>
                                     <ui:include src="peperPerson/Create.xhtml"></ui:include>
                                 </p:dialog>
 
@@ -101,11 +100,9 @@
             <!--COMPLETO-->
             <p:tab title="Vuelos">
                 <h:panelGrid columns="2" cellpadding="10">
-
                     <p:tabView orientation="left" >
                         <p:tab title="Gestionar Aeronaves">
                             <h:panelGrid columns="2" cellpadding="10">
-
                                 <!--INSERTAR ESTO CON UN ID REPRESENTATIVO-->
                                 <p:outputPanel id="avioncontent">
                                     <p:autoUpdate/><!--IMPORTANTE-->
@@ -115,7 +112,6 @@
                                 <h:form>
                                     <p:commandButton value="Crear avioneta" type="button" onclick="PF('dlgavioneta').show();" />
                                 </h:form>
-
                                 <p:dialog header="Creación de avioneta" widgetVar="dlgavioneta" minHeight="40">
                                     <p:ajax event="open" listener="#{avionetaController.prepareCreate}" onerror="console.log('error')"></p:ajax>
                                     <p:ajax event="close" update="avioncontent" onerror="console.log('error')"></p:ajax>
@@ -152,15 +148,15 @@
                                         <ui:include src="salto/List.xhtml"></ui:include>
                                     </p:outputPanel>
                                     <br/>
-                                    <h:form>
+                                    <!--<h:form>
                                         <p:commandButton value="Crear salto" type="button" onclick="PF('dlgsaltos').show();" />
                                     </h:form>
 
                                     <p:dialog header="Creación de saltos" widgetVar="dlgsaltos" minHeight="40">
-                                        <p:ajax event="open" listener="#{saltoController.prepareCreate}"></p:ajax>
+                                        <p:ajax event="open" listener="saltoController.prepareCreate"></p:ajax>
                                         <p:ajax event="close" update="saltoscontent"></p:ajax>
                                         <ui:include src="salto/Create.xhtml"></ui:include>
-                                    </p:dialog>
+                                    </p:dialog>-->
                                 </h:panelGrid>
                             </h:panelGrid>
                         </p:tab>
@@ -173,15 +169,15 @@
                                         <ui:include src="paracaidistas/List.xhtml"></ui:include>
                                     </p:outputPanel>
                                     <br/>
-                                    <h:form>
+                                    <!--<h:form>
                                         <p:commandButton value="Crear paracaidista" type="button" onclick="PF('dlgparacaidistas').show();" />
                                     </h:form>
 
                                     <p:dialog header="Creación de paracaidistas" widgetVar="dlgparacaidistas" minHeight="40">
-                                        <p:ajax event="open" listener="#{paracaidistasController.prepareCreate}"></p:ajax>
+                                        <p:ajax event="open" listener="{paracaidistasController.prepareCreate}"></p:ajax>
                                         <p:ajax event="close" update="paracaidistascontent"></p:ajax>
                                         <ui:include src="paracaidistas/Create.xhtml"></ui:include>
-                                    </p:dialog>
+                                    </p:dialog>-->
                             </h:panelGrid>
                         </p:tab>
                         <p:tab title="Gestionar Pilotos">
@@ -217,14 +213,14 @@
                                     <ui:include src="fepagPago/List.xhtml"></ui:include>
                                 </p:outputPanel>
                                 <br/>
-                                <h:form>
+                                <!--<h:form>
                                     <p:commandButton value="Crear Pago" type="button" onclick="PF('dlgpago').show();" />
                                 </h:form>
                                 <p:dialog header="Creación de Pago" widgetVar="dlgpago" minHeight="40">
-                                    <p:ajax event="open" listener="#{fepagPagoController.prepareCreate}"></p:ajax>
+                                    <p:ajax event="open" listener="fepagPagoController.prepareCreate}"></p:ajax>
                                     <p:ajax event="close" update="pagoscontent"></p:ajax>
                                     <ui:include src="fepagPago/Create.xhtml"></ui:include>
-                                </p:dialog>
+                                </p:dialog>-->
                             </h:panelGrid>
                         </p:tab>
                         <p:tab title="Gestionar Comprobantes">
@@ -235,14 +231,14 @@
                                     <ui:include src="fecomCompro/List.xhtml"></ui:include>
                                 </p:outputPanel>
                                 <br/>
-                                <h:form>
+                                <!--<h:form>
                                     <p:commandButton value="Crear comprobante" type="button" onclick="PF('dlgcomprobante').show();" />
                                 </h:form>
                                 <p:dialog header="Creación de comprobante" widgetVar="dlgcomprobante" minHeight="40">
-                                    <p:ajax event="open" listener="#{fecomComproController.prepareCreate}"></p:ajax>
+                                    <p:ajax event="open" listener="{fecomComproController.prepareCreate}"></p:ajax>
                                     <p:ajax event="close" update="comprobantescontent"></p:ajax>
                                     <ui:include src="fecomCompro/Create.xhtml"></ui:include>
-                                </p:dialog>
+                                </p:dialog>-->
                             </h:panelGrid>
                         </p:tab>
                         <p:tab title="Gestionar Detalles comprobantes">
@@ -253,14 +249,14 @@
                                     <ui:include src="feresReserva/List.xhtml"></ui:include>
                                 </p:outputPanel>
                                 <br/>
-                                <h:form>
+                                <!--<h:form>
                                     <p:commandButton value="Crear detalle" type="button" onclick="PF('dlgdetalle').show();" />
                                 </h:form>
                                 <p:dialog header="Creación de detalle" widgetVar="dlgdetalle" minHeight="40">
-                                    <p:ajax event="open" listener="#{feresReservaController.prepareCreate}"></p:ajax>
+                                    <p:ajax event="open" listener="{feresReservaController.prepareCreate}"></p:ajax>
                                     <p:ajax event="close" update="detallecontent"></p:ajax>
                                     <ui:include src="feresReserva/Create.xhtml"></ui:include>
-                                </p:dialog>
+                                </p:dialog>-->
                             </h:panelGrid>
                         </p:tab>
                         <p:tab title="Gestionar Servicios">
@@ -419,7 +415,6 @@
             </p:tab>
             <p:tab title="Reportes">
                 <h:panelGrid columns="2" cellpadding="10">
-
                     <p>Reportes</p>
                 </h:panelGrid>
             </p:tab>
