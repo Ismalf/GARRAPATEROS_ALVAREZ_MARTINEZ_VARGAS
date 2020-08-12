@@ -6,69 +6,92 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Crear cuenta</title>
+
     </h:head>
     <h:body style="background-color: #333; color:#ccc; display: inline-block;">
         <h1>Nueva cuenta</h1>
-        <h:form style="margin:0 auto;" id="panel">
+        <script type="text/javascript">
+            //<![CDATA[
+            /**
+             * Faces Validator
+             */
+            PrimeFaces.validator['custom.emailValidator'] = {
 
-            <h:panelGrid columns="3" cellpadding="5" >
+                pattern: /\S+@\S+/,
 
+                validate: function (element, value) {
+                    //use element.data() to access validation metadata, in this case there is none.
+                    if (!this.pattern.test(value)) {
+                        throw {
+                            summary: 'Validation Error',
+                            detail: value + ' is not a valid email.'
+                        }
+                    }
+                }
+            };
+
+            /**
+             * Bean validator
+             */
+            PrimeFaces.validator['Email'] = {
+
+                pattern: /\S+@\S+/,
+
+                MESSAGE_ID: 'org.primefaces.examples.validate.email.message',
+
+                validate: function (element, value) {
+                    var vc = PrimeFaces.util.ValidationContext;
+
+                    if (!this.pattern.test(value)) {
+                        var msgStr = element.data('p-email-msg'),
+                                msg = msgStr ? {summary: msgStr, detail: msgStr} : vc.getMessage(this.MESSAGE_ID);
+
+                        throw msg;
+                    }
+                }
+            };
+            //]]>
+        </script>
+        <h:form style="margin:0 auto;">
+            <h:panelGrid columns="2" cellpadding="5" id="panel">
                 <p:outputLabel value="Ingrese su correo" for="correo"/>
-                <p:inputText id="correo" value="#{crearcuentaController.usuario.xeusuEmail}" required="true" validator="#{crearcuentaController.validar()}">
-                    <p:ajax update="msgCorreo" event="blur" />
-                    <f:validateRegex pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" />
+                <p:inputText id="correo" value="#{crearcuentaController.usuario.xeusuEmail}" required="true">
+                    <!--<f:validator validatorId="custom.emailValidator" />-->
+                    <!--<p:clientValidator/>-->
                 </p:inputText>
-                <p:message for="correo" id="msgCorreo" display="icon"/>
+                <p:message for="correo" display="icon" />
+                <h:outputText value="#{crearcuentaController.usuario.xeusuEmail}" />
 
                 <p:outputLabel value="Ingrese su contraseña " for="password"/>
                 <p:password id="password" feedback="true" value="#{crearcuentaController.usuario.xeusuPasswo}" required="true">
-                    <p:ajax update="msgPass" event="blur" />
-                    <f:validateLength minimum="6" />
+                    <f:validateLength minimum="2" maximum="5" />
+                    <p:clientValidator />
                 </p:password>
-                <p:message for="password" id="msgPass" display="icon" />
+                <p:message for="password" display="icon" />
+                <h:outputText value="#{crearcuentaController.usuario.xeusuPasswo}" />
 
                 <p:outputLabel value="Ingrese su nombre" for="nombre"/>
-                <p:inputText id="nombre" value="#{crearcuentaController.persona.peperNombre}" required="true">
-                    <p:ajax update="msgNombre" event="blur" />
-                </p:inputText>
-                <p:message for="nombre" id="msgNombre" display="icon" />
+                <p:inputText id="nombre" value="#{crearcuentaController.persona.peperNombre}" required="true"/>
 
                 <p:outputLabel value="Ingrese su apellido" for="apellido"/>
-                <p:inputText id="apellido" value="#{crearcuentaController.persona.peperApelli}" required="true">
-                    <p:ajax update="msgApll" event="blur" />
-                </p:inputText>
-                <p:message for="apellido" id="msgApll" display="icon" />
-
+                <p:inputText id="apellido" value="#{crearcuentaController.persona.peperApelli}" required="true"/>
+                
                 <p:outputLabel for="@next" value="Género:" />
-                <p:selectOneMenu id="sex" style="width:125px" value="#{crearcuentaController.persona.pesexCodigo}" required="true">
-                    <f:selectItems value="#{pesexSexoController.itemsAvailableSelectOne}" var="s" itemLabel="#{s.label}" itemValue="#{s.label}"/>
-                    <p:ajax update="msgSex" event="blur" />
+                <p:selectOneMenu id="console" style="width:125px" value="#{crearcuentaController.persona.pesexCodigo}" required="true">
+                    <f:selectItems value="#{pesexSexoController.itemsAvailableSelectOne}" var="s" itemLabel="#{s.description}" itemValue="#{s.label}"/>
                 </p:selectOneMenu>
-                <p:message for="sex" id="msgSex" display="icon" />
-
+                
                 <p:outputLabel value="Ingrese su cédula" for="cedula" />
-                <p:inputText id="cedula" required="true" value="#{crearcuentaController.persona.peperCedula}" validator="CIDValidator">
-                    <p:ajax update="msgCed" event="blur" />
-                </p:inputText>
-                <p:message for="cedula" id="msgCed" display="icon" />
+                <p:inputText id="cedula" required="true" value="#{crearcuentaController.persona.peperCedula}"/>
 
                 <p:outputLabel for="fechanacimiento" value="Ingrese su fecha de nacimiento" />
-                <p:calendar showOn="button" id="fechanacimiento" yearRange="c-100:c" navigator="true" required="true" value="#{crearcuentaController.persona.peperNacimi}">
-                    <p:ajax update="msgFN" event="blur" />
-                </p:calendar>
-                <p:message for="fechanacimiento" id="msgFN" display="icon" />
+                <p:datePicker id="fechanacimiento" view="month" required="true" showIcon="true" yearRange="1900:2002" yearNavigator="true" value="#{crearcuentaController.persona.peperNacimi}" />
 
                 <p:outputLabel value="Ingrese su teléfono" for="telf"/>
-                <p:inputText id="telf" required="true" value="#{crearcuentaController.persona.peperTelf}">
-                    <p:ajax update="msgTelf" event="blur" />
-                </p:inputText>
-                <p:message for="telf" id="msgTelf" display="icon" />
+                <p:inputText id="telf" required="true" value="#{crearcuentaController.persona.peperTelf}"/>
 
                 <p:outputLabel value="Ingrese su dirección" for="dir"/>
-                <p:inputText id="dir" required="true" value="#{crearcuentaController.persona.peperDir}">
-                    <p:ajax update="msgDir" event="blur" />
-                </p:inputText>
-                <p:message for="dir" id="msgDir" display="icon" />
+                <p:inputText id="dir" required="true" value="#{crearcuentaController.persona.peperDir}"/>
 
                 <p:commandButton ajax="false" value="Registrarse" validateClient="true" update="panel" action="#{crearcuentaController.saveData()}"/>
             </h:panelGrid>

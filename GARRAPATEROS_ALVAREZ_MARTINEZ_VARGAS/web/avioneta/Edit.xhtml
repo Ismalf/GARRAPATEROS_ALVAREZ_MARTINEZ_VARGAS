@@ -14,6 +14,8 @@
          
             <h:form>
                 <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditAvionetaLabel_idAvioneta}" for="idAvioneta" />
+                    <p:inputText id="idAvioneta" value="#{avionetaController.selected.idAvioneta}" title="#{bundle.EditAvionetaTitle_idAvioneta}" required="true" requiredMessage="#{bundle.EditAvionetaRequiredMessage_idAvioneta}"/>
                     <h:outputLabel value="#{bundle.EditAvionetaLabel_matricula}" for="matricula" />
                     <p:inputText id="matricula" value="#{avionetaController.selected.matricula}" title="#{bundle.EditAvionetaTitle_matricula}" />
                     <h:outputLabel value="#{bundle.EditAvionetaLabel_modelo}" for="modelo" />
