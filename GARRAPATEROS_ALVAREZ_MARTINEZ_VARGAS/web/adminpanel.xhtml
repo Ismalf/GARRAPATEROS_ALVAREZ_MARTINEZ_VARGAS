@@ -8,13 +8,14 @@
     <h:head>
         <title>Facelet Title</title>
     </h:head>
-    <h:body style="background-color: #333;">
+    <h:body style="background-color: #444; display: inline-block; width: 90%;">
         <p:ajaxExceptionHandler onexception=""/>
-        <p:tabView dynamic="true" effect="fade" cache="false" >
+        <img src="images/garrapateros.png" alt="IMG" style="margin-left: auto; display: block;" width="25%"/>
+        <p:tabView dynamic="true" effect="fade" cache="false" style="width: 100%;">
             <!--Está relacionado con un subsistema-->
             <!--COMPLETO-->
             <p:tab title="Personas">
-                <h:panelGrid columns="2" cellpadding="10">
+                <h:panelGrid columns="2" cellpadding="10" >
                     <p:tabView  >
                         <!--Con una tabla de la base-->
                         <p:tab title="Gestionar Persona" >
@@ -163,40 +164,40 @@
                         <p:tab title="Gestionar Paracaidistas">
                             <h:panelGrid columns="2" cellpadding="10">
 
-                                
-                                    <p:outputPanel id="paracaidistascontent">
-                                        <p:autoUpdate/><!--IMPORTANTE-->
-                                        <ui:include src="paracaidistas/List.xhtml"></ui:include>
-                                    </p:outputPanel>
-                                    <br/>
-                                    <!--<h:form>
-                                        <p:commandButton value="Crear paracaidista" type="button" onclick="PF('dlgparacaidistas').show();" />
-                                    </h:form>
 
-                                    <p:dialog header="Creación de paracaidistas" widgetVar="dlgparacaidistas" minHeight="40">
-                                        <p:ajax event="open" listener="{paracaidistasController.prepareCreate}"></p:ajax>
-                                        <p:ajax event="close" update="paracaidistascontent"></p:ajax>
-                                        <ui:include src="paracaidistas/Create.xhtml"></ui:include>
-                                    </p:dialog>-->
+                                <p:outputPanel id="paracaidistascontent">
+                                    <p:autoUpdate/><!--IMPORTANTE-->
+                                    <ui:include src="paracaidistas/List.xhtml"></ui:include>
+                                </p:outputPanel>
+                                <br/>
+                                <!--<h:form>
+                                    <p:commandButton value="Crear paracaidista" type="button" onclick="PF('dlgparacaidistas').show();" />
+                                </h:form>
+
+                                <p:dialog header="Creación de paracaidistas" widgetVar="dlgparacaidistas" minHeight="40">
+                                    <p:ajax event="open" listener="{paracaidistasController.prepareCreate}"></p:ajax>
+                                    <p:ajax event="close" update="paracaidistascontent"></p:ajax>
+                                    <ui:include src="paracaidistas/Create.xhtml"></ui:include>
+                                </p:dialog>-->
                             </h:panelGrid>
                         </p:tab>
                         <p:tab title="Gestionar Pilotos">
                             <h:panelGrid columns="2" cellpadding="10">
 
-                                   <p:outputPanel id="pilotoscontent">
-                                        <p:autoUpdate/><!--IMPORTANTE-->
-                                        <ui:include src="piloto/List.xhtml"></ui:include>
-                                    </p:outputPanel>
-                                    <br/>
-                                    <h:form>
-                                        <p:commandButton value="Crear pilotos" type="button" onclick="PF('dlgpilotos').show();" />
-                                    </h:form>
+                                <p:outputPanel id="pilotoscontent">
+                                    <p:autoUpdate/><!--IMPORTANTE-->
+                                    <ui:include src="piloto/List.xhtml"></ui:include>
+                                </p:outputPanel>
+                                <br/>
+                                <h:form>
+                                    <p:commandButton value="Crear pilotos" type="button" onclick="PF('dlgpilotos').show();" />
+                                </h:form>
 
-                                    <p:dialog header="Creación de pilotos" widgetVar="dlgpilotos" minHeight="40">
-                                        <p:ajax event="open" listener="#{pilotoController.prepareCreate}"></p:ajax>
-                                        <p:ajax event="close" update="pilotoscontent"></p:ajax>
-                                        <ui:include src="piloto/Create.xhtml"></ui:include>
-                                    </p:dialog>
+                                <p:dialog header="Creación de pilotos" widgetVar="dlgpilotos" minHeight="40">
+                                    <p:ajax event="open" listener="#{pilotoController.prepareCreate}"></p:ajax>
+                                    <p:ajax event="close" update="pilotoscontent"></p:ajax>
+                                    <ui:include src="piloto/Create.xhtml"></ui:include>
+                                </p:dialog>
                             </h:panelGrid>
                         </p:tab>
                     </p:tabView>
@@ -413,10 +414,11 @@
                     </p:tabView>
                 </h:panelGrid>
             </p:tab>
-            <p:tab title="Reportes">
-                <h:panelGrid columns="2" cellpadding="10">
-                    <p>Reportes</p>
-                </h:panelGrid>
+            <p:tab title="Reportes" >
+                <p:outputPanel  id="reportescontent" style="width: 100%; align-items: center;">
+                    <p:autoUpdate/><!--IMPORTANTE-->
+                    <ui:include src="Reportes.xhtml"></ui:include>
+                </p:outputPanel>
             </p:tab>
         </p:tabView>
 

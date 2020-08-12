@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body style="display: inline-block; align-self: center;">
+        <p>Reportes</p>
+        <h:panelGrid columns="2" cellspacing="10" style="width:100%; align-items: center;">
+            <p:outputLabel for="inline" value="Escoga la fecha del reporte" />
+            <p:datePicker id="inline" value="#{reportesController.reportDate}" inline="true" />
+        </h:panelGrid>
+        <h:panelGrid columns="2" cellspacing="10" style="width:100%">
+            <p:chart type="line" model="#{reportesController.animatedModel1}" style="width:400px;" />
+            <p:chart type="bar" model="#{reportesController.animatedModel2}" style="width:400px;" />
+        </h:panelGrid>
+    </h:body>
+</html>
+
