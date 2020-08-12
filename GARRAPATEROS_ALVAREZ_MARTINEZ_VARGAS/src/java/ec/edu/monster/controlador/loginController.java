@@ -14,6 +14,7 @@ import java.security.NoSuchAlgorithmException;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 /**
@@ -49,6 +50,8 @@ public class loginController implements Serializable {
         sha.update(usuario.getXeusuPasswo().getBytes());
         if (usuarioFacade.doLogin(usuario.getXeusuEmail(), new String(sha.digest()))) {
             FacesContext.getCurrentInstance().getExternalContext().redirect("/GARRAPATEROS_ALVAREZ_MARTINEZ_VARGAS/faces/adminpanel.xhtml");
+        }else{
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Fatal!", "Credenciales incorrectas"));
         }
     }
 }
