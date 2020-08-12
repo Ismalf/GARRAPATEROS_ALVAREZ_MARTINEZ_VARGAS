@@ -30,6 +30,7 @@ and open the template in the editor.
                    <p:outputLabel value="Hora Salida"/>
                    <h:outputText id="pi" value="#{vuelosBean.vueloSelected.horaSalida}"/>  
                                              
+<<<<<<< HEAD
                    <h:outputLabel value="Tipo"/>
                     <p:selectOneMenu  value="#{saltosBean.tipo}" >
                         <f:selectItem itemLabel="Tandem" itemValue="Tandem" />
@@ -44,6 +45,19 @@ and open the template in the editor.
                          <p:ajax update="msgLastname" event="keyup" />
                     </p:inputNumber>
                       <p:message for="cantidad" id="msgLastname" display="icon" />
+=======
+                  <h:outputLabel value="Tipo"/>
+                  <p:selectOneMenu  value="#{saltosBean.tipo}" >
+                    <f:selectItem itemLabel="Tandem" itemValue="Tandem" />
+                    <f:selectItem itemLabel="Libre" itemValue="Libre" />
+                    <p:ajax event="change" update="cantidad" listener="#{saltosBean.obtenerDisponibles()}"/>
+           
+                   </p:selectOneMenu>
+                  <h:outputLabel  for="cantidad" value="Cantidad"/>
+                  <p:inputNumber  id="cantidad" value="#{saltosBean.acumVuelos}" maxValue="#{saltosBean.maxVuelos}" >                 
+                      <f:validateDoubleRange  minimum="1" maximum="#{saltosBean.maxVuelos}" />
+                  </p:inputNumber>
+>>>>>>> 05fbdc32c7e53ed3fa71c864a0248da122a0b1db
           
                   
                   <h:outputLabel  for="Camarógrafo" value="Camarógrafo"/>

@@ -3,9 +3,15 @@ package ec.edu.monster.controlador;
 import ec.edu.monster.modelo.PeperPerson;
 import ec.edu.monster.controlador.util.JsfUtil;
 import ec.edu.monster.controlador.util.PaginationHelper;
+import ec.edu.monster.facades.ParacaidistasFacade;
 import ec.edu.monster.facades.PeperPersonFacade;
+import ec.edu.monster.facades.XeusuUsuarFacade;
+import ec.edu.monster.modelo.Paracaidistas;
+import ec.edu.monster.modelo.XeperPerfil;
+import ec.edu.monster.modelo.XeusuUsuar;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.scene.control.Alert;
 import javax.annotation.PostConstruct;
@@ -32,8 +38,13 @@ public class PeperPersonController implements Serializable {
     private PeperPerson current;
     private DataModel items = null;
     private int createRequest = 0;
+    
+    private Paracaidistas paracaidista;
     @EJB
     private ec.edu.monster.facades.PeperPersonFacade ejbFacade;
+    
+    @EJB
+    private ParacaidistasFacade paracaidistaFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
@@ -120,6 +131,7 @@ public class PeperPersonController implements Serializable {
         current = new PeperPerson();
         selectedItemIndex = -1;
         createRequest = 0;
+        paracaidista = new Paracaidistas();
     }
 
     public void create() {
@@ -132,7 +144,11 @@ public class PeperPersonController implements Serializable {
 
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("PeperPersonCreated"));
-            current = null;
+            System.out.println(getFacade().getLastId());
+            paracaidista.setPeperId(getFacade().getLastId());
+            paracaidistaFacade.create(paracaidista);
+            current = new PeperPerson();
+            paracaidista = new Paracaidistas();
             createRequest++;
             recreateModel();
             getItems();

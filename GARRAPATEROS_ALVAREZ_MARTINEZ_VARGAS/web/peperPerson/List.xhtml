@@ -20,7 +20,7 @@
                 <h:commandLink action="#{peperPersonController.previous}" value="#{bundle.Previous} #{peperPersonController.pagination.pageSize}" rendered="#{peperPersonController.pagination.hasPreviousPage}"/>&nbsp;
                 <h:commandLink action="#{peperPersonController.next}" value="#{bundle.Next} #{peperPersonController.pagination.pageSize}" rendered="#{peperPersonController.pagination.hasNextPage}"/>&nbsp;
                 <p:dataTable value="#{peperPersonController.items}" var="item" rowIndexVar="rowId"><!--COPIAR EN LAS TABLAS DE LIST-->
-                    <p:autoUpdate/>
+                    
                     <p:column>
                         <f:facet name="header">
                             <h:outputText value="#{bundle.ListPeperPersonTitle_peperId}"/>

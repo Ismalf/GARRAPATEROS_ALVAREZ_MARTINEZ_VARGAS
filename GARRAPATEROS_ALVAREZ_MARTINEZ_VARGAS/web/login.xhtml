@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h1>Login</h1>
+        <h:form style="margin:0 auto;" id="loginpanel">
+            <p:messages id="messages" showDetail="true" closable="true">
+                <p:autoUpdate />
+            </p:messages>
+            <h:panelGrid columns="3" cellpadding="5" >
+
+                <p:outputLabel value="Ingrese su correo" for="correo"/>
+                <p:inputText id="correo" value="#{loginController.usuario.xeusuEmail}" required="true" >
+                    <p:ajax update="msgCorreo" event="blur" />
+                    <f:validateRegex pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" />
+                </p:inputText>
+                <p:message for="correo" id="msgCorreo" display="icon"/>
+
+                <p:outputLabel value="Ingrese su contraseña " for="password"/>
+                <p:password id="password" feedback="true" value="#{loginController.usuario.xeusuPasswo}" required="true">
+                    <p:ajax update="msgPass" event="blur" />
+                    <f:validateLength minimum="6" />
+                </p:password>
+                <p:message for="password" id="msgPass" display="icon" />
+
+                <p:commandButton ajax="false" value="Registrarse" validateClient="true" update="panel" action="#{loginController.doLogin()}"/>
+            </h:panelGrid>
+        </h:form>
+    </h:body>
+</html>
+
