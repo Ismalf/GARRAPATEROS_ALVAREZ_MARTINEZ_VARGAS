@@ -9,142 +9,95 @@ and open the template in the editor.
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-   <h:head>
+    <h:head>
         <title>Reservas</title>
     </h:head>
     <h:body style="background-color: #333; color:#ccc; display: inline-block;">
 
-    <h:panelGrid columns="2" cellpadding="5" id="panel">
-       <img src="images/garrapateros.png" alt="IMG"  width="1000" height="400"/>
-       
-        <h:form style="margin:0 auto;">
-            <h:panelGrid columns="2" cellpadding="5" id="panel">
-                <h:outputLabel value="Vuelo"/>
-                <p:selectOneMenu  value="#{vuelosBean.vueloSelected.idVuelo}">
-                    <f:selectItems  value="#{vuelosBean.info}"  var="dat" itemValue="#{dat.idVuelo}" itemLabel="#{dat.idVuelo}" />
-              
-                    <p:ajax event="change" update="pr,pi" listener="#{vuelosBean.cargarDatos()}"/>
-                </p:selectOneMenu>
-                 <p:outputLabel value="Fecha vuelo"/>
-                 <h:outputText id="pr" value="#{vuelosBean.vueloSelected.fechaVuelo}" />
-                   <p:outputLabel value="Hora Salida"/>
-                   <h:outputText id="pi" value="#{vuelosBean.vueloSelected.horaSalida}"/>  
-                                             
-<<<<<<< HEAD
-                   <h:outputLabel value="Tipo"/>
+        <h:panelGrid columns="2" cellpadding="5" id="panel">
+            <img src="images/garrapateros.png" alt="IMG"  width="1000" height="400"/>
+
+            <h:form style="margin:0 auto;">
+                <h:panelGrid columns="2" cellpadding="5" id="panel">
+                    <h:outputLabel value="Vuelo"/>
+                    <p:selectOneMenu  value="#{vuelosBean.vueloSelected.idVuelo}">
+                        <f:selectItems  value="#{vuelosBean.info}"  var="dat" itemValue="#{dat.idVuelo}" itemLabel="#{dat.idVuelo}" />
+
+                        <p:ajax event="change" update="pr,pi" listener="#{vuelosBean.cargarDatos()}"/>
+                    </p:selectOneMenu>
+                    <p:outputLabel value="Fecha vuelo"/>
+                    <h:outputText id="pr" value="#{vuelosBean.vueloSelected.fechaVuelo}" />
+                    <p:outputLabel value="Hora Salida"/>
+                    <h:outputText id="pi" value="#{vuelosBean.vueloSelected.horaSalida}"/>  
+
+                    <h:outputLabel value="Tipo"/>
                     <p:selectOneMenu  value="#{saltosBean.tipo}" >
                         <f:selectItem itemLabel="Tandem" itemValue="Tandem" />
                         <f:selectItem itemLabel="Libre" itemValue="Libre" />
                     <!--    <p:ajax event="change" update="cantidad" listener="#{saltosBean.obtenerDisponibles()}"/>-->
                         <p:ajax event="change" update="@this" />
                     </p:selectOneMenu>
-                    
-                      <h:outputLabel  for="cantidad" value="Cantidad"/>
+
+                    <h:outputLabel  for="cantidad" value="Cantidad"/>
                     <p:inputNumber  id="cantidad"  value="#{saltosBean.acumVuelos}" >                 
-                       <f:validateDoubleRange minimum="1" maximum="8" />
-                         <p:ajax update="msgLastname" event="keyup" />
+                        <f:validateDoubleRange minimum="1" maximum="8" />
+                        <p:ajax update="msgLastname" event="keyup" />
                     </p:inputNumber>
-                      <p:message for="cantidad" id="msgLastname" display="icon" />
-=======
-                  <h:outputLabel value="Tipo"/>
-                  <p:selectOneMenu  value="#{saltosBean.tipo}" >
-                    <f:selectItem itemLabel="Tandem" itemValue="Tandem" />
-                    <f:selectItem itemLabel="Libre" itemValue="Libre" />
-                    <p:ajax event="change" update="cantidad" listener="#{saltosBean.obtenerDisponibles()}"/>
-           
-                   </p:selectOneMenu>
-                  <h:outputLabel  for="cantidad" value="Cantidad"/>
-                  <p:inputNumber  id="cantidad" value="#{saltosBean.acumVuelos}" maxValue="#{saltosBean.maxVuelos}" >                 
-                      <f:validateDoubleRange  minimum="1" maximum="#{saltosBean.maxVuelos}" />
-                  </p:inputNumber>
->>>>>>> 05fbdc32c7e53ed3fa71c864a0248da122a0b1db
-          
-                  
-                  <h:outputLabel  for="Camarógrafo" value="Camarógrafo"/>
+                    <p:message for="cantidad" id="msgLastname" display="icon" />
+
+
+                    <h:outputLabel  for="Camarógrafo" value="Camarógrafo"/>
                     <p:inputNumber  id="Camarógrafo" value="#{saltoController.current}" maxValue="1" >                 
                         <f:validateDoubleRange  minimum="0" maximum="1" />
-                    </p:inputNumber>
-                 
-                  
-                   </h:panelGrid>
-          <h:commandButton action="#{saltosBean.guardarSaltos(vuelosBean.vueloSelected.idVuelo)}" 
+                    </p:inputNumber>                  
+                </h:panelGrid>
+                <h:commandButton action="#{saltosBean.guardarSaltos(vuelosBean.vueloSelected.idVuelo)}" 
                                  value="Añadir">
                     <f:ajax execute="tabla" />
                 </h:commandButton>
-
-                   </h:form>
-         </h:panelGrid>
-             
-
-
-            <p:dataTable id="tabla" value="#{saltosBean.listaSaltos}" var="saltos"  >
+            </h:form>
+        </h:panelGrid>             
+        <p:dataTable id="tabla" value="#{saltosBean.listaSaltos}" var="saltos" editable="true" >
             <p:autoUpdate/>
-
             <p:column >
                 <f:facet name="header">
-
-
                     <h:outputText value="ID Vuelo"/>
                 </f:facet>
                 <h:outputText value="#{saltos.idVuelo}" />
             </p:column>
-
             <p:column >
                 <f:facet name="header">
-
-
                     <h:outputText value="Código de Reserva"/>
                 </f:facet>
                 <h:outputText value="#{saltos.feresCodigo}" />
             </p:column>
-
             <p:column >
                 <f:facet name="header">
-
-
                     <h:outputText value="ID Piloto"/>
                 </f:facet>
                 <h:outputText value="#{saltos.peperId}" />
             </p:column>
-
-
             <p:column >
                 <f:facet name="header">
-
-
                     <h:outputText value="Salto escogido"/>
                 </f:facet>
                 <h:outputText value="#{saltos.tipoSalto}" />
             </p:column>
-
             <p:column >
                 <f:facet name="header">
-
-
                     <h:outputText value="Valor a pagar"/>
                 </f:facet>
                 <h:outputText value="#{saltos.montoSalto}" />
             </p:column>
-
-
             <p:column >
                 <f:facet name="header">
-
-
                     <h:outputText value="Descuento "/>
                 </f:facet>
                 <h:outputText value="#{saltos.descuentoSalto}" />
             </p:column>
-
-
-
-        </p:dataTable>
-
-
-              
-               
-         
-       
-   
+            <p:column style="width:32px">
+                <p:rowEditor/>
+            </p:column>
+        </p:dataTable>   
     </h:body>
 </html>

@@ -12,33 +12,70 @@
         <h:outputText value="#{bundle.CreatePeperPersonTitle}"></h:outputText>
     </ui:define>
     <ui:define name="body">
-        
+
         <h:form>
-            <h:panelGrid columns="2">
-                
+            <h:panelGrid columns="3">
+
                 <h:outputLabel value="#{bundle.CreatePeperPersonLabel_peperNombre}" for="peperNombre" />
-                <p:inputText id="peperNombre" value="#{peperPersonController.selected.peperNombre}" title="#{bundle.CreatePeperPersonTitle_peperNombre}" required="true" requiredMessage="#{bundle.CreatePeperPersonRequiredMessage_peperNombre}"/>
-                <h:outputLabel value="#{bundle.CreatePeperPersonLabel_peperApelli}" for="peperApelli" />
-                <p:inputText id="peperApelli" value="#{peperPersonController.selected.peperApelli}" title="#{bundle.CreatePeperPersonTitle_peperApelli}" required="true" requiredMessage="#{bundle.CreatePeperPersonRequiredMessage_peperApelli}"/>
-                <h:outputLabel value="#{bundle.CreatePeperPersonLabel_peperCedula}" for="peperCedula" />
-                <p:inputText id="peperCedula" value="#{peperPersonController.selected.peperCedula}" title="#{bundle.CreatePeperPersonTitle_peperCedula}" required="true" requiredMessage="#{bundle.CreatePeperPersonRequiredMessage_peperCedula}"/>
-                <h:outputLabel value="#{bundle.CreatePeperPersonLabel_peperNacimi}" for="peperNacimi" />
-                <p:inputText id="peperNacimi" value="#{peperPersonController.selected.peperNacimi}" title="#{bundle.CreatePeperPersonTitle_peperNacimi}" >
-                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                <p:inputText id="peperNombre" value="#{peperPersonController.selected.peperNombre}"  
+                             title="#{bundle.CreatePeperPersonTitle_peperNombre}" 
+                             required="true" requiredMessage="#{bundle.CreatePeperPersonRequiredMessage_peperNombre}">
+                    <p:ajax update="msgNombre" event="blur" />
                 </p:inputText>
+                <p:message for="peperNombre" id="msgNombre" display="icon"/>
+
+                <h:outputLabel value="#{bundle.CreatePeperPersonLabel_peperApelli}" for="peperApelli" />
+                <p:inputText id="peperApelli" value="#{peperPersonController.selected.peperApelli}" 
+                             
+                             title="#{bundle.CreatePeperPersonTitle_peperApelli}" 
+                             required="true" requiredMessage="#{bundle.CreatePeperPersonRequiredMessage_peperApelli}">
+                    <p:ajax update="msgApellido" event="blur" />
+                </p:inputText>
+                <p:message for="peperApelli" id="msgApellido" display="icon"/>
+
+                <h:outputLabel value="#{bundle.CreatePeperPersonLabel_peperCedula}" for="peperCedula" />
+                <p:inputText id="peperCedula" value="#{peperPersonController.selected.peperCedula}" 
+                              title="#{bundle.CreatePeperPersonTitle_peperCedula}" 
+                             required="true" requiredMessage="#{bundle.CreatePeperPersonRequiredMessage_peperCedula}"
+                             validator="CIDValidator">
+                    <p:ajax update="msgCed" event="blur" />
+                </p:inputText>
+                <p:message for="peperCedula" id="msgCed" display="icon"/>
+
+                <p:outputLabel for="fechanacimiento" value="Ingrese su fecha de nacimiento" />
+                <p:calendar showOn="button" id="fechanacimiento" yearRange="c-100:c" navigator="true" 
+                            required="true" value="#{peperPersonController.selected.peperNacimi}">
+                    <p:ajax update="msgFN" event="blur" />
+                </p:calendar>
+                <p:message for="fechanacimiento" id="msgFN" display="icon"/>
+
                 <h:outputLabel value="#{bundle.CreatePeperPersonLabel_peperTelf}" for="peperTelf" />
-                <p:inputText id="peperTelf" value="#{peperPersonController.selected.peperTelf}" title="#{bundle.CreatePeperPersonTitle_peperTelf}" />
+                <p:inputText id="peperTelf" value="#{peperPersonController.selected.peperTelf}" 
+                             required="true" title="#{bundle.CreatePeperPersonTitle_peperTelf}" >
+                    <p:ajax update="msgCorreo" event="blur" />
+                </p:inputText>
+                <p:message for="peperTelf" id="msgCorreo" display="icon"/>
+
                 <h:outputLabel value="#{bundle.CreatePeperPersonLabel_peperDir}" for="peperDir" />
-                <p:inputText id="peperDir" value="#{peperPersonController.selected.peperDir}" title="#{bundle.CreatePeperPersonTitle_peperDir}" />
+                <p:inputText id="peperDir" value="#{peperPersonController.selected.peperDir}" 
+                             required="true" title="#{bundle.CreatePeperPersonTitle_peperDir}" >
+                    <p:ajax update="msgDir" event="blur" />
+                </p:inputText>
+                <p:message for="peperDir" id="msgDir" display="icon"/>
+
                 <h:outputLabel value="#{bundle.CreatePeperPersonLabel_pesexCodigo}" for="pesexCodigo" />
-                <p:selectOneMenu id="pesexCodigo" value="#{peperPersonController.selected.pesexCodigo}" title="#{bundle.CreatePeperPersonTitle_pesexCodigo}" required="true" requiredMessage="#{bundle.CreatePeperPersonRequiredMessage_pesexCodigo}">
+                <p:selectOneMenu id="pesexCodigo" value="#{peperPersonController.selected.pesexCodigo}" 
+                                 required="true" title="#{bundle.CreatePeperPersonTitle_pesexCodigo}" 
+                                 requiredMessage="#{bundle.CreatePeperPersonRequiredMessage_pesexCodigo}">
+                    <p:ajax update="msgSex" event="blur" />
                     <f:selectItems value="#{pesexSexoController.itemsAvailableSelectOne}"/>
                 </p:selectOneMenu>
-                
+                <p:message for="pesexCodigo" id="msgSex" display="icon"/>
+
             </h:panelGrid>
             <br />
             <p:commandButton action="#{peperPersonController.create}" value="#{bundle.CreatePeperPersonSaveLink}" />
-            
+
         </h:form>
     </ui:define>
 </ui:composition>
