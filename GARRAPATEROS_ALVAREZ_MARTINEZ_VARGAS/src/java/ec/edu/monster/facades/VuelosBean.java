@@ -2,12 +2,14 @@ package ec.edu.monster.facades;
 
 import ec.edu.monster.modelo.Salto;
 import ec.edu.monster.modelo.Vuelos;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.event.AjaxBehaviorEvent;
 
 /**
@@ -15,8 +17,8 @@ import javax.faces.event.AjaxBehaviorEvent;
  * @author sebas
  */
 @Named(value = "vuelosBean")
-@RequestScoped
-public class VuelosBean {
+@SessionScoped
+public class VuelosBean implements Serializable{
 
     /**
      * Creates a new instance of VuelosBean
@@ -26,7 +28,7 @@ public class VuelosBean {
     private VuelosFacade vueFacade;
     private SaltoFacade salFacade;
     private List<Vuelos> info;
-    private int acumVuelos=0;
+    private int acumVuelos;
     private List<Object[]> infoSaltos;
     private int n;
     private int acumTandem;
@@ -100,6 +102,7 @@ public class VuelosBean {
        n=vueloSelected.getIdVuelo();
        vueloSelected=info.get(n-1);
         System.out.println("VS" +vueloSelected);
+        System.out.println("VS1" +vueloSelected.getIdVuelo());
      //System.out.println("ID" +n);
        //System.out.println("VALOR: " +salFacade.infoSaltos(vueloSelected.getIdVuelo()));
        //salFacade.infoSaltos(vueloSelected.getIdVuelo());     

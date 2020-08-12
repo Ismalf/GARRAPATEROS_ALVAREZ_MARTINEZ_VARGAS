@@ -1,26 +1,37 @@
 package ec.edu.monster.facades;
 
+import ec.edu.monster.modelo.FeresReserva;
+import ec.edu.monster.modelo.Paracaidistas;
 import ec.edu.monster.modelo.Salto;
 import ec.edu.monster.modelo.Vuelos;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ManagedProperty;
 
 /**
  *
  * @author sebas
  */
 @Named(value = "saltosBean")
-@RequestScoped
-public class SaltosBean {
+@SessionScoped
+public class SaltosBean implements Serializable  {
+    
+    @ManagedProperty("#{VuelosBean}")
+    private VuelosBean beanV;
+   
+    
     
     @EJB
     private SaltoFacade salFacade;
-    private int acumVuelos=0;
+    private int acumVuelos;
     private List<Object[]> infoSaltos;
+    private List<Salto> listaSaltos;
     List<Integer> list = new ArrayList<Integer>();
     private int n;
     private int acumTandem;
@@ -30,11 +41,14 @@ public class SaltosBean {
     private String tipo;
     private Salto saltosSelected;
     private VuelosBean vb;
+
     /**
      * Creates a new instance of SaltosBean
      */
     public SaltosBean() {
     }
+    
+    
 
     public int getAcumTotal() {
         return acumTotal;
@@ -43,9 +57,49 @@ public class SaltosBean {
     public void setAcumTotal(int acumTotal) {
         this.acumTotal = acumTotal;
     }
+
+    public List<Salto> getListaSaltos() {
+        return listaSaltos;
+    }
+
+    public void setListaSaltos(List<Salto> listaSaltos) {
+        this.listaSaltos = listaSaltos;
+    }
+
+    public VuelosBean getBeanV() {
+        return beanV;
+    }
+
+    public void setBeanV(VuelosBean beanV) {
+        this.beanV = beanV;
+    }
     
     
     
+    
+    public void guardarSaltos(int id)
+    {
+       
+        //System.out.println("GUARDARRR\n");
+        //System.out.println("ID:\n " +id);
+        //System.out.println("ACUM" +acumVuelos);
+//        System.out.println("ACUM 11" +beanV.getAcumVuelos());
+         Vuelos objVuelos = new Vuelos();
+        objVuelos.setIdVuelo(id);
+         //System.out.println("ID:\n " +id);
+      for(int i=0;i<acumVuelos;i++)
+        {
+            Salto objSaltos = new Salto();
+            objSaltos.setIdVuelo(objVuelos);
+            objSaltos.setTipoSalto(tipo);
+            objSaltos.setFeresCodigo(new FeresReserva());
+            objSaltos.setPeperId(new Paracaidistas());
+            objSaltos.setDescuentoSalto(0);
+            objSaltos.setMontoSalto(308.00f);
+            listaSaltos.add(objSaltos);
+            //System.out.println("VALORR" +listaSaltos.get(id));
+        }         
+    }
 
     public String getTipo() {
         return tipo;
@@ -165,9 +219,12 @@ public class SaltosBean {
         saltosSelected = new Salto();
         acumTandem=0;
         acumTotal=0;
+        acumVuelos=0;
         acumLibre=0;
         infoSaltos= new ArrayList<>();
+        listaSaltos=new ArrayList<>(); 
         tipo="";
+        
         
     }
            
