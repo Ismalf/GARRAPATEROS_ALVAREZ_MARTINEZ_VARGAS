@@ -33,15 +33,9 @@ public class ParacaidistasController implements Serializable {
 
     public ParacaidistasController() {
     }
-
     @PostConstruct
     public void init() {
         prepareList();
-        getItems();
-    }
-
-    public void reloadModel() {
-        recreateModel();
         getItems();
     }
 
@@ -79,27 +73,25 @@ public class ParacaidistasController implements Serializable {
         recreateModel();
         return "List";
     }
-
     public String setViewIndex(Object t) {
-
+        
         getItems().setRowIndex((int) t);
         prepareView();
         return "";
     }
-
     //Este método reemplaza al prepareEdit
     public String setEditIndex(Object t) {
-
+        
         getItems().setRowIndex((int) t);
         prepareEdit();
         return "";
     }
-
     public void prepareCreate() {
         current = new Paracaidistas();
         selectedItemIndex = -1;
-        createRequest = 0;
+         createRequest = 0;
     }
+
 
     public Boolean prepareView() {
         current = (Paracaidistas) getItems().getRowData();
@@ -107,7 +99,9 @@ public class ParacaidistasController implements Serializable {
         return true;
     }
 
-    public void create() {
+    
+   
+     public void create() {
         try {
             System.out.println("Create request " + createRequest);
             if (createRequest != 0) {
@@ -126,6 +120,7 @@ public class ParacaidistasController implements Serializable {
             //return null;
         }
     }
+
 
     public String prepareEdit() {
         current = (Paracaidistas) getItems().getRowData();

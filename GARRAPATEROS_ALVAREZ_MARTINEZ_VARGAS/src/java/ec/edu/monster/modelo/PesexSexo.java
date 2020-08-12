@@ -108,7 +108,7 @@ public class PesexSexo implements Serializable {
 
     @Override
     public String toString() {
-        return pesexCodigo;
+        return "ec.edu.monster.modelo.PesexSexo[ pesexCodigo=" + pesexCodigo + " ]";
     }
     
 }

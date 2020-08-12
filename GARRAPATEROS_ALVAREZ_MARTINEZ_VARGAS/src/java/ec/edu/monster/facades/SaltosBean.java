@@ -34,8 +34,13 @@ public class SaltosBean implements Serializable  {
     private List<Salto> listaSaltos;
     List<Integer> list = new ArrayList<Integer>();
     private int n;
+     int aux=0;
+    float v=308.00f;
+    private float valorPagar=0.00f;
     private int acumTandem;
     private int acumTotal;
+    private int contTandem=0;
+    private int contLibres=0;
     private int acumLibre;
     private int maxVuelos=5;
     private String tipo;
@@ -73,6 +78,14 @@ public class SaltosBean implements Serializable  {
     public void setBeanV(VuelosBean beanV) {
         this.beanV = beanV;
     }
+
+    public float getValorPagar() {
+        return valorPagar;
+    }
+
+    public void setValorPagar(float valorPagar) {
+        this.valorPagar = valorPagar;
+    }
     
     
     
@@ -87,19 +100,118 @@ public class SaltosBean implements Serializable  {
          Vuelos objVuelos = new Vuelos();
         objVuelos.setIdVuelo(id);
          //System.out.println("ID:\n " +id);
+     if(acumVuelos<=5)
+     {
       for(int i=0;i<acumVuelos;i++)
         {
+            
             Salto objSaltos = new Salto();
             objSaltos.setIdVuelo(objVuelos);
             objSaltos.setTipoSalto(tipo);
             objSaltos.setFeresCodigo(new FeresReserva());
             objSaltos.setPeperId(new Paracaidistas());
-            objSaltos.setDescuentoSalto(0);
-            objSaltos.setMontoSalto(308.00f);
+            validarLibres(objSaltos,acumVuelos);
+           /* if(objSaltos.getTipoSalto().equals("Libre"))
+            {
+                  objSaltos.setDescuentoSalto(30);
+                
+            }*/
+          
+           /* if(objSaltos.getTipoSalto().equals("Tandem"))
+            {
+                v*=acumVuelos;
+            }*/
+            //objSaltos.setMontoSalto(valorPagar);
             listaSaltos.add(objSaltos);
             //System.out.println("VALORR" +listaSaltos.get(id));
-        }         
+        }   
+     }      
     }
+    
+    public void validarLibres(Salto obj, int acum)
+    {
+        if(obj.getTipoSalto().equals("Libre") && acum==2)
+        {
+            obj.setDescuentoSalto(30);
+            obj.setMontoSalto(40.00f);
+        }
+        else if(obj.getTipoSalto().equals("Tandem"))
+        {
+             obj.setDescuentoSalto(0);
+             obj.setMontoSalto(154.00f);
+        }
+        else if(obj.getTipoSalto().equals("Libre") && acum==3)
+        {
+              obj.setDescuentoSalto(30);
+            obj.setMontoSalto(50.00f);
+        }
+        else if(obj.getTipoSalto().equals("Libre") && acum==5)
+        
+        {
+             obj.setDescuentoSalto(30);
+            obj.setMontoSalto(60.00f);
+        }
+        else
+        {
+              obj.setDescuentoSalto(0);
+              obj.setMontoSalto(0.00f);
+        }
+        
+    }
+    
+    public void precios()
+    {
+        System.out.println("INGRESAAA.");
+    if(acumVuelos<=5)
+    {
+        for(int i=0;i<listaSaltos.size();i++)
+        {
+            if(listaSaltos.get(i).getTipoSalto().equals("Tandem"))
+            {
+                contTandem++;
+            }
+            else if(listaSaltos.get(i).getTipoSalto().equals("Libre"))
+            {
+                contLibres++;
+            }
+            else
+            {
+                System.out.println("Campo vacio");
+            }
+            
+        }
+        valorPagar=promociones(contTandem,contLibres);
+    }
+        
+         System.out.println("VALOR: " +valorPagar);
+    
+        
+        
+    }
+    
+        
+     public int promociones(int contTandem , int contLibres)
+     {
+        
+         System.out.println("contL" +contLibres);
+         System.out.println("contT" +contTandem);
+         if(contLibres==5)
+         {
+             aux=contLibres*60;
+         }
+         else if(contLibres==3 && contTandem==2)
+         {
+             aux=(contLibres*50)+(contTandem*154);
+         }
+         else
+         {
+             aux=(contLibres*40)+(contTandem*154);
+         }
+         
+         System.out.println("\nAUX" +aux);
+         return aux;
+     }
+    
 
     public String getTipo() {
         return tipo;
