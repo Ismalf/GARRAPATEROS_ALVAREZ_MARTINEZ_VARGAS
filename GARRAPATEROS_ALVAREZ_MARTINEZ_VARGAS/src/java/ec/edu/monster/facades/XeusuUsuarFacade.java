@@ -28,5 +28,14 @@ public class XeusuUsuarFacade extends AbstractFacade<XeusuUsuar> {
     public XeusuUsuarFacade() {
         super(XeusuUsuar.class);
     }
-    
+
+    public Boolean doLogin(String correo, String pass) {
+        try {
+            em.createNativeQuery("SELECT * FROM xeusu_usuar WHERE XEUSU_EMAIL LIKE '" + correo + "' AND XEUSU_PASSWO LIKE '" + pass + "'").getSingleResult();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
 }
