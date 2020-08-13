@@ -18,44 +18,42 @@
                     <h:commandLink action="#{fecomComproController.previous}" value="#{bundle.Previous} #{fecomComproController.pagination.pageSize}" rendered="#{fecomComproController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{fecomComproController.next}" value="#{bundle.Next} #{fecomComproController.pagination.pageSize}" rendered="#{fecomComproController.pagination.hasNextPage}"/>&nbsp;
                     <p:dataTable value="#{fecomComproController.items}" var="item" rowIndexVar="rowId">
-                        <h:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListFecomComproTitle_pecomCodigo}"/>
                             </f:facet>
                             <h:outputText value="#{item.pecomCodigo}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListFecomComproTitle_pecomDescri}"/>
                             </f:facet>
                             <h:outputText value="#{item.pecomDescri}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListFecomComproTitle_pecomFecha}"/>
                             </f:facet>
                             <h:outputText value="#{item.pecomFecha}">
                                 <f:convertDateTime pattern="MM/dd/yyyy" />
                             </h:outputText>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListFecomComproTitle_peperId}"/>
                             </f:facet>
                             <h:outputText value="#{item.peperId}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <!--<p:column>
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
-                            <!--View-->
-                            <!--UTILIZAR COMMAND LINK CON LA SIGUIENTE SINTAXIS-->
-                            <p:commandLink value="Ver comprobante" type="button" action="#{fecomComproController.setViewIndex(rowId)}" oncomplete="PF('ViewComprobanteDialog').show(); " />
-                            <!--Edit-->
-                            <p:commandLink value="Editar comprobante" type="button" action="#{fecomComproController.setEditIndex(rowId)}" oncomplete="PF('EditComprobanteDialog').show();" />
-                            <!--Delete
-                            <p:commandButton value="Crear persona" type="button" onclick="PF('dlg1').show();" />-->
-                        </h:column>
+                            
+                            <p:commandLink value="Ver comprobante" type="button" action="{fecomComproController.setViewIndex(rowId)}" oncomplete="PF('ViewComprobanteDialog').show(); " />
+                            
+                            <p:commandLink value="Editar comprobante" type="button" action="{fecomComproController.setEditIndex(rowId)}" oncomplete="PF('EditComprobanteDialog').show();" />
+                            
+                        </p:column>-->
                     </p:dataTable>
                 </h:panelGroup>
             </h:form>

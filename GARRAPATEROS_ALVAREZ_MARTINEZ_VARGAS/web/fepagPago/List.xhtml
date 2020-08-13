@@ -51,14 +51,14 @@
                             </f:facet>
                             <h:outputText value="#{item.feresCodigo}"/>
                         </p:column>
-                        <p:column>
+                        <!--<p:column>
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
-                            <p:commandLink value="Ver pago" type="button" action="#{fepagPagoController.setViewIndex(rowId)}" oncomplete="PF('ViewPagoDialog').show(); " />
-                            <!--Edit-->
-                            <p:commandLink value="Editar pago" type="button" action="#{fepagPagoController.setEditIndex(rowId)}" oncomplete="PF('EditPagoDialog').show();" />
-                        </p:column>
+                            <p:commandLink value="Ver pago" type="button" action="{fepagPagoController.setViewIndex(rowId)}" oncomplete="PF('ViewPagoDialog').show(); " />
+                            Edit
+                            <p:commandLink value="Editar pago" type="button" action="{fepagPagoController.setEditIndex(rowId)}" oncomplete="PF('EditPagoDialog').show();" />
+                        </p:column>-->
                     </p:dataTable>
                 </h:panelGroup>
             </h:form>

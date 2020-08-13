@@ -9,11 +9,11 @@
                 xmlns:p="http://primefaces.org/ui"
                 >
     <ui:define name="title">
-        <h:outputText value="#{bundle.CreatePeperPersonTitle}"></h:outputText>
+        
     </ui:define>
     <ui:define name="body">
 
-        <h:form>
+        <h:form style="overflow-y: auto; z-index: 1000;">
             <h:panelGrid columns="3">
 
                 <h:outputLabel value="#{bundle.CreatePeperPersonLabel_peperNombre}" for="peperNombre" />
@@ -43,10 +43,10 @@
                 <p:message for="peperCedula" id="msgCed" display="icon"/>
 
                 <p:outputLabel for="fechanacimiento" value="Ingrese su fecha de nacimiento" />
-                <p:calendar showOn="button" id="fechanacimiento" yearRange="c-100:c" navigator="true" 
-                            required="true" value="#{peperPersonController.selected.peperNacimi}">
-                    <p:ajax update="msgFN" event="blur" />
-                </p:calendar>
+                
+                <p:inputMask id="fechanacimiento" mask="9999-99-99" required="true" value="#{peperPersonController.selected.peperNacimi}">
+                    <f:convertDateTime pattern="yyyy-MM-dd" />
+                </p:inputMask>
                 <p:message for="fechanacimiento" id="msgFN" display="icon"/>
 
                 <h:outputLabel value="#{bundle.CreatePeperPersonLabel_peperTelf}" for="peperTelf" />

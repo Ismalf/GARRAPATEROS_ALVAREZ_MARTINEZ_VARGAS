@@ -11,6 +11,8 @@ import ec.edu.monster.modelo.XeperPerfil;
 import ec.edu.monster.modelo.XeusuUsuar;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.scene.control.Alert;
@@ -29,6 +31,7 @@ import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 import javax.faces.view.ViewScoped;
 import org.primefaces.PF;
+import org.primefaces.event.SelectEvent;
 
 @Named("peperPersonController")
 @SessionScoped
@@ -38,11 +41,11 @@ public class PeperPersonController implements Serializable {
     private PeperPerson current;
     private DataModel items = null;
     private int createRequest = 0;
-    
+
     private Paracaidistas paracaidista;
     @EJB
     private ec.edu.monster.facades.PeperPersonFacade ejbFacade;
-    
+
     @EJB
     private ParacaidistasFacade paracaidistaFacade;
     private PaginationHelper pagination;
@@ -53,7 +56,7 @@ public class PeperPersonController implements Serializable {
     }
 
     /**
-     Cuando se crea el bean se inicializa la "Lista"
+     * Cuando se crea el bean se inicializa la "Lista"
      */
     @PostConstruct
     public void init() {
@@ -90,9 +93,22 @@ public class PeperPersonController implements Serializable {
         }
         return pagination;
     }
+    private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+    public void onDateSelect(SelectEvent<Date> event) {
+        try {
+            System.out.println("Ok");
+            System.out.println(format.format(event.getObject()));
+            getSelected().setPeperNacimi(event.getObject());
+            hasData = true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            hasData = false;
+        }
+    }
 
     /**
-     Esto no se usa, en vez de esto usar el método init()
+     * Esto no se usa, en vez de esto usar el método init()
      */
     public String prepareList() {
         recreateModel();
@@ -101,12 +117,12 @@ public class PeperPersonController implements Serializable {
 
     /*
         NO llamar desde la vista
-    */
+     */
     public Boolean prepareView() {
         current = (PeperPerson) getItems().getRowData();
-        
+
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        
+
         return true;
     }
 
@@ -126,7 +142,7 @@ public class PeperPersonController implements Serializable {
         prepareEdit();
         return "";
     }
-    
+
     public void prepareCreate() {
         current = new PeperPerson();
         selectedItemIndex = -1;
@@ -160,7 +176,7 @@ public class PeperPersonController implements Serializable {
 
     /*
         NO llamar desde la vista
-    */
+     */
     public void prepareEdit() {
         current = (PeperPerson) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();

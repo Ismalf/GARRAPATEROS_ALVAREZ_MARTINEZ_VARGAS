@@ -10,7 +10,7 @@
     </ui:define>
     <ui:define name="body">
         <h:form styleClass="jsfcrud_list_form">
-           
+
             <h:outputText escape="false" value="#{bundle.ListSaltoEmpty}" rendered="#{saltoController.items.rowCount == 0}"/>
             <h:panelGroup rendered="#{saltoController.items.rowCount > 0}">
                 <h:outputText value="#{saltoController.pagination.pageFirstItem + 1}..#{saltoController.pagination.pageLastItem + 1}/#{saltoController.pagination.itemsCount}"/>&nbsp;
@@ -60,17 +60,17 @@
                         </f:facet>
                         <h:outputText value="#{item.idVuelo}"/>
                     </p:column>
-                    <p:column>
-
-
-
-                        <p:commandLink value="Ver avioneta" type="button" action="#{saltoController.setViewIndex(rowId)}" oncomplete="PF('ViewDialog').show(); " />
-                        <!--Edit-->
-                        <p:commandLink value="Editar avioneta" type="button" action="#{saltoController.setEditIndex(rowId)}" oncomplete="PF('EditDialog').show();" />
-
-
-
-                    </p:column>
+                    <!--                    <p:column>
+                    
+                    
+                    
+                                            <p:commandLink value="Ver avioneta" type="button" action="{saltoController.setViewIndex(rowId)}" oncomplete="PF('ViewDialog').show(); " />
+                                            
+                                            <p:commandLink value="Editar avioneta" type="button" action="{saltoController.setEditIndex(rowId)}" oncomplete="PF('EditDialog').show();" />
+                    
+                    
+                    
+                                        </p:column>-->
                 </p:dataTable>
             </h:panelGroup>
             <br />

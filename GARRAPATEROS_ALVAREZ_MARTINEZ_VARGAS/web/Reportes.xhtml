@@ -6,17 +6,26 @@
     <h:head>
         <title>Facelet Title</title>
     </h:head>
-    <h:body style="display: inline-block; align-self: center;">
+    <h:body style="display: inline-block;">
         <p>Reportes</p>
-        <h:panelGrid columns="2" cellspacing="10" style="width:100%; align-items: center;">
-            <p:outputLabel for="inline" value="Escoga la fecha del reporte" />
-            <p:datePicker id="inline" value="#{reportesController.reportDate}" inline="true" />
+        <h:form>
+            <h:panelGrid columns="2" cellspacing="10" style="width:100%; text-align: center;">
+                <p:outputLabel for="inline" value="Escoga la fecha del reporte" />
+                <p:datePicker id="inline" value="#{reportesController.reportDate}" inline="true" >
+                    <p:ajax event="dateSelect" listener="#{reportesController.onDateSelect}" />
+                </p:datePicker>
+            </h:panelGrid>
+        </h:form>
+        <h:panelGrid id="charts" columns="3" cellspacing="5" style="width:100%" rendered="#{reportesController.hasData}" >
+            <p:autoUpdate/>
+            <p:chart class="dark-content" responsive="true" type="bar" model="#{reportesController.reporteTotalVentas}" style="width:100%;" />
+            <p:chart responsive="true" type="bar" model="#{reportesController.reporteTotalSaltos}" style="width:100%;" />
+            <p:chart responsive="true" type="bar" model="#{reportesController.reporteTotalParacaidista}" style="width:100%;" />
         </h:panelGrid>
-        <h:panelGrid columns="3" cellspacing="10" style="width:100%">
-            <p:chart type="bar" model="#{reportesController.reporteTotalVentas}" style="width:400px;" />
-            <p:chart type="bar" model="#{reportesController.reporteTotalSaltos}" style="width:400px;" />
-            <p:chart type="bar" model="#{reportesController.reporteTotalParacaidista}" style="width:400px;" />
-        </h:panelGrid>
+        <p:panelGrid rendered="#{not reportesController.hasData}" style="display: inline-block;">
+            <b style="text-align: center; margin: 0 auto;">NO SE HAN ENCONTRADO DATOS PARA ESTA FECHA</b> 
+        </p:panelGrid>
+
     </h:body>
 </html>
 

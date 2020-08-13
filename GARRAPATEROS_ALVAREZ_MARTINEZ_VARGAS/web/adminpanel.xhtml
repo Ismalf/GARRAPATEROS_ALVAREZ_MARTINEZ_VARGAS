@@ -8,10 +8,10 @@
     <h:head>
         <title>Facelet Title</title>
     </h:head>
-    <h:body style="background-color: #444; display: inline-block; width: 90%;">
+    <h:body style="background-color: #444;  width: 95%;margin: 0 auto;">
         <p:ajaxExceptionHandler onexception=""/>
         <img src="images/garrapateros.png" alt="IMG" style="margin-left: auto; display: block;" width="25%"/>
-        <p:tabView dynamic="true" effect="fade" cache="false" style="width: 100%;">
+        <p:tabView dynamic="true" effect="fade" cache="false" style="width: 100%; margin: 0 auto;">
             <!--Está relacionado con un subsistema-->
             <!--COMPLETO-->
             <p:tab title="Personas">
@@ -321,10 +321,10 @@
                                 </p:dialog>
                             </h:panelGrid>
                         </p:tab>
-                        <p:tab title="Gestionar Roles">
+                        <!--<p:tab title="Gestionar Roles">
                             <h:panelGrid columns="2" cellpadding="10">
                                 <p:outputPanel id="rolescontent">
-                                    <p:autoUpdate/><!--IMPORTANTE-->
+                                    <p:autoUpdate/>
                                     <ui:include src="xerolRol/List.xhtml"></ui:include>
                                 </p:outputPanel>
                                 <br/>
@@ -333,7 +333,7 @@
                                 </h:form>
 
                                 <p:dialog header="Creación de roles" widgetVar="dlgroles" minHeight="40">
-                                    <p:ajax event="open" listener="#{xerolRolController.prepareCreate}"></p:ajax>
+                                    <p:ajax event="open" listener="{xerolRolController.prepareCreate}"></p:ajax>
                                     <p:ajax event="close" update="rolescontent"></p:ajax>
                                     <ui:include src="xerolRol/Create.xhtml"></ui:include>
                                 </p:dialog>
@@ -343,7 +343,7 @@
                         <p:tab title="Gestionar Opciones">
                             <h:panelGrid columns="2" cellpadding="10">
                                 <p:outputPanel id="opcionescontent">
-                                    <p:autoUpdate/><!--IMPORTANTE-->
+                                    <p:autoUpdate/>
                                     <ui:include src="xeopcOpcion/List.xhtml"></ui:include>
                                 </p:outputPanel>
                                 <br/>
@@ -351,7 +351,7 @@
                                     <p:commandButton value="Crear opción" type="button" onclick="PF('dlgopciones').show();" />
                                 </h:form>
                                 <p:dialog header="Creación de opciones" widgetVar="dlgopciones" minHeight="40">
-                                    <p:ajax event="open" listener="#{xeopcOpcionController.prepareCreate}"></p:ajax>
+                                    <p:ajax event="open" listener="{xeopcOpcionController.prepareCreate}"></p:ajax>
                                     <p:ajax event="close" update="opcionescontent"></p:ajax>
                                     <ui:include src="xeopcOpcion/Create.xhtml"></ui:include>
                                 </p:dialog>
@@ -359,9 +359,9 @@
                         </p:tab>
                         <p:tab title="Gestionar Sistemas">
                             <h:panelGrid columns="2" cellpadding="10">
-                                <!--INSERTAR ESTO CON UN ID REPRESENTATIVO-->
+                                
                                 <p:outputPanel id="sistemacontent">
-                                    <p:autoUpdate/><!--IMPORTANTE-->
+                                    <p:autoUpdate/>
                                     <ui:include src="xesisSistem/List.xhtml"></ui:include>
                                 </p:outputPanel>
                                 <br/>
@@ -369,7 +369,7 @@
                                     <p:commandButton value="Crear Sistema" type="button" onclick="PF('dlgsistema').show();" />
                                 </h:form>
                                 <p:dialog header="Creación de sistema" widgetVar="dlgsistema" minHeight="40">
-                                    <p:ajax event="open" listener="#{xesisSistemController.prepareCreate}"></p:ajax>
+                                    <p:ajax event="open" listener="{xesisSistemController.prepareCreate}"></p:ajax>
                                     <p:ajax event="close" update="sistemacontent"></p:ajax>
                                     <ui:include src="xesisSistem/Create.xhtml"></ui:include>
                                 </p:dialog>
@@ -377,9 +377,9 @@
                         </p:tab>
                         <p:tab title="Gestionar Estado">
                             <h:panelGrid columns="2" cellpadding="10">
-                                <!--INSERTAR ESTO CON UN ID REPRESENTATIVO-->
+                                
                                 <p:outputPanel id="estadocontent">
-                                    <p:autoUpdate/><!--IMPORTANTE-->
+                                    <p:autoUpdate/>
                                     <ui:include src="xeestEstado/List.xhtml"></ui:include>
                                 </p:outputPanel>
                                 <br/>
@@ -387,7 +387,7 @@
                                     <p:commandButton value="Crear Estado" type="button" onclick="PF('dlgestado').show();" />
                                 </h:form>
                                 <p:dialog header="Creación de estado" widgetVar="dlgestado" minHeight="40">
-                                    <p:ajax event="open" listener="#{xeestEstadoController.prepareCreate}"></p:ajax>
+                                    <p:ajax event="open" listener="{xeestEstadoController.prepareCreate}"></p:ajax>
                                     <p:ajax event="close" update="estadocontent"></p:ajax>
                                     <ui:include src="xeestEstado/Create.xhtml"></ui:include>
                                 </p:dialog>
@@ -395,9 +395,9 @@
                         </p:tab>
                         <p:tab title="Gestionar Ventana">
                             <h:panelGrid columns="2" cellpadding="10">
-                                <!--INSERTAR ESTO CON UN ID REPRESENTATIVO-->
+                                
                                 <p:outputPanel id="ventanacontent">
-                                    <p:autoUpdate/><!--IMPORTANTE-->
+                                    <p:autoUpdate/>
                                     <ui:include src="xevenVentan/List.xhtml"></ui:include>
                                 </p:outputPanel>
                                 <br/>
@@ -405,12 +405,12 @@
                                     <p:commandButton value="Crear Ventana" type="button" onclick="PF('dlgventana').show();" />
                                 </h:form>
                                 <p:dialog header="Creación de ventana" widgetVar="dlgventana" minHeight="40">
-                                    <p:ajax event="open" listener="#{xevenVentanController.prepareCreate}"></p:ajax>
+                                    <p:ajax event="open" listener="{xevenVentanController.prepareCreate}"></p:ajax>
                                     <p:ajax event="close" update="ventanacontent"></p:ajax>
                                     <ui:include src="xevenVentan/Create.xhtml"></ui:include>
                                 </p:dialog>
                             </h:panelGrid>
-                        </p:tab>
+                        </p:tab>-->
                     </p:tabView>
                 </h:panelGrid>
             </p:tab>

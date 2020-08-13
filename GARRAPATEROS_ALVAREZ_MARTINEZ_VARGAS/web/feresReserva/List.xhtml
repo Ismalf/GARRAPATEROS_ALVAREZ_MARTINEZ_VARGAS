@@ -50,19 +50,17 @@
                             </f:facet>
                             <h:outputText value="#{item.pecomCodigo}"/>
                         </p:column>
-                        <p:column>
+                        <!--<p:column>
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
-                            <!--View-->
-                            <!--UTILIZAR COMMAND LINK CON LA SIGUIENTE SINTAXIS-->
-                            <p:commandLink value="Ver detalle" type="button" action="#{feresReservaController.setViewIndex(rowId)}" oncomplete="PF('ViewDetalleDialog').show(); " />
-                            <!--Edit-->
-                            <p:commandLink value="Editar detalle" type="button" action="#{feresReservaController.setEditIndex(rowId)}" oncomplete="PF('EditDetalleDialog').show();" />
-                            <!--Delete
-                            <p:commandButton value="Crear persona" type="button" onclick="PF('dlg1').show();" />-->
+                            
+                            <p:commandLink value="Ver detalle" type="button" action="{feresReservaController.setViewIndex(rowId)}" oncomplete="PF('ViewDetalleDialog').show(); " />
+                            
+                            <p:commandLink value="Editar detalle" type="button" action="{feresReservaController.setEditIndex(rowId)}" oncomplete="PF('EditDetalleDialog').show();" />
+                            
 
-                        </p:column>
+                        </p:column>-->
                     </p:dataTable>
                 </h:panelGroup>
             </h:form>
