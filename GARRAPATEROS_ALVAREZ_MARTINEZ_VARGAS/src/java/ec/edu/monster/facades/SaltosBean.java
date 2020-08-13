@@ -40,13 +40,15 @@ public class SaltosBean implements Serializable {
     @EJB
     private SaltoFacade salFacade;
     private int acumVuelos;
+    private float acumExtras;
     private List<Object[]> infoSaltos;
     private List<Salto> listaSaltos;
     private List<Salto> listaSalto;
     List<Integer> list = new ArrayList<Integer>();
     private int n;
-    int aux = 0;
+    int aux;
     float v = 308.00f;
+    int temp = 0;
     private float valorPagar;
     private int acumTandem;
     private int acumTotal;
@@ -77,13 +79,14 @@ public class SaltosBean implements Serializable {
 
     private VuelosBean vb;
 
-    /*  public void createControllers()
-    {
-        comprobantes= new FecomCompro();
-        reservas= new FeresReserva();
-        pagos= new FepagPago();
-        
-    }*/
+    public int getTemp() {
+        return temp;
+    }
+
+    public void setTemp(int temp) {
+        this.temp = temp;
+    }
+
     private int getHMS() {
         LocalDateTime myDateObj = LocalDateTime.now();
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("HH:mm:ss");
@@ -97,6 +100,8 @@ public class SaltosBean implements Serializable {
     }
 
     public void saveDataTables() {
+        float aux = (float) acumVuelos;
+        // valorPagar=precios(float x);
         LocalDateTime myDateObj = LocalDateTime.now();
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("HH:mm:ss");
 
@@ -115,21 +120,22 @@ public class SaltosBean implements Serializable {
             reservas.setFeresFecha(new Date());
             reservas.setPecomCodigo(comprobantes);
             reservasFacade.create(reservas);
-
+            listaSaltos.get(i - 1).getTipoSalto();
             pagos.setFeresCodigo(reservas);
-            pagos.setFeticCantidad(valorPagar);
+            pagos.setFeticCantidad(aux);
             pagos.setFeticFecha(new Date());
             pagos.setFeticId(getHMS());
-            pagos.setFeticTipopa(tipo);
+            pagos.setFeticTipopa(listaSaltos.get(i - 1).getTipoSalto());
             pagosFacade.create(pagos);
-
             saltos.setDescuentoSalto(0);
             saltos.setFeresCodigo(reservas);
             saltos.setIdSalto(getHMS());
             saltos.setIdVuelo(listaSaltos.get(i - 1).getIdVuelo());
-            saltos.setMontoSalto(valorPagar);
+            System.out.println("PAGAR" + valorPagar);
+
+            saltos.setMontoSalto(listaSaltos.get(i - 1).getMontoSalto());
             saltos.setPeperId(new Paracaidistas(1));
-            saltos.setTipoSalto(tipo);
+            saltos.setTipoSalto(listaSaltos.get(i - 1).getTipoSalto());
             saltosFacade.create(saltos);
         }
 
@@ -210,17 +216,22 @@ public class SaltosBean implements Serializable {
     public void guardarSaltos(int id) {
 
         Vuelos objVuelos = new Vuelos();
-        objVuelos.setIdVuelo(id);
-        if (acumVuelos <= 5) {
-            for (int i = 0; i < acumVuelos; i++) {
 
-                Salto objSaltos = new Salto();
-                objSaltos.setIdVuelo(objVuelos);
-                objSaltos.setTipoSalto(tipo);
-                objSaltos.setFeresCodigo(new FeresReserva());
-                objSaltos.setPeperId(new Paracaidistas());
-                validarLibres(objSaltos, acumVuelos);
-                /* if(objSaltos.getTipoSalto().equals("Libre"))
+        int temp1 = 0;
+        objVuelos.setIdVuelo(id);
+        System.out.println("ACUMV" + acumVuelos);
+        //  if (acumVuelos <= 5) {
+        Salto objSaltos = new Salto();
+        for (int i = temp1; i < acumVuelos; i++) {
+            temp++;
+
+            objSaltos.setIdVuelo(objVuelos);
+            System.out.println("TIPOV: " + tipo);
+            objSaltos.setTipoSalto(tipo);
+            objSaltos.setFeresCodigo(new FeresReserva());
+            objSaltos.setPeperId(new Paracaidistas());
+            validarLibres(objSaltos, acumVuelos);
+            /* if(objSaltos.getTipoSalto().equals("Libre"))
             {
                   objSaltos.setDescuentoSalto(30);
                 
@@ -230,30 +241,60 @@ public class SaltosBean implements Serializable {
             {
                 v*=acumVuelos;
             }*/
-                //objSaltos.setMontoSalto(valorPagar);
-                listaSaltos.add(objSaltos);
-                //System.out.println("VALORR" +listaSaltos.get(id));
-            }
+            //objSaltos.setMontoSalto(valorPagar);
+            listaSaltos.add(objSaltos);
+            //System.out.println("VALORR" +listaSaltos.get(id));
         }
+        temp1 = temp;
+        acumVuelos = temp;
+        System.out.println("ACUMVUELOS: " + acumVuelos);
+        //acumVuelos+=temp;
+
+        /*for(int i=0;i<listaSaltos.size();i++)
+            {
+                valorPagar+=(listaSaltos.get(i).getMontoSalto()+listaSaltos.get(i).getDescuentoSalto());
+            }
+            System.out.println("VALORSP: "+valorPagar);*/
     }
 
     public void validarLibres(Salto obj, int acum) {
+        int contTandem = 0;
+        int contLibres = 0;
         if (obj.getTipoSalto().equals("Libre") && acum == 2) {
             obj.setDescuentoSalto(30);
+            acumExtras = 60.00f;
             obj.setMontoSalto(40.00f);
-        } else if (obj.getTipoSalto().equals("Tandem")) {
-            obj.setDescuentoSalto(0);
-            obj.setMontoSalto(154.00f);
         } else if (obj.getTipoSalto().equals("Libre") && acum == 3) {
             obj.setDescuentoSalto(30);
+            acumExtras = 90.00f;
             obj.setMontoSalto(50.00f);
         } else if (obj.getTipoSalto().equals("Libre") && acum == 5) {
             obj.setDescuentoSalto(30);
+            acumExtras = 150.00f;
             obj.setMontoSalto(60.00f);
+        } else if (obj.getTipoSalto().equals("Tandem")) {
+            obj.setDescuentoSalto(0);
+            obj.setMontoSalto(154.00f);
         } else {
             obj.setDescuentoSalto(0);
             obj.setMontoSalto(0.00f);
         }
+
+        if (acumVuelos <= 5) {
+            for (int i = 0; i < listaSaltos.size(); i++) {
+                if (listaSaltos.get(i).getTipoSalto().equals("Tandem")) {
+                    contTandem++;
+                } else if (listaSaltos.get(i).getTipoSalto().equals("Libre")) {
+                    contLibres++;
+                } else {
+                    System.out.println("Campo vacio");
+                }
+
+            }
+            valorPagar = promociones(contTandem, contLibres);
+        }
+
+        valorPagar += acumExtras;
 
     }
 
@@ -272,9 +313,10 @@ public class SaltosBean implements Serializable {
             }
             valorPagar = promociones(contTandem, contLibres);
         }
+        //return valorPago;
+        //valorPago
 
-        System.out.println("VALOR: " + valorPagar);
-
+        // System.out.println("VALOR: " + valorPago);
     }
 
     public int promociones(int contTandem, int contLibres) {
@@ -288,7 +330,7 @@ public class SaltosBean implements Serializable {
         } else {
             aux = (contLibres * 40) + (contTandem * 154);
         }
-
+        // valorPagar=aux;
         System.out.println("\nAUX" + aux);
         return aux;
     }
@@ -400,11 +442,13 @@ public class SaltosBean implements Serializable {
         saltos = new Salto();
         pagos = new FepagPago();
         saltosSelected = new Salto();
+        valorPagar = 0;
+        acumExtras = 0.00f;
+        aux = 0;
         acumTandem = 0;
         acumTotal = 0;
         acumVuelos = 0;
         acumLibre = 0;
-        valorPagar = 0.00f;
         infoSaltos = new ArrayList<>();
         listaSaltos = new ArrayList<>();
         tipo = "";

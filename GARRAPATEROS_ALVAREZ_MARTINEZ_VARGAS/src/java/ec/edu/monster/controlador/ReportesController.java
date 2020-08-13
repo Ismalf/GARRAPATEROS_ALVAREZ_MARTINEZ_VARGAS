@@ -8,8 +8,13 @@ package ec.edu.monster.controlador;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import org.primefaces.model.chart.Axis;
 import org.primefaces.model.chart.AxisType;
 import org.primefaces.model.chart.BarChartModel;
@@ -26,8 +31,14 @@ import org.primefaces.model.chart.LineChartSeries;
 public class ReportesController implements Serializable {
 
     private Date reportDate;
-    private LineChartModel animatedModel1;
-    private BarChartModel animatedModel2;
+    
+    private BarChartModel reporteTotalVentas;
+    private BarChartModel ReporteTotalSaltos;
+    private BarChartModel ReporteTotalParacaidista;
+    @PersistenceContext(unitName = "GARRAPATEROS_ALVAREZ_MARTINEZ_VARGASPU")
+    private EntityManager em;
+    LocalDateTime myDateObj;
+    DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("YYYY-MM-dd");
 
     /**
      * Creates a new instance of ReportesController
@@ -37,78 +48,74 @@ public class ReportesController implements Serializable {
 
     @PostConstruct
     public void init() {
-
-        createAnimatedModels();
-
+        myDateObj = LocalDateTime.now();
+        createAnimatedModels(myDateObj.format(myFormatObj));
     }
 
-    private void createAnimatedModels() {
-        animatedModel1 = initLinearModel();
-        animatedModel1.setTitle("Line Chart");
-        animatedModel1.setAnimate(true);
-        animatedModel1.setLegendPosition("se");
-        Axis yAxis = animatedModel1.getAxis(AxisType.Y);
+    private void getReportes(String v) {
+        List<Object[]> Total_ganancia_por_dia = em.createNativeQuery("select R.feres_fecha as Fecha, Sum(S.monto_salto) as Total_vendido\n"
+                + "from feres_reserva R\n"
+                + "inner join salto S\n"
+                + "on R.feres_codigo=S.feres_codigo\n"
+                + "where R.feres_fecha LIKE '" + v + "'").getResultList();
+        reporteTotalVentas = initBarModel(Total_ganancia_por_dia);
+        List<Object[]> Total_saltos_por_dia = em.createNativeQuery("select S.tipo_salto , count(S.tipo_salto) as Saltos_Totales, R.feres_fecha\n"
+                + "from salto S\n"
+                + "inner join feres_reserva R\n"
+                + "on R.feres_codigo=S.feres_codigo\n"
+                + "where R.feres_fecha LIKE '" + v + "'\n"
+                + "group by S.tipo_salto, R.feres_fecha").getResultList();
+        ReporteTotalSaltos = initBarModel(Total_saltos_por_dia);
+        List<Object[]> Total_por_paracaidista = em.createNativeQuery("select concat_ws(' ', P.peper_nombre,P.peper_apelli) as Paracaidista, sum(S.monto_salto) as Total_Pagar\n"
+                + "from peper_person P\n"
+                + "left join salto S\n"
+                + "on P.peper_id=S.peper_id\n"
+                + "inner join fecom_compro F\n"
+                + "on F.peper_id=S.peper_id\n"
+                + "where F.pecom_fecha like '" + v + "'").getResultList();
+        ReporteTotalParacaidista = initBarModel(Total_por_paracaidista);
+    }
+
+    private void createAnimatedModels(String v) {
+        getReportes(v);
+        //reporteTotalVentas = initBarModel();
+        reporteTotalVentas.setTitle("INGRESO TOTAL FECHA " + v.toString());
+        reporteTotalVentas.setAnimate(true);
+        reporteTotalVentas.setLegendPosition("ne");
+        Axis yAxis = reporteTotalVentas.getAxis(AxisType.Y);
         yAxis.setMin(0);
         yAxis.setMax(10);
 
-        animatedModel2 = initBarModel();
-        animatedModel2.setTitle("Bar Charts");
-        animatedModel2.setAnimate(true);
-        animatedModel2.setLegendPosition("ne");
-        yAxis = animatedModel2.getAxis(AxisType.Y);
+        //ReporteTotalSaltos = initBarModel();
+        ReporteTotalSaltos.setTitle("TOTAL DE SALTOS FECHA " + v.toString());
+        ReporteTotalSaltos.setAnimate(true);
+        ReporteTotalSaltos.setLegendPosition("ne");
+        yAxis = ReporteTotalSaltos.getAxis(AxisType.Y);
+        yAxis.setMin(0);
+        yAxis.setMax(200);
+
+        //ReporteTotalParacaidista = initBarModel();
+        ReporteTotalParacaidista.setTitle("TOTAL POR PARACAIDISTA " + v.toString());
+        ReporteTotalParacaidista.setAnimate(true);
+        ReporteTotalParacaidista.setLegendPosition("ne");
+        yAxis = ReporteTotalParacaidista.getAxis(AxisType.Y);
         yAxis.setMin(0);
         yAxis.setMax(200);
     }
 
-    private LineChartModel initLinearModel() {
-        LineChartModel model = new LineChartModel();
-
-        LineChartSeries series1 = new LineChartSeries();
-        series1.setLabel("Series 1");
-
-        series1.set(1, 2);
-        series1.set(2, 1);
-        series1.set(3, 3);
-        series1.set(4, 6);
-        series1.set(5, 8);
-
-        LineChartSeries series2 = new LineChartSeries();
-        series2.setLabel("Series 2");
-
-        series2.set(1, 6);
-        series2.set(2, 3);
-        series2.set(3, 2);
-        series2.set(4, 7);
-        series2.set(5, 9);
-
-        model.addSeries(series1);
-        model.addSeries(series2);
-
-        return model;
-    }
-
-    private BarChartModel initBarModel() {
+    private BarChartModel initBarModel(List<Object[]> data) {
         BarChartModel model = new BarChartModel();
+        ChartSeries cs = new ChartSeries();
+        cs.setLabel("Fecha");
+        data.forEach((t) -> {
+            try {
+                cs.set(t[0], Integer.parseInt(t[1].toString()));
+            } catch (NumberFormatException e) {
+                cs.set(t[0], Float.parseFloat(t[1].toString()));
+            }
 
-        ChartSeries boys = new ChartSeries();
-        boys.setLabel("Boys");
-        boys.set("2004", 120);
-        boys.set("2005", 100);
-        boys.set("2006", 44);
-        boys.set("2007", 150);
-        boys.set("2008", 25);
-
-        ChartSeries girls = new ChartSeries();
-        girls.setLabel("Girls");
-        girls.set("2004", 52);
-        girls.set("2005", 60);
-        girls.set("2006", 110);
-        girls.set("2007", 135);
-        girls.set("2008", 120);
-
-        model.addSeries(boys);
-        model.addSeries(girls);
-
+        });
+        model.addSeries(cs);
         return model;
     }
 
@@ -120,22 +127,28 @@ public class ReportesController implements Serializable {
         this.reportDate = reportDate;
     }
 
-    public LineChartModel getAnimatedModel1() {
-        return animatedModel1;
+    public BarChartModel getReporteTotalVentas() {
+        return reporteTotalVentas;
     }
 
-    public void setAnimatedModel1(LineChartModel animatedModel1) {
-        this.animatedModel1 = animatedModel1;
+    public void setReporteTotalVentas(BarChartModel reporteTotalVentas) {
+        this.reporteTotalVentas = reporteTotalVentas;
     }
 
-    public BarChartModel getAnimatedModel2() {
-        return animatedModel2;
+    public BarChartModel getReporteTotalSaltos() {
+        return ReporteTotalSaltos;
     }
 
-    public void setAnimatedModel2(BarChartModel animatedModel2) {
-        this.animatedModel2 = animatedModel2;
+    public void setReporteTotalSaltos(BarChartModel ReporteTotalSaltos) {
+        this.ReporteTotalSaltos = ReporteTotalSaltos;
     }
-    
-    
+
+    public BarChartModel getReporteTotalParacaidista() {
+        return ReporteTotalParacaidista;
+    }
+
+    public void setReporteTotalParacaidista(BarChartModel ReporteTotalParacaidista) {
+        this.ReporteTotalParacaidista = ReporteTotalParacaidista;
+    }
 
 }

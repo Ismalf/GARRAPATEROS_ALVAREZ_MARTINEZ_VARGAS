@@ -11,19 +11,22 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 
 /**
  *
  * @author Ismalf
  */
 @Named(value = "loginController")
-@SessionScoped
+@ViewScoped
 public class loginController implements Serializable {
 
     private XeusuUsuar usuario;
@@ -37,7 +40,12 @@ public class loginController implements Serializable {
     @PostConstruct
     public void init() {
         if (FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario") != null) {
-            // Logged in - redirect
+            try {
+                // Logged in - redirect
+                FacesContext.getCurrentInstance().getExternalContext().redirect("/GARRAPATEROS_ALVAREZ_MARTINEZ_VARGAS/faces/adminpanel.xhtml");
+            } catch (IOException ex) {
+                Logger.getLogger(loginController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } else {
             System.out.println("No bro");
         }

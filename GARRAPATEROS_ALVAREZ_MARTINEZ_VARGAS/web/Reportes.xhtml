@@ -12,9 +12,10 @@
             <p:outputLabel for="inline" value="Escoga la fecha del reporte" />
             <p:datePicker id="inline" value="#{reportesController.reportDate}" inline="true" />
         </h:panelGrid>
-        <h:panelGrid columns="2" cellspacing="10" style="width:100%">
-            <p:chart type="line" model="#{reportesController.animatedModel1}" style="width:400px;" />
-            <p:chart type="bar" model="#{reportesController.animatedModel2}" style="width:400px;" />
+        <h:panelGrid columns="3" cellspacing="10" style="width:100%">
+            <p:chart type="bar" model="#{reportesController.reporteTotalVentas}" style="width:400px;" />
+            <p:chart type="bar" model="#{reportesController.reporteTotalSaltos}" style="width:400px;" />
+            <p:chart type="bar" model="#{reportesController.reporteTotalParacaidista}" style="width:400px;" />
         </h:panelGrid>
     </h:body>
 </html>
