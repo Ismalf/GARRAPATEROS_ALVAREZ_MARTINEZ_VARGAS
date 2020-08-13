@@ -48,9 +48,9 @@
                             </f:facet>
                             
                             
-                            <p:commandLink value="Ver avioneta" type="button" action="#{avionetaController.setViewIndex(rowId)}" oncomplete="PF('ViewDialog').show(); " />
+                            <p:commandLink value="Ver avioneta" type="button" action="#{avionetaController.setViewIndex(rowId)}" oncomplete="PF('ViewAvionetaDialog').show(); " />
                         <!--Edit-->
-                            <p:commandLink value="Editar avioneta" type="button" action="#{avionetaController.setEditIndex(rowId)}" oncomplete="PF('EditDialog').show();" />
+                            <p:commandLink value="Editar avioneta" type="button" action="#{avionetaController.setEditIndex(rowId)}" oncomplete="PF('EditAvionetaDialog').show();" />
                  
                             
                         </p:column>
@@ -60,10 +60,10 @@
               
             </h:form>
             <!--INCLUIR LOS DIALOGOS PARA EDITAR Y VISUALIZAR FUERA DE LA FORMA-->
-        <p:dialog header="Ver avioneta" widgetVar="ViewDialog" minHeight="40">
+        <p:dialog header="Ver avioneta" widgetVar="ViewAvionetaDialog" minHeight="40">
             <ui:include src="View.xhtml"></ui:include>
         </p:dialog>
-        <p:dialog header="Editar avioneta" widgetVar="EditDialog" minHeight="40">
+        <p:dialog header="Editar avioneta" widgetVar="EditAvionetaDialog" minHeight="40">
             <ui:include src="Edit.xhtml"></ui:include>
         </p:dialog>
         </ui:define>

@@ -128,11 +128,11 @@ public class PeperPersonController implements Serializable {
 
     //Copiar en otros controladores !!!!!!!!
     // Este método reemplaza al prepareView
-    public String setViewIndex(Object t) {
+    public void setViewIndex(Object t) {
 
         getItems().setRowIndex((int) t);
         prepareView();
-        return "";
+        //return "";
     }
 
     //Este método reemplaza al prepareEdit

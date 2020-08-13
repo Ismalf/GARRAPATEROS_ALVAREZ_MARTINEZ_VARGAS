@@ -96,9 +96,9 @@
                             <h:outputText value="&nbsp;"/>
                         </f:facet>
 
-                        <p:commandLink value="Ver paracaidistas" type="button" action="#{paracaidistasController.setViewIndex(rowId)}" oncomplete="PF('ViewDialog').show(); " />
+                        <p:commandLink value="Ver paracaidistas" type="button" action="#{paracaidistasController.setViewIndex(rowId)}" oncomplete="PF('ViewPracaidistaDialog').show(); " />
                         <!--Edit-->
-                        <p:commandLink value="Editar paracaidistas" type="button" action="#{paracaidistasController.setEditIndex(rowId)}" oncomplete="PF('EditDialog').show();" />
+                        <p:commandLink value="Editar paracaidistas" type="button" action="#{paracaidistasController.setEditIndex(rowId)}" oncomplete="PF('EditParacaidistaDialog').show();" />
 
                     </p:column>
                 </p:dataTable>
@@ -106,10 +106,10 @@
             <br />
            
         </h:form>
-        <p:dialog header="Ver Paracaidistas" widgetVar="ViewDialog" minHeight="40">
+        <p:dialog header="Ver Paracaidistas" widgetVar="ViewPracaidistaDialog" minHeight="40">
             <ui:include src="View.xhtml"></ui:include>
         </p:dialog>
-        <p:dialog header="Editar Paracaidistas" widgetVar="EditDialog" minHeight="40">
+        <p:dialog header="Editar Paracaidistas" widgetVar="EditParacaidistaDialog" minHeight="40">
             <ui:include src="Edit.xhtml"></ui:include>
         </p:dialog>
     </ui:define>

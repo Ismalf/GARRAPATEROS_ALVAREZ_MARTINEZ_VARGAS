@@ -7,93 +7,93 @@
                 xmlns:p="http://primefaces.org/ui"
                 >
     <ui:define name="title">
-            <h:outputText value="#{bundle.ListXeusuUsuarTitle}"></h:outputText>
-        </ui:define>
-        <ui:define name="body">
-            <h:form styleClass="jsfcrud_list_form">
-                
-                <h:outputText escape="false" value="#{bundle.ListXeusuUsuarEmpty}" rendered="#{xeusuUsuarController.items.rowCount == 0}"/>
-                <h:panelGroup rendered="#{xeusuUsuarController.items.rowCount > 0}">
-                    <h:outputText value="#{xeusuUsuarController.pagination.pageFirstItem + 1}..#{xeusuUsuarController.pagination.pageLastItem + 1}/#{xeusuUsuarController.pagination.itemsCount}"/>&nbsp;
-                    <h:commandLink action="#{xeusuUsuarController.previous}" value="#{bundle.Previous} #{xeusuUsuarController.pagination.pageSize}" rendered="#{xeusuUsuarController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{xeusuUsuarController.next}" value="#{bundle.Next} #{xeusuUsuarController.pagination.pageSize}" rendered="#{xeusuUsuarController.pagination.hasNextPage}"/>&nbsp;
-                    <p:dataTable value="#{xeusuUsuarController.items}" var="item" rowIndexVar="rowId">
-                        
-                        
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListXeusuUsuarTitle_xeusuFeccre}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.xeusuFeccre}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
-                            </h:outputText>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListXeusuUsuarTitle_xeusuFecmod}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.xeusuFecmod}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
-                            </h:outputText>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListXeusuUsuarTitle_xeusuFeccad}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.xeusuFeccad}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
-                            </h:outputText>
-                        </p:column>
-                        
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListXeusuUsuarTitle_xeusuEmail}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.xeusuEmail}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListXeusuUsuarTitle_xeusuTipo}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.xeusuTipo}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListXeusuUsuarTitle_xeperCodper}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.xeperCodper}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListXeusuUsuarTitle_peperId}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.peperId}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="&nbsp;"/>
-                            </f:facet>
-                          
-                            
-                            <p:commandLink value="Ver usuario" type="button" action="#{xeusuUsuarController.setViewIndex(rowId)}" oncomplete="PF('ViewDialog').show(); " />
+        <h:outputText value="#{bundle.ListXeusuUsuarTitle}"></h:outputText>
+    </ui:define>
+    <ui:define name="body">
+        <h:form styleClass="jsfcrud_list_form">
+
+            <h:outputText escape="false" value="#{bundle.ListXeusuUsuarEmpty}" rendered="#{xeusuUsuarController.items.rowCount == 0}"/>
+            <h:panelGroup rendered="#{xeusuUsuarController.items.rowCount > 0}">
+                <h:outputText value="#{xeusuUsuarController.pagination.pageFirstItem + 1}..#{xeusuUsuarController.pagination.pageLastItem + 1}/#{xeusuUsuarController.pagination.itemsCount}"/>&nbsp;
+                <h:commandLink action="#{xeusuUsuarController.previous}" value="#{bundle.Previous} #{xeusuUsuarController.pagination.pageSize}" rendered="#{xeusuUsuarController.pagination.hasPreviousPage}"/>&nbsp;
+                <h:commandLink action="#{xeusuUsuarController.next}" value="#{bundle.Next} #{xeusuUsuarController.pagination.pageSize}" rendered="#{xeusuUsuarController.pagination.hasNextPage}"/>&nbsp;
+                <p:dataTable value="#{xeusuUsuarController.items}" var="item" rowIndexVar="rowId">
+
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListXeusuUsuarTitle_xeusuFeccre}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.xeusuFeccre}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListXeusuUsuarTitle_xeusuFecmod}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.xeusuFecmod}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListXeusuUsuarTitle_xeusuFeccad}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.xeusuFeccad}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListXeusuUsuarTitle_xeusuEmail}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.xeusuEmail}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListXeusuUsuarTitle_xeusuTipo}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.xeusuTipo}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListXeusuUsuarTitle_xeperCodper}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.xeperCodper}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListXeusuUsuarTitle_peperId}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.peperId}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="&nbsp;"/>
+                        </f:facet>
+
+
+                        <p:commandLink value="Ver usuario" type="button" action="#{xeusuUsuarController.setViewIndex(rowId)}" oncomplete="PF('ViewUsuDialog').show(); " />
                         <!--Edit-->
-                        <p:commandLink value="Editar usuario" type="button" action="#{xeusuUsuarController.setEditIndex(rowId)}" oncomplete="PF('EditDialog').show();" />
+                        <p:commandLink value="Editar usuario" type="button" action="#{xeusuUsuarController.setEditIndex(rowId)}" oncomplete="PF('EditUsuDialog').show();" />
                         <!--Delete
                         <p:commandButton value="Crear persona" type="button" onclick="PF('dlg1').show();" />-->
-                        </p:column>
-                    </p:dataTable>
-                </h:panelGroup>
-                <br />
-                
-            </h:form>
-             <!--INCLUIR LOS DIALOGOS PARA EDITAR Y VISUALIZAR FUERA DE LA FORMA-->
-        <p:dialog header="Ver usuario" widgetVar="ViewDialog" minHeight="40">
+                    </p:column>
+                </p:dataTable>
+            </h:panelGroup>
+            <br />
+
+        </h:form>
+        <!--INCLUIR LOS DIALOGOS PARA EDITAR Y VISUALIZAR FUERA DE LA FORMA-->
+        <p:dialog header="Ver usuario" widgetVar="ViewUsuDialog" minHeight="40">
             <ui:include src="View.xhtml"></ui:include>
         </p:dialog>
-        <p:dialog header="Editar usuario" widgetVar="EditDialog" minHeight="40">
+        <p:dialog header="Editar usuario" widgetVar="EditUsuDialog" minHeight="40">
             <ui:include src="Edit.xhtml"></ui:include>
         </p:dialog>
-        </ui:define>
-    </ui:composition>
+    </ui:define>
+</ui:composition>
 
 

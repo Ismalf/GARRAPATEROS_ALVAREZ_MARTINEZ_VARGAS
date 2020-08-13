@@ -49,9 +49,9 @@
                         </f:facet>
 
 
-                        <p:commandLink value="Ver pilotos" type="button" action="#{pilotoController.setViewIndex(rowId)}" oncomplete="PF('ViewDialog').show(); " />
+                        <p:commandLink value="Ver pilotos" type="button" action="#{pilotoController.setViewIndex(rowId)}" oncomplete="PF('ViewPilotoDialog').show(); " />
                         <!--Edit-->
-                        <p:commandLink value="Editar pilotos" type="button" action="#{pilotoController.setEditIndex(rowId)}" oncomplete="PF('EditDialog').show();" />
+                        <p:commandLink value="Editar pilotos" type="button" action="#{pilotoController.setEditIndex(rowId)}" oncomplete="PF('EditPilotoDialog').show();" />
 
                     </p:column>
                 </p:dataTable>
@@ -59,10 +59,10 @@
             <br />
          
         </h:form>
-        <p:dialog header="Ver pilotos" widgetVar="ViewDialog" minHeight="40">
+        <p:dialog header="Ver pilotos" widgetVar="ViewPilotoDialog" minHeight="40">
             <ui:include src="View.xhtml"></ui:include>
         </p:dialog>
-        <p:dialog header="Editar pilotos" widgetVar="EditDialog" minHeight="40">
+        <p:dialog header="Editar pilotos" widgetVar="EditPilotoDialog" minHeight="40">
             <ui:include src="Edit.xhtml"></ui:include>
         </p:dialog>
     </ui:define>
