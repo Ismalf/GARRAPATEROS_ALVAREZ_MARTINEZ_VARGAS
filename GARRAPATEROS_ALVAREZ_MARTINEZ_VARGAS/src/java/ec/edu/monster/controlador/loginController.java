@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -33,6 +34,15 @@ public class loginController implements Serializable {
         return usuario;
     }
 
+    @PostConstruct
+    public void init() {
+        if (FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario") != null) {
+            // Logged in - redirect
+        } else {
+            System.out.println("No bro");
+        }
+    }
+
     /**
      * Creates a new instance of loginController
      */
@@ -49,9 +59,9 @@ public class loginController implements Serializable {
         System.out.println(usuario);
         sha.update(usuario.getXeusuPasswo().getBytes());
         if (usuarioFacade.doLogin(usuario.getXeusuEmail(), new String(sha.digest()))) {
-            
+
             FacesContext.getCurrentInstance().getExternalContext().redirect("/GARRAPATEROS_ALVAREZ_MARTINEZ_VARGAS/faces/adminpanel.xhtml");
-        }else{
+        } else {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Fatal!", "Credenciales incorrectas"));
         }
     }

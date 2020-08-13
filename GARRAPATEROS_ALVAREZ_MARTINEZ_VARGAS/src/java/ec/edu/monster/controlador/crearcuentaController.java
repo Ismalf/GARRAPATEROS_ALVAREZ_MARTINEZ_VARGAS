@@ -5,14 +5,18 @@
  */
 package ec.edu.monster.controlador;
 
+import ec.edu.monster.facades.ParacaidistasFacade;
 import ec.edu.monster.facades.PeperPersonFacade;
 import ec.edu.monster.facades.XeusuUsuarFacade;
+import ec.edu.monster.modelo.Paracaidistas;
 import ec.edu.monster.modelo.PeperPerson;
 import ec.edu.monster.modelo.XeperPerfil;
 import ec.edu.monster.modelo.XeusuUsuar;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import javax.ejb.EJB;
 
@@ -26,24 +30,32 @@ public class crearcuentaController implements Serializable {
 
     private XeusuUsuar usuario;
     private PeperPerson persona;
+    private Paracaidistas paracaidista;
     @EJB
     private XeusuUsuarFacade usuarioFacade;
     @EJB
     private PeperPersonFacade personaFacade;
+    @EJB
+    private ParacaidistasFacade paracaidistaFacade;
 
     /**
      * Creates a new instance of crearcuentaController
      */
     public crearcuentaController() {
-        usuario = new XeusuUsuar();
-        persona = new PeperPerson();
-
+        initFields();
     }
 
-    public void saveData() {
+    public void saveData() throws NoSuchAlgorithmException {
+        MessageDigest sha = MessageDigest.getInstance("MD5");
+        
+        sha.update(usuario.getXeusuPasswo().getBytes());
+        usuario.setXeusuPasswo(new String(sha.digest()));
         personaFacade.create(persona);
         persona.setPeperId(personaFacade.getLastId());
         usuario.setPeperId(persona);
+        paracaidista.setPeperId(personaFacade.getLastId());
+        paracaidista.setTipoParacaidista("SE");
+        paracaidistaFacade.create(paracaidista);
         usuario.setXeperCodper(new XeperPerfil("U"));
         usuario.setXeusuTipo('N');
         usuario.setXeusuFeccad(new Date());
@@ -53,10 +65,14 @@ public class crearcuentaController implements Serializable {
         usuario.setXeusuPiefir("");
         usuario.setXeusuUltpas(usuario.getXeusuPasswo());
         usuarioFacade.create(usuario);
-        usuario = new XeusuUsuar();
-        persona = new PeperPerson();
+        initFields();
     }
 
+    private void initFields(){
+        usuario = new XeusuUsuar();
+        persona = new PeperPerson();
+        paracaidista = new Paracaidistas();
+    }
     public XeusuUsuar getUsuario() {
         return usuario;
     }
@@ -87,6 +103,11 @@ public class crearcuentaController implements Serializable {
 
     public void setPersonaFacade(PeperPersonFacade personaFacade) {
         this.personaFacade = personaFacade;
+    }
+    
+    public Boolean validar(){
+        System.out.println("aqui");
+        return true;
     }
 
 }

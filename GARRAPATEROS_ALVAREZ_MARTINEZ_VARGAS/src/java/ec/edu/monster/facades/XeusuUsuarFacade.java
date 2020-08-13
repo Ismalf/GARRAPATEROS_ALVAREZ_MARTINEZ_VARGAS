@@ -7,6 +7,7 @@ package ec.edu.monster.facades;
 
 import ec.edu.monster.modelo.XeusuUsuar;
 import javax.ejb.Stateless;
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -31,7 +32,8 @@ public class XeusuUsuarFacade extends AbstractFacade<XeusuUsuar> {
 
     public Boolean doLogin(String correo, String pass) {
         try {
-            em.createNativeQuery("SELECT * FROM xeusu_usuar WHERE XEUSU_EMAIL LIKE '" + correo + "' AND XEUSU_PASSWO LIKE '" + pass + "'").getSingleResult();
+            XeusuUsuar obj = (XeusuUsuar) em.createNativeQuery("SELECT * FROM xeusu_usuar WHERE XEUSU_EMAIL LIKE '" + correo + "' AND XEUSU_PASSWO LIKE '" + pass + "'").getSingleResult();
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", obj.getXeusuEmail());
             return true;
         } catch (Exception e) {
             return false;
