@@ -7,7 +7,9 @@ import ec.edu.monster.modelo.Paracaidistas;
 import ec.edu.monster.modelo.PeperPerson;
 import ec.edu.monster.modelo.Salto;
 import ec.edu.monster.modelo.Vuelos;
+import java.io.IOException;
 import java.io.Serializable;
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -21,6 +23,7 @@ import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -169,6 +172,12 @@ public class SaltosBean implements Serializable {
     public void LimpiarLista() {
         listaSaltos.clear();
         Camarografo.clear();
+        Camarografo = new ArrayList<>();
+        listaSaltos = new ArrayList<>();
+        acumTandem = 0;
+        acumTotal = 0;
+        acumVuelos = 0;
+        acumLibre = 0;
     }
 
     public FecomCompro getComprobantes() {
@@ -492,6 +501,14 @@ public class SaltosBean implements Serializable {
         infoSaltos = new ArrayList<>();
         listaSaltos = new ArrayList<>();
         tipo = "";
+
+    }
+
+    public void doLogout() throws NoSuchAlgorithmException, IOException {
+        System.out.println("logout");
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().clear();
+
+        FacesContext.getCurrentInstance().getExternalContext().redirect("/GARRAPATEROS_ALVAREZ_MARTINEZ_VARGAS/faces/login.xhtml");
 
     }
 

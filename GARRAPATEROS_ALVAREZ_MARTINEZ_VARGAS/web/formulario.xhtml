@@ -13,7 +13,9 @@ and open the template in the editor.
         <title>Reservas</title>
     </h:head>
     <h:body style="background-color: #333; color:#ccc; display: inline-block;" >
-
+        <h:form>
+            <p:commandLink type="button" action="#{saltosBean.doLogout()}" value="Salir"/>
+        </h:form>
         <h:panelGrid columns="2" cellpadding="5" id="panel">
             <img src="images/garrapateros.png" alt="IMG"  width="1000" height="400"/>
 

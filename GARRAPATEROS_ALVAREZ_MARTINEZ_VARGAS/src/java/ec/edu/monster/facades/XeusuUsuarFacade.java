@@ -41,5 +41,14 @@ public class XeusuUsuarFacade extends AbstractFacade<XeusuUsuar> {
             return false;
         }
     }
+    public Boolean searchEmail(String correo){
+        try {
+            em.createNativeQuery("SELECT * FROM xeusu_usuar WHERE XEUSU_EMAIL LIKE '" + correo + "'").getSingleResult();
+            System.out.println("existe");
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
 }

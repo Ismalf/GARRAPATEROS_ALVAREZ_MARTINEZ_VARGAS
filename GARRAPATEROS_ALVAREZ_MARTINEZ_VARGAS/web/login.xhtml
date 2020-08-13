@@ -26,7 +26,7 @@
                     <p:message for="correo" id="msgCorreo" display="icon"/>
 
                     <p:outputLabel value="Ingrese su contraseña " for="password"/>
-                    <p:password id="password" feedback="true" value="#{loginController.usuario.xeusuPasswo}" required="true">
+                    <p:password id="password" value="#{loginController.usuario.xeusuPasswo}" required="true">
                         <p:ajax update="msgPass" event="blur" />
                         <f:validateLength minimum="6" />
                     </p:password>

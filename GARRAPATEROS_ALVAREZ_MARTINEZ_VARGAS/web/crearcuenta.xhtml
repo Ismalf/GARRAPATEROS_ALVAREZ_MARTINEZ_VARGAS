@@ -16,9 +16,10 @@
                 <h:panelGrid columns="3" cellpadding="5" >
 
                     <p:outputLabel value="Ingrese su correo" for="correo"/>
-                    <p:inputText id="correo" value="#{crearcuentaController.usuario.xeusuEmail}" required="true" validator="#{crearcuentaController.validar()}">
+                    <p:inputText id="correo" value="#{crearcuentaController.usuario.xeusuEmail}" required="true" validator="EmailValidator">
                         <p:ajax update="msgCorreo" event="blur" />
                         <f:validateRegex pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" />
+                        <f:validator validatorId="EmailValidator"/>
                     </p:inputText>
                     <p:message for="correo" id="msgCorreo" display="icon"/>
 

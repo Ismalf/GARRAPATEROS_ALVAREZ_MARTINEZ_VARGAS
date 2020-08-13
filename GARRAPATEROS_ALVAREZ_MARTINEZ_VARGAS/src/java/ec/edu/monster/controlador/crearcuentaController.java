@@ -12,13 +12,17 @@ import ec.edu.monster.modelo.Paracaidistas;
 import ec.edu.monster.modelo.PeperPerson;
 import ec.edu.monster.modelo.XeperPerfil;
 import ec.edu.monster.modelo.XeusuUsuar;
+import java.io.IOException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -66,6 +70,11 @@ public class crearcuentaController implements Serializable {
         usuario.setXeusuUltpas(usuario.getXeusuPasswo());
         usuarioFacade.create(usuario);
         initFields();
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/GARRAPATEROS_ALVAREZ_MARTINEZ_VARGAS/faces/formulario.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(crearcuentaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private void initFields(){
