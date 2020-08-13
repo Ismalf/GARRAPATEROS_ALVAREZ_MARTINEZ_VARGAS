@@ -7,72 +7,75 @@
     <h:head>
         <title>Crear cuenta</title>
     </h:head>
-    <h:body style="background-color: #333; color:#ccc; display: inline-block;">
-        <h1>Nueva cuenta</h1>
-        <h:form style="margin:0 auto;" id="panel">
+    <h:body style="background-color: #333; margin: 0 auto;">
+        <p:panel style="width: 600px;margin: 0 auto; ">
+            <img src="images/garrapateros.png" alt="IMG" style="margin: 0 auto; display: block;" width="50%"/>
+            <h1>Nueva cuenta</h1>
+            <h:form style="margin:0 auto;" id="panel">
 
-            <h:panelGrid columns="3" cellpadding="5" >
+                <h:panelGrid columns="3" cellpadding="5" >
 
-                <p:outputLabel value="Ingrese su correo" for="correo"/>
-                <p:inputText id="correo" value="#{crearcuentaController.usuario.xeusuEmail}" required="true" validator="#{crearcuentaController.validar()}">
-                    <p:ajax update="msgCorreo" event="blur" />
-                    <f:validateRegex pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" />
-                </p:inputText>
-                <p:message for="correo" id="msgCorreo" display="icon"/>
+                    <p:outputLabel value="Ingrese su correo" for="correo"/>
+                    <p:inputText id="correo" value="#{crearcuentaController.usuario.xeusuEmail}" required="true" validator="#{crearcuentaController.validar()}">
+                        <p:ajax update="msgCorreo" event="blur" />
+                        <f:validateRegex pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" />
+                    </p:inputText>
+                    <p:message for="correo" id="msgCorreo" display="icon"/>
 
-                <p:outputLabel value="Ingrese su contraseña " for="password"/>
-                <p:password id="password" feedback="true" value="#{crearcuentaController.usuario.xeusuPasswo}" required="true">
-                    <p:ajax update="msgPass" event="blur" />
-                    <f:validateLength minimum="6" />
-                </p:password>
-                <p:message for="password" id="msgPass" display="icon" />
+                    <p:outputLabel value="Ingrese su contraseña " for="password"/>
+                    <p:password id="password" feedback="true" value="#{crearcuentaController.usuario.xeusuPasswo}" required="true">
+                        <p:ajax update="msgPass" event="blur" />
+                        <f:validateLength minimum="6" />
+                    </p:password>
+                    <p:message for="password" id="msgPass" display="icon" />
 
-                <p:outputLabel value="Ingrese su nombre" for="nombre"/>
-                <p:inputText id="nombre" value="#{crearcuentaController.persona.peperNombre}" required="true">
-                    <p:ajax update="msgNombre" event="blur" />
-                </p:inputText>
-                <p:message for="nombre" id="msgNombre" display="icon" />
+                    <p:outputLabel value="Ingrese su nombre" for="nombre"/>
+                    <p:inputText id="nombre" value="#{crearcuentaController.persona.peperNombre}" required="true">
+                        <p:ajax update="msgNombre" event="blur" />
+                    </p:inputText>
+                    <p:message for="nombre" id="msgNombre" display="icon" />
 
-                <p:outputLabel value="Ingrese su apellido" for="apellido"/>
-                <p:inputText id="apellido" value="#{crearcuentaController.persona.peperApelli}" required="true">
-                    <p:ajax update="msgApll" event="blur" />
-                </p:inputText>
-                <p:message for="apellido" id="msgApll" display="icon" />
+                    <p:outputLabel value="Ingrese su apellido" for="apellido"/>
+                    <p:inputText id="apellido" value="#{crearcuentaController.persona.peperApelli}" required="true">
+                        <p:ajax update="msgApll" event="blur" />
+                    </p:inputText>
+                    <p:message for="apellido" id="msgApll" display="icon" />
 
-                <p:outputLabel for="@next" value="Género:" />
-                <p:selectOneMenu id="sex" style="width:125px" value="#{crearcuentaController.persona.pesexCodigo}" required="true">
-                    <f:selectItems value="#{pesexSexoController.itemsAvailableSelectOne}" var="s" itemLabel="#{s.label}" itemValue="#{s.label}"/>
-                    <p:ajax update="msgSex" event="blur" />
-                </p:selectOneMenu>
-                <p:message for="sex" id="msgSex" display="icon" />
+                    <p:outputLabel for="@next" value="Género:" />
+                    <p:selectOneMenu id="sex" style="width:125px" value="#{crearcuentaController.persona.pesexCodigo}" required="true">
+                        <f:selectItems value="#{pesexSexoController.itemsAvailableSelectOne}" var="s" itemLabel="#{s.label}" itemValue="#{s.label}"/>
+                        <p:ajax update="msgSex" event="blur" />
+                    </p:selectOneMenu>
+                    <p:message for="sex" id="msgSex" display="icon" />
 
-                <p:outputLabel value="Ingrese su cédula" for="cedula" />
-                <p:inputText id="cedula" required="true" value="#{crearcuentaController.persona.peperCedula}" validator="CIDValidator">
-                    <p:ajax update="msgCed" event="blur" />
-                </p:inputText>
-                <p:message for="cedula" id="msgCed" display="icon" />
+                    <p:outputLabel value="Ingrese su cédula" for="cedula" />
+                    <p:inputText id="cedula" required="true" value="#{crearcuentaController.persona.peperCedula}" validator="CIDValidator">
+                        <p:ajax update="msgCed" event="blur" />
+                    </p:inputText>
+                    <p:message for="cedula" id="msgCed" display="icon" />
 
-                <p:outputLabel for="fechanacimiento" value="Ingrese su fecha de nacimiento" />
-                <p:calendar showOn="button" id="fechanacimiento" yearRange="c-100:c" navigator="true" required="true" value="#{crearcuentaController.persona.peperNacimi}">
-                    <p:ajax update="msgFN" event="blur" />
-                </p:calendar>
-                <p:message for="fechanacimiento" id="msgFN" display="icon" />
+                    <p:outputLabel for="fechanacimiento" value="Ingrese su fecha de nacimiento" />
+                    <p:calendar showOn="button" id="fechanacimiento" yearRange="c-100:c" navigator="true" required="true" value="#{crearcuentaController.persona.peperNacimi}">
+                        <p:ajax update="msgFN" event="blur" />
+                    </p:calendar>
+                    <p:message for="fechanacimiento" id="msgFN" display="icon" />
 
-                <p:outputLabel value="Ingrese su teléfono" for="telf"/>
-                <p:inputText id="telf" required="true" value="#{crearcuentaController.persona.peperTelf}">
-                    <p:ajax update="msgTelf" event="blur" />
-                </p:inputText>
-                <p:message for="telf" id="msgTelf" display="icon" />
+                    <p:outputLabel value="Ingrese su teléfono" for="telf"/>
+                    <p:inputText id="telf" required="true" value="#{crearcuentaController.persona.peperTelf}">
+                        <p:ajax update="msgTelf" event="blur" />
+                    </p:inputText>
+                    <p:message for="telf" id="msgTelf" display="icon" />
 
-                <p:outputLabel value="Ingrese su dirección" for="dir"/>
-                <p:inputText id="dir" required="true" value="#{crearcuentaController.persona.peperDir}">
-                    <p:ajax update="msgDir" event="blur" />
-                </p:inputText>
-                <p:message for="dir" id="msgDir" display="icon" />
+                    <p:outputLabel value="Ingrese su dirección" for="dir"/>
+                    <p:inputText id="dir" required="true" value="#{crearcuentaController.persona.peperDir}">
+                        <p:ajax update="msgDir" event="blur" />
+                    </p:inputText>
+                    <p:message for="dir" id="msgDir" display="icon" />
 
-                <p:commandButton ajax="false" value="Registrarse" validateClient="true" update="panel" action="#{crearcuentaController.saveData()}"/>
-            </h:panelGrid>
-        </h:form>
+                    <p:commandButton ajax="false" value="Registrarse" validateClient="true" update="panel" action="#{crearcuentaController.saveData()}"/>
+                </h:panelGrid>
+            </h:form>
+        </p:panel>
     </h:body>
 </html>
 

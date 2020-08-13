@@ -106,4 +106,12 @@ public class loginController implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Fatal!", "Credenciales incorrectas"));
         }
     }
+
+    public void doLogout() throws NoSuchAlgorithmException, IOException {
+        System.out.println("logout");
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().clear();
+
+        FacesContext.getCurrentInstance().getExternalContext().redirect("/GARRAPATEROS_ALVAREZ_MARTINEZ_VARGAS/faces/login.xhtml");
+
+    }
 }

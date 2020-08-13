@@ -7,31 +7,40 @@
     <h:head>
         <title>Facelet Title</title>
     </h:head>
-    <h:body>
-        <h1>Login</h1>
-        <h:form style="margin:0 auto;" id="loginpanel">
-            <p:messages id="messages" showDetail="true" closable="true">
-                <p:autoUpdate />
-            </p:messages>
-            <h:panelGrid columns="3" cellpadding="5" >
+    <h:body style="background-color: #444;  width: 95%;margin: 0 auto;">
 
-                <p:outputLabel value="Ingrese su correo" for="correo"/>
-                <p:inputText id="correo" value="#{loginController.usuario.xeusuEmail}" required="true" >
-                    <p:ajax update="msgCorreo" event="blur" />
-                    <f:validateRegex pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" />
-                </p:inputText>
-                <p:message for="correo" id="msgCorreo" display="icon"/>
+        <p:panel style="width: 400px;margin: 0 auto; text-align: center;">
+            <img src="images/garrapateros.png" alt="IMG" style="margin-left: auto; display: block;" width="100%"/>
+            <h1>Login</h1>
+            <h:form style="margin:0 auto; " id="loginpanel">
+                <p:messages id="messages" showDetail="true" closable="true">
+                    <p:autoUpdate />
+                </p:messages>
+                <h:panelGrid columns="3" cellpadding="5" >
 
-                <p:outputLabel value="Ingrese su contraseña " for="password"/>
-                <p:password id="password" feedback="true" value="#{loginController.usuario.xeusuPasswo}" required="true">
-                    <p:ajax update="msgPass" event="blur" />
-                    <f:validateLength minimum="6" />
-                </p:password>
-                <p:message for="password" id="msgPass" display="icon" />
+                    <p:outputLabel value="Ingrese su correo" for="correo"/>
+                    <p:inputText id="correo" value="#{loginController.usuario.xeusuEmail}" required="true" >
+                        <p:ajax update="msgCorreo" event="blur" />
+                        <f:validateRegex pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" />
+                    </p:inputText>
+                    <p:message for="correo" id="msgCorreo" display="icon"/>
 
-                <p:commandButton ajax="false" value="Registrarse" validateClient="true" update="panel" action="#{loginController.doLogin()}"/>
-            </h:panelGrid>
-        </h:form>
+                    <p:outputLabel value="Ingrese su contraseña " for="password"/>
+                    <p:password id="password" feedback="true" value="#{loginController.usuario.xeusuPasswo}" required="true">
+                        <p:ajax update="msgPass" event="blur" />
+                        <f:validateLength minimum="6" />
+                    </p:password>
+                    <p:message for="password" id="msgPass" display="icon" />
+
+
+                </h:panelGrid>
+                <br/>
+                <br/>
+                <p:commandButton ajax="false" value="Ingresar" validateClient="true" update="panel" action="#{loginController.doLogin()}"/>
+                <br/>
+                <h:link outcome="crearcuenta.xhtml" value="Crear cuenta"/> 
+            </h:form>
+        </p:panel>
     </h:body>
 </html>
 

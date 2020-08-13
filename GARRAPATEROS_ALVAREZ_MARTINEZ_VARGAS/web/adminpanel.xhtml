@@ -10,7 +10,30 @@
     </h:head>
     <h:body style="background-color: #444;  width: 95%;margin: 0 auto;">
         <p:ajaxExceptionHandler onexception=""/>
-        <img src="images/garrapateros.png" alt="IMG" style="margin-left: auto; display: block;" width="25%"/>
+        <p:panelGrid columns="2" style="width: 100%; margin-bottom: 2%;">
+            <img src="images/garrapateros.png" alt="IMG" style="margin: 0 auto; display: block;" width="50%"/>
+            <h:form style="width: 100%;">
+                <p:menubar>
+
+
+                    <p:menuitem value="Administrador" >
+
+                    </p:menuitem>
+
+
+                    <p:menuitem>
+                        <p:clock />
+                    </p:menuitem>
+
+                    <f:facet name="options">
+                        <p:commandLink style="margin-top: 20%;" type="button" action="#{adminpanelController.doLogout()}" value="Salir" />
+                        
+
+                    </f:facet>
+                </p:menubar>
+            </h:form>
+
+        </p:panelGrid>
         <p:tabView dynamic="true" effect="fade" cache="false" style="width: 100%; margin: 0 auto;">
             <!--Está relacionado con un subsistema-->
             <!--COMPLETO-->

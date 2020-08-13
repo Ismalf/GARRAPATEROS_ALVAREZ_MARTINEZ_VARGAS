@@ -100,10 +100,10 @@ public class PeperPersonController implements Serializable {
             System.out.println("Ok");
             System.out.println(format.format(event.getObject()));
             getSelected().setPeperNacimi(event.getObject());
-            hasData = true;
+            //hasData = true;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            hasData = false;
+            //hasData = false;
         }
     }
 

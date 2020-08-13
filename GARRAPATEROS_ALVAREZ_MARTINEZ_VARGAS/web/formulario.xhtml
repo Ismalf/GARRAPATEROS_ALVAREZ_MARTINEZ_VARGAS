@@ -12,10 +12,10 @@ and open the template in the editor.
     <h:head>
         <title>Reservas</title>
     </h:head>
-    <h:body style="background-color: #333; color:#ccc; display: inline-block;">
+    <h:body style="background-color: #333; color:#ccc; display: inline-block;" >
 
         <h:panelGrid columns="2" cellpadding="5" id="panel">
-            <img src="images/garrapateros.png" alt="IMG"  width="100%" />
+            <img src="images/garrapateros.png" alt="IMG"  width="1000" height="400"/>
 
             <h:form style="margin:0 auto;">
                 <h:panelGrid columns="2" cellpadding="5" id="panel">
@@ -28,32 +28,35 @@ and open the template in the editor.
                     <p:outputLabel value="Fecha vuelo"/>
                     <h:outputText id="pr" value="#{vuelosBean.vueloSelected.fechaVuelo}" />
                     <p:outputLabel value="Hora Salida"/>
-                    <h:outputText id="pi" value="#{vuelosBean.vueloSelected.horaSalida}"/>
+                    <h:outputText id="pi" value="#{vuelosBean.vueloSelected.horaSalida}"/>  
 
                     <h:outputLabel value="Tipo"/>
                     <p:selectOneMenu  value="#{saltosBean.tipo}" >
                         <f:selectItem itemLabel="Tandem" itemValue="Tandem" />
                         <f:selectItem itemLabel="Libre" itemValue="Libre" />
-                        <!--    <p:ajax event="change" update="cantidad" listener="{saltosBean.obtenerDisponibles()}"/>-->
+                        <p:ajax event="change" update="cantidad" listener="#{saltosBean.cargarDatosSaltos(vuelosBean.vueloSelected.idVuelo)}"/>
                         <p:ajax event="change" update="@this" />
                     </p:selectOneMenu>
 
                     <h:outputLabel  for="cantidad" value="Cantidad"/>
-                    <p:inputNumber  id="cantidad"  value="#{saltosBean.acumVuelos}" >
-                        <f:validateDoubleRange minimum="1" maximum="8" />
+                    <p:inputNumber  id="cantidad"  value="#{saltosBean.acumVuelos}" >                 
+                        <f:validateDoubleRange minimum="1" maximum="#{saltosBean.maxVuelos}" />
                         <p:ajax update="msgLastname" event="keyup" />
+
                     </p:inputNumber>
                     <p:message for="cantidad" id="msgLastname" display="icon" />
+                    <h:outputLabel />
+                    <h:outputLabel value="Camarógrafo"/>
+                    <p:selectOneMenu  value="#{saltosBean.cam}" >
+                        <f:selectItem itemLabel="Si" itemValue="Si" />
+                        <f:selectItem itemLabel="No" itemValue="No" />
+                        <p:ajax event="change" update="@this" />
+                    </p:selectOneMenu>
 
-
-                    <h:outputLabel  for="Camarógrafo" value="Camarógrafo"/>
-                    <p:inputNumber  id="Camarógrafo" value="#{saltoController.current}" maxValue="1" >
-                        <f:validateDoubleRange  minimum="0" maximum="1" />
-                    </p:inputNumber>
 
 
                 </h:panelGrid>
-                <h:commandButton action="#{saltosBean.guardarSaltos(vuelosBean.vueloSelected.idVuelo)}"
+                <h:commandButton action="#{saltosBean.guardarSaltos(vuelosBean.vueloSelected.idVuelo)}" 
                                  value="Añadir">
                     <f:ajax execute="tabla" />
                 </h:commandButton>
@@ -61,8 +64,10 @@ and open the template in the editor.
 
             </h:form>
         </h:panelGrid>
-        <br/>
-        <p:dataTable id="tabla" value="#{saltosBean.listaSaltos}" var="saltos" editable="true" >
+
+
+
+        <p:dataTable id="tabla" value="#{saltosBean.listaSaltos}" var="saltos" editable="true" rowIndexVar="rowId">
             <p:autoUpdate/>
 
             <p:column >
@@ -74,7 +79,7 @@ and open the template in the editor.
                     <f:facet name="output">
                         <h:outputText value="#{saltos.idVuelo}" />
                     </f:facet>
-                    <f:facet name="input">
+                    <f:facet name="input">   
                         <h:outputText value="#{saltos.idVuelo}" />
                     </f:facet>
 
@@ -84,23 +89,7 @@ and open the template in the editor.
             <p:column >
                 <f:facet name="header">
 
-                    <h:outputText value="Código de Reserva"/>
-                </f:facet>
-                <h:outputText value="#{saltos.feresCodigo}" />
-            </p:column>
 
-            <p:column >
-                <f:facet name="header">
-
-
-                    <h:outputText value="ID Piloto"/>
-                </f:facet>
-                <h:outputText value="#{saltos.peperId}" />
-            </p:column>
-
-
-            <p:column >
-                <f:facet name="header">
 
 
                     <h:outputText value="Salto escogido"/>
@@ -122,9 +111,17 @@ and open the template in the editor.
                 <f:facet name="header">
 
 
-                    <h:outputText value="Descuento "/>
+                    <h:outputText value="Equipaje "/>
                 </f:facet>
                 <h:outputText value="#{saltos.descuentoSalto}" />
+            </p:column>
+
+            <p:column >
+                <f:facet name="header">
+
+                    <h:outputText value="Camarógrafo "/>
+                </f:facet>
+                <h:outputText value="#{saltosBean.camarografo.get(rowId)}" />
             </p:column>
 
             <p:column style="width:32px">
@@ -133,11 +130,15 @@ and open the template in the editor.
 
 
         </p:dataTable>
-        <br/>
+
         <div style="margin: 0 auto; text-align: center;">
             <h:form style="display: inline-block; margin:0 auto;">
                 <p:commandButton style="margin:0 auto;" ajax="true" value="Confirmar" action="#{saltosBean.saveDataTables()}"/>
+
+                <!-- <p:ajax process="@form" update="tabla" />-->
+
             </h:form>
         </div>
+
     </h:body>
 </html>

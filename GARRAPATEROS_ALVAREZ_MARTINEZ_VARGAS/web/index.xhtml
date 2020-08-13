@@ -11,6 +11,7 @@
     </h:head>
     <h:body>
         Hello from Facelets
+        <f:ajax event="load" listener="#{indexController.redirect}"/>
         <br />
         <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />
         <br />

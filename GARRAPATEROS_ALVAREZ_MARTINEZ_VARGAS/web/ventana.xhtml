@@ -11,69 +11,25 @@ and open the template in the editor.
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>CRM application sample</title>
+        <title>Ventana Vuelos</title>
 
 
-        <h:form>  
-            <p:growl id="messages"/>
 
-            <p:menubar>
-                <p:submenu label="File" icon="pi pi-file">
-                    <p:submenu label="New" icon="pi pi-briefcase">
-                        <p:menuitem value="Project" url="#" />
-                        <p:menuitem value="Other" url="#" />
-                    </p:submenu>
-                    <p:menuitem value="Open" url="#" />
-                    <p:separator />
-                    <p:menuitem value="Quit" url="#" />
-                </p:submenu>
-
-                <p:submenu label="Edit" icon="pi pi-pencil">
-
-                </p:submenu>
-
-                <p:submenu label="Help" icon="pi pi-question">
-                    <p:menuitem value="Contents" url="#" />
-                    <p:submenu label="Search" icon="pi pi-search">
-                        <p:submenu label="Text">
-                            <p:menuitem value="Workspace" url="#" />
-                        </p:submenu>
-                        <p:menuitem value="File" url="#" />
-                    </p:submenu>
-                </p:submenu>
-
-
-                <p:submenu label="Actions" icon="pi pi-cog">
-                    <p:submenu label="Ajax" icon="pi pi-refresh">
-                        <p:menuitem value="Save" action="faces/avioneta/List.xhtml" icon="pi pi-save" update="messages"/>
-                        <p:menuitem value="Update"  icon="pi pi-refresh" update="messages"/>
-                    </p:submenu>
-                    <p:submenu label="Non-Ajax" icon="pi pi-clone">
-                        <p:menuitem value="Delete"  icon="pi pi-times" update="messages" ajax="false"/>
-                    </p:submenu>
-                </p:submenu>
-
-                <p:menuitem value="Quit" url="http://www.primefaces.org" icon="pi pi-times" />
-
-                <f:facet name="options">
-                    <p:inputText style="margin:1px 10px 1px 1px;" placeholder="Search"/>
-                    <p:commandButton type="button" value="Logout" icon="pi pi-home"      
-                                     />
-
-                </f:facet>
-            </p:menubar>
-        </h:form>
     </h:head>
-    <h:body>
+    <h:body style="background-color: #333; color:#ccc; display: inline-block;" >
+        <center>
+            <img src="images/garrapateros.png" alt="IMG"  width="600" height="200"/>
+            <h1>Cronograma de Vuelos</h1>
+        </center>
 
-        <div style="margin-top: 10%;" >
+        <div style="margin-top: 5%;" >
 
 
             <div>
 
 
                 <p:dataTable id="tabla" value="#{listadoVuelosBean.listado}" var="vuelos" >
-              
+
                     <p:column >
                         <f:facet name="header">
 
@@ -110,8 +66,8 @@ and open the template in the editor.
                         </f:facet>
                         <h:outputText value="#{vuelos[3]}" />
                     </p:column>
-                    
-                     <p:column >
+
+                    <p:column >
                         <f:facet name="header">
 
 
@@ -119,9 +75,9 @@ and open the template in the editor.
                         </f:facet>
                         <h:outputText value="#{vuelos[4]}" />
                     </p:column>
-                    
-                     
-                     <p:column >
+
+
+                    <p:column >
                         <f:facet name="header">
 
 
@@ -131,7 +87,7 @@ and open the template in the editor.
                     </p:column>
 
 
-        
+
                 </p:dataTable>
 
             </div>
