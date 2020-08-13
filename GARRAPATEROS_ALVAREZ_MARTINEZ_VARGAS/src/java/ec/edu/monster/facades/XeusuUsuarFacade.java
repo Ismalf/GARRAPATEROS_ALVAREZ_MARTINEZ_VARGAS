@@ -35,7 +35,7 @@ public class XeusuUsuarFacade extends AbstractFacade<XeusuUsuar> {
         try {
             XeusuUsuar obj = (XeusuUsuar) em.createNativeQuery("SELECT * FROM xeusu_usuar WHERE XEUSU_EMAIL LIKE '" + correo + "' AND XEUSU_PASSWO LIKE '" + pass + "'", XeusuUsuar.class).getSingleResult();
             System.out.println(obj.getXeusuEmail());
-            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", obj.getXeusuEmail());
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", obj);
             return true;
         } catch (Exception e) {
             return false;

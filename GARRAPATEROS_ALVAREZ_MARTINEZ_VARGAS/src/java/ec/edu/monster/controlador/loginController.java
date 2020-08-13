@@ -39,10 +39,22 @@ public class loginController implements Serializable {
 
     @PostConstruct
     public void init() {
-        if (FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario") != null) {
+        XeusuUsuar x = (XeusuUsuar) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+        if (x != null) {
             try {
                 // Logged in - redirect
-                FacesContext.getCurrentInstance().getExternalContext().redirect("/GARRAPATEROS_ALVAREZ_MARTINEZ_VARGAS/faces/adminpanel.xhtml");
+                switch (x.getXeperCodper().getXeperCodper()) {
+                    case "A":
+                        FacesContext.getCurrentInstance().getExternalContext().redirect("/GARRAPATEROS_ALVAREZ_MARTINEZ_VARGAS/faces/adminpanel.xhtml");
+                        break;
+                    case "U":
+                        FacesContext.getCurrentInstance().getExternalContext().redirect("/GARRAPATEROS_ALVAREZ_MARTINEZ_VARGAS/faces/formulario.xhtml");
+                        break;
+                    case "E":
+                        FacesContext.getCurrentInstance().getExternalContext().redirect("/GARRAPATEROS_ALVAREZ_MARTINEZ_VARGAS/faces/adminpanel.xhtml");
+                        break;
+                }
+
             } catch (IOException ex) {
                 Logger.getLogger(loginController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -68,7 +80,28 @@ public class loginController implements Serializable {
         sha.update(usuario.getXeusuPasswo().getBytes());
         if (usuarioFacade.doLogin(usuario.getXeusuEmail(), new String(sha.digest()))) {
 
-            FacesContext.getCurrentInstance().getExternalContext().redirect("/GARRAPATEROS_ALVAREZ_MARTINEZ_VARGAS/faces/adminpanel.xhtml");
+            XeusuUsuar x = (XeusuUsuar) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+            if (x != null) {
+                try {
+                    // Logged in - redirect
+                    switch (x.getXeperCodper().getXeperCodper()) {
+                        case "A":
+                            FacesContext.getCurrentInstance().getExternalContext().redirect("/GARRAPATEROS_ALVAREZ_MARTINEZ_VARGAS/faces/adminpanel.xhtml");
+                            break;
+                        case "U":
+                            FacesContext.getCurrentInstance().getExternalContext().redirect("/GARRAPATEROS_ALVAREZ_MARTINEZ_VARGAS/faces/formulario.xhtml");
+                            break;
+                        case "E":
+                            FacesContext.getCurrentInstance().getExternalContext().redirect("/GARRAPATEROS_ALVAREZ_MARTINEZ_VARGAS/faces/adminpanel.xhtml");
+                            break;
+                    }
+
+                } catch (IOException ex) {
+                    Logger.getLogger(loginController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                System.out.println("No bro");
+            }
         } else {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Fatal!", "Credenciales incorrectas"));
         }

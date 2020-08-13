@@ -6,6 +6,7 @@ import ec.edu.monster.controlador.util.PaginationHelper;
 import ec.edu.monster.facades.XeusuUsuarFacade;
 
 import java.io.Serializable;
+import java.security.MessageDigest;
 import java.util.ResourceBundle;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -25,7 +26,7 @@ public class XeusuUsuarController implements Serializable {
 
     private XeusuUsuar current;
     private DataModel items = null;
-     private int createRequest = 0;
+    private int createRequest = 0;
     @EJB
     private ec.edu.monster.facades.XeusuUsuarFacade ejbFacade;
     private PaginationHelper pagination;
@@ -33,13 +34,12 @@ public class XeusuUsuarController implements Serializable {
 
     public XeusuUsuarController() {
     }
-    
-     @PostConstruct
+
+    @PostConstruct
     public void init() {
         prepareList();
         getItems();
     }
-
 
     public XeusuUsuar getSelected() {
         if (current == null) {
@@ -75,38 +75,38 @@ public class XeusuUsuarController implements Serializable {
         recreateModel();
         return "List";
     }
+
     public Boolean prepareView() {
         current = (XeusuUsuar) getItems().getRowData();
-        
+
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        
+
         return true;
     }
 
-   
-        //Copiar en otros controladores !!!!!!!!
+    //Copiar en otros controladores !!!!!!!!
     // Este método reemplaza al prepareView
     public String setViewIndex(Object t) {
-        
+
         getItems().setRowIndex((int) t);
         prepareView();
         return "";
     }
+
     //Este método reemplaza al prepareEdit
     public String setEditIndex(Object t) {
-        
+
         getItems().setRowIndex((int) t);
         prepareEdit();
         return "";
     }
-    
 
     public void prepareCreate() {
         current = new XeusuUsuar();
         selectedItemIndex = -1;
-       createRequest = 0;
+        createRequest = 0;
     }
-    
+
     public void create() {
         try {
             System.out.println("Create request " + createRequest);
@@ -114,7 +114,10 @@ public class XeusuUsuarController implements Serializable {
                 System.out.println("No reate");
                 return;
             }
+            MessageDigest sha = MessageDigest.getInstance("MD5");
 
+            sha.update(current.getXeusuPasswo().getBytes());
+            current.setXeusuPasswo(new String(sha.digest()));
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("XeusuUsuarCreated"));
             current = null;
@@ -127,7 +130,6 @@ public class XeusuUsuarController implements Serializable {
         }
     }
 
-
     public String prepareEdit() {
         current = (XeusuUsuar) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
@@ -136,6 +138,14 @@ public class XeusuUsuarController implements Serializable {
 
     public String update() {
         try {
+            if (createRequest != 0) {
+                System.out.println("No reate");
+                return "View";
+            }
+            MessageDigest sha = MessageDigest.getInstance("MD5");
+
+            sha.update(current.getXeusuPasswo().getBytes());
+            current.setXeusuPasswo(new String(sha.digest()));
             getFacade().edit(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("XeusuUsuarUpdated"));
             return "View";
