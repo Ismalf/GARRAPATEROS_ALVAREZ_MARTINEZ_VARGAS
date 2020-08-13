@@ -47,7 +47,7 @@ public class SaltosBean implements Serializable {
     private int n;
     int aux = 0;
     float v = 308.00f;
-    private float valorPagar = 0.00f;
+    private float valorPagar;
     private int acumTandem;
     private int acumTotal;
     private int contTandem = 0;
@@ -126,7 +126,7 @@ public class SaltosBean implements Serializable {
             saltos.setDescuentoSalto(0);
             saltos.setFeresCodigo(reservas);
             saltos.setIdSalto(getHMS());
-            saltos.setIdVuelo(listaSaltos.get(i-1).getIdVuelo());
+            saltos.setIdVuelo(listaSaltos.get(i - 1).getIdVuelo());
             saltos.setMontoSalto(valorPagar);
             saltos.setPeperId(new Paracaidistas(1));
             saltos.setTipoSalto(tipo);
@@ -404,6 +404,7 @@ public class SaltosBean implements Serializable {
         acumTotal = 0;
         acumVuelos = 0;
         acumLibre = 0;
+        valorPagar = 0.00f;
         infoSaltos = new ArrayList<>();
         listaSaltos = new ArrayList<>();
         tipo = "";
